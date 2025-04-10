@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  user_id        String         @id
+  username       String         @unique
+  email          String         @unique
+  fullname       String?
+  bio            String?
+  avatar_url     String?
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @default(now())
+  following      Follow[]       @relation("Following")
+  followers      Follow[]       @relation("FollowedBy")
+  receivedNotifs Notification[] @relation("ReceivedNotifications")
+  sentNotifs     Notification[] @relation("SentNotifications")
+  status         Status?
+}
+
+model Status {
+  user_id     String   @id
+  is_online   Boolean  @default(false)
+  last_active DateTime @default(now())
+  changed_at  DateTime @default(now())
+  profile     Profile  @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+}
+
+model Follow {
+  id          Int      @id @default(autoincrement())
+  leader_id   String
+  follower_id String
+  created_at  DateTime @default(now())
+  follower    Profile  @relation("Following", fields: [follower_id], references: [user_id])
+  leader      Profile  @relation("FollowedBy", fields: [leader_id], references: [user_id])
+
+  @@unique([leader_id, follower_id])
+}
+
+model Notification {
+  id                Int      @id @default(autoincrement())
+  receiver_id       String
+  sender_id         String
+  notification_type String
+  message           String
+  is_read           Boolean  @default(false)
+  created_at        DateTime @default(now())
+  receiver          Profile  @relation("ReceivedNotifications", fields: [receiver_id], references: [user_id])
+  sender            Profile  @relation("SentNotifications", fields: [sender_id], references: [user_id])
+}
