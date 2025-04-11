@@ -1,11 +1,10 @@
 import express from "express";
 import {
   createProfile,
+  getFriendStatuses,
   getProfile,
   getSearchHistory,
-  isUserOnline,
   searchUsername,
-  setUserOnline,
   suggestUsername,
   updateProfile,
 } from "../controllers/proflie.controller";
@@ -17,9 +16,7 @@ router.use(verifyToken);
 
 router.route("/").get(getProfile).post(createProfile).put(updateProfile);
 
-router.route("/online").post(setUserOnline);
-router.route("/online/:userId").get(isUserOnline);
-
+router.route("/online").get(getFriendStatuses);
 router.route("/suggest-username/:base").get(suggestUsername);
 router.route("/search/:keyword").get(searchUsername);
 router.route("/search").get(getSearchHistory);

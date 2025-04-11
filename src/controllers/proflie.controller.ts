@@ -1,7 +1,5 @@
-import { exists } from "fs";
 import { redis } from "../lib/redis";
 import { sendResponse } from "../response/apiResponse";
-import userService from "../services/user.service";
 import UserService from "../services/user.service";
 import { CreateUserType } from "../types/user.type";
 import AppError from "../utils/error/AppError";
@@ -83,7 +81,7 @@ export const searchUsername = CatchAsync(async (req, res, next) => {
   }
 
   // Tìm kiếm người dùng
-  const data = await userService.searchUsername(userId, normalizedKeyword);
+  const data = await UserService.searchUsername(userId, normalizedKeyword);
 
   const key = `search_history:${userId}`;
   // Xoá nếu đã tồn tại để tránh trùng
@@ -111,20 +109,29 @@ export const getSearchHistory = CatchAsync(async (req, res, next) => {
   sendResponse(res, 200, "Danh sách lịch sử tìm kiếm", data);
 });
 
-export const setUserOnline = CatchAsync(async (req, res, next) => {
-  const { userId } = getUserLogin(req);
+export const getFriendStatuses = CatchAsync(async (req, res, next) => {
+  const { userId } = getUserLogin(req); // Lấy userId của người đang đăng nhập
 
-  await userService.setUserOnline(userId);
+  const friendIds = await UserService.getFriendIds(userId); // Trả về mảng userId bạn bè
 
-  sendResponse(res, 200, "Cập nhật trạng thái thành công");
-});
+  if (!friendIds || friendIds.length === 0) {
+    return sendResponse(res, 200, "Bạn chưa có bạn bè nào", null);
+  }
 
-export const isUserOnline = CatchAsync(async (req, res, next) => {
-  const { userId } = req.params;
+  const pipeline = redis.multi();
+  friendIds.forEach((id) => pipeline.sismember("online_users", id));
 
-  const isOnline = await userService.isUserOnline(userId);
+  const results = await pipeline.exec();
 
-  sendResponse(res, 200, "Kiểm tra trạng thái thành công", {
-    isOnline,
+  if (!results) {
+    throw new AppError("Không thể kiểm tra trạng thái online", 500);
+  }
+
+  const statuses: Record<string, boolean> = {};
+  friendIds.forEach((id, idx) => {
+    const isOnline = results[idx]?.[1];
+    statuses[id] = Boolean(isOnline);
   });
+
+  sendResponse(res, 200, "Trạng thái online của bạn bè", statuses);
 });

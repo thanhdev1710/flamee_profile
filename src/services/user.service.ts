@@ -267,18 +267,24 @@ class UserService {
     return isUser1FollowingUser2 && isUser2FollowingUser1;
   }
 
-  async setUserOnline(userId: string) {
-    const key = `online:${userId}`;
+  async getFriendIds(userId: string): Promise<string[]> {
+    const friends = await prisma.follow.findMany({
+      where: {
+        follower_id: userId,
+        leader: {
+          followers: {
+            some: {
+              follower_id: userId,
+            },
+          },
+        },
+      },
+      select: {
+        leader_id: true,
+      },
+    });
 
-    await redis.setex(key, 60, 1);
-  }
-
-  async isUserOnline(userId: string) {
-    const key = `online:${userId}`;
-
-    const exists = await redis.exists(key);
-
-    return exists == 1;
+    return friends.map((f) => f.leader_id);
   }
 }
 

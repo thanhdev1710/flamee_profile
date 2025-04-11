@@ -2,7 +2,7 @@ import { CorsOptions } from "cors";
 import rateLimit from "express-rate-limit";
 
 export const corsOptions: CorsOptions = {
-  origin: "*", // Định nghĩa các nguồn gốc được phép
+  origin: process.env.ORIGIN!, // Định nghĩa các nguồn gốc được phép
   methods: "GET,POST,PUT,PATCH,DELETE", // Các phương thức HTTP được phép
   allowedHeaders: "Content-Type,Authorization", // Các header được phép
   credentials: true, // Cho phép cookies đi kèm với các yêu cầu CORS

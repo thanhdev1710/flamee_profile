@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import morgan from "morgan";
+import http from "http";
 
 import { corsOptions, URL_API_V1 } from "./global/settingApp";
 import GlobalError from "./middlewares/GlobalError";
@@ -10,8 +11,13 @@ import AppError from "./utils/error/AppError";
 
 import profileRouter from "./routes/profile.route";
 import followRouter from "./routes/follow.route";
+import { initSocket } from "./lib/socket";
 
 const app: Application = express();
+const server = http.createServer(app); // Tạo server HTTP từ express
+
+// Khởi tạo socket.io với Redis + sự kiện online/offline
+initSocket(server);
 
 // ==============================
 // Middleware cấu hình hệ thống
@@ -46,4 +52,4 @@ app.all("*path", (req: Request, res: Response, next: NextFunction) => {
 // ==============================
 app.use(GlobalError);
 
-export default app;
+export default server;
