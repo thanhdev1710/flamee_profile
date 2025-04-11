@@ -7,9 +7,9 @@ import morgan from "morgan";
 import { corsOptions, URL_API_V1 } from "./global/settingApp";
 import GlobalError from "./middlewares/GlobalError";
 import AppError from "./utils/error/AppError";
-import { HTTP_STATUS } from "./response/httpStatusCode";
 
 import profileRouter from "./routes/profile.route";
+import followRouter from "./routes/follow.route";
 
 const app: Application = express();
 
@@ -31,15 +31,13 @@ app.use((req, res, next) => {
 // Khai báo route
 // ==============================
 app.use(`${URL_API_V1}/profiles`, profileRouter);
+app.use(`${URL_API_V1}/follows`, followRouter);
 // ==============================
 // Xử lý route không tồn tại
 // ==============================
 app.all("*path", (req: Request, res: Response, next: NextFunction) => {
   next(
-    new AppError(
-      `Không tìm thấy đường dẫn ${req.originalUrl} trên server`,
-      HTTP_STATUS.NOT_FOUND
-    )
+    new AppError(`Không tìm thấy đường dẫn ${req.originalUrl} trên server`, 404)
   );
 });
 

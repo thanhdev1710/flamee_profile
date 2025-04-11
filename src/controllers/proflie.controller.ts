@@ -1,19 +1,16 @@
+import { exists } from "fs";
 import { redis } from "../lib/redis";
 import { sendResponse } from "../response/apiResponse";
-import { HTTP_STATUS } from "../response/httpStatusCode";
 import userService from "../services/user.service";
 import UserService from "../services/user.service";
 import { CreateUserType } from "../types/user.type";
 import AppError from "../utils/error/AppError";
 import CatchAsync from "../utils/error/CatchAsync";
+import { getUserLogin } from "../utils/helper";
 import { generateUsernameSuggestion } from "../utils/utils";
 
 export const createProfile = CatchAsync(async (req, res, next) => {
-  const userId = (req as any).user?.sub;
-  const email = (req as any).user?.email;
-  if (!userId || !email) {
-    throw new AppError("Vui lòng đăng nhập", HTTP_STATUS.FORBIDDEN);
-  }
+  const { email, userId } = getUserLogin(req);
   const body: CreateUserType = {
     ...req.body,
     user_id: userId,
@@ -26,10 +23,7 @@ export const createProfile = CatchAsync(async (req, res, next) => {
 });
 
 export const getProfile = CatchAsync(async (req, res, next) => {
-  const userId = (req as any).user?.sub;
-  if (!userId) {
-    throw new AppError("Vui lòng đăng nhập", HTTP_STATUS.FORBIDDEN);
-  }
+  const { userId } = getUserLogin(req);
 
   const user = await UserService.findByUserId(userId);
 
@@ -37,11 +31,7 @@ export const getProfile = CatchAsync(async (req, res, next) => {
 });
 
 export const updateProfile = CatchAsync(async (req, res, next) => {
-  const userId = (req as any).user?.sub;
-  const email = (req as any).user?.email;
-  if (!userId || !email) {
-    throw new AppError("Vui lòng đăng nhập", HTTP_STATUS.FORBIDDEN);
-  }
+  const { email, userId } = getUserLogin(req);
   const body: CreateUserType = {
     ...req.body,
     user_id: userId,
@@ -55,12 +45,7 @@ export const updateProfile = CatchAsync(async (req, res, next) => {
 
 export const suggestUsername = CatchAsync(async (req, res, next) => {
   const { base } = req.params;
-  const userId = (req as any).user?.sub;
-  const email = (req as any).user?.email;
-
-  if (!userId || !email) {
-    throw new AppError("Vui lòng đăng nhập", HTTP_STATUS.FORBIDDEN);
-  }
+  const { email } = getUserLogin(req);
 
   const emailBase = email.split("@")[0].toLowerCase();
   const baseInput = base?.trim().toLowerCase() || emailBase;
@@ -89,48 +74,57 @@ export const suggestUsername = CatchAsync(async (req, res, next) => {
 
 export const searchUsername = CatchAsync(async (req, res, next) => {
   const { keyword } = req.params;
-  const userId = (req as any).user?.sub;
-  const email = (req as any).user?.email;
-
-  // Kiểm tra đăng nhập
-  if (!userId || !email) {
-    throw new AppError("Vui lòng đăng nhập", HTTP_STATUS.FORBIDDEN);
-  }
+  const { userId } = getUserLogin(req);
+  const normalizedKeyword = keyword.toLowerCase();
 
   // Kiểm tra keyword có bắt đầu bằng '@' chưa
-  if (!keyword.startsWith("@")) {
-    throw new AppError("Phải có chữ @ mới tìm kiếm", HTTP_STATUS.BAD_REQUEST);
+  if (!normalizedKeyword.startsWith("@")) {
+    throw new AppError("Phải có chữ @ mới tìm kiếm", 400);
   }
 
   // Tìm kiếm người dùng
-  const data = await userService.searchUsername(userId, keyword);
+  const data = await userService.searchUsername(userId, normalizedKeyword);
+
+  const key = `search_history:${userId}`;
+  // Xoá nếu đã tồn tại để tránh trùng
+  await redis.lrem(key, 0, normalizedKeyword);
+  // Thêm mới vào đầu danh sách
+  await redis.lpush(key, normalizedKeyword);
+  // Giới hạn chỉ giữ 3 từ khoá gần nhất
+  await redis.ltrim(key, 0, 2);
 
   // Kiểm tra có tìm thấy người dùng không
   if (!data || data.length === 0) {
-    throw new AppError(
-      "Không tìm thấy người dùng phù hợp",
-      HTTP_STATUS.NOT_FOUND
-    );
+    throw new AppError("Không tìm thấy người dùng phù hợp", 404);
   }
 
   // Trả kết quả tìm kiếm
   sendResponse(res, 200, "Danh sách các người dùng được tìm thấy", data);
 });
 
-export const checkFriendStatus = CatchAsync(async (req, res, next) => {
-  const { userId1, userId2 } = req.params;
+export const getSearchHistory = CatchAsync(async (req, res, next) => {
+  const { userId } = getUserLogin(req);
+  const key = `search_history:${userId}`;
 
-  if (!userId1 || !userId2) {
-    throw new AppError("Thiếu thông tin người dùng", HTTP_STATUS.BAD_REQUEST);
-  }
+  const data = await redis.lrange(key, 0, -1);
 
-  const isFriend = await userService.checkFriendship(userId1, userId2);
+  sendResponse(res, 200, "Danh sách lịch sử tìm kiếm", data);
+});
 
-  if (isFriend) {
-    sendResponse(res, 200, "Hai người là bạn bè", { isFriend: true });
-  } else {
-    sendResponse(res, 200, "Hai người không phải là bạn bè", {
-      isFriend: false,
-    });
-  }
+export const setUserOnline = CatchAsync(async (req, res, next) => {
+  const { userId } = getUserLogin(req);
+
+  await userService.setUserOnline(userId);
+
+  sendResponse(res, 200, "Cập nhật trạng thái thành công");
+});
+
+export const isUserOnline = CatchAsync(async (req, res, next) => {
+  const { userId } = req.params;
+
+  const isOnline = await userService.isUserOnline(userId);
+
+  sendResponse(res, 200, "Kiểm tra trạng thái thành công", {
+    isOnline,
+  });
 });

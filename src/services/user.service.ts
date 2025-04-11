@@ -248,24 +248,37 @@ class UserService {
   }
 
   async checkFriendship(userId1: string, userId2: string) {
-    // Kiểm tra nếu user1 theo dõi user2
-    const isUser1FollowingUser2 = await prisma.follow.findFirst({
-      where: {
-        follower_id: userId1,
-        leader_id: userId2,
-      },
-    });
-
-    // Kiểm tra nếu user2 theo dõi user1
-    const isUser2FollowingUser1 = await prisma.follow.findFirst({
-      where: {
-        follower_id: userId2,
-        leader_id: userId1,
-      },
-    });
+    const [isUser1FollowingUser2, isUser2FollowingUser1] = await Promise.all([
+      prisma.follow.findFirst({
+        where: {
+          follower_id: userId1,
+          leader_id: userId2,
+        },
+      }),
+      prisma.follow.findFirst({
+        where: {
+          follower_id: userId2,
+          leader_id: userId1,
+        },
+      }),
+    ]);
 
     // Nếu có ít nhất một trong hai điều kiện trên, thì hai người là bạn
     return isUser1FollowingUser2 && isUser2FollowingUser1;
+  }
+
+  async setUserOnline(userId: string) {
+    const key = `online:${userId}`;
+
+    await redis.setex(key, 60, 1);
+  }
+
+  async isUserOnline(userId: string) {
+    const key = `online:${userId}`;
+
+    const exists = await redis.exists(key);
+
+    return exists == 1;
   }
 }
 
