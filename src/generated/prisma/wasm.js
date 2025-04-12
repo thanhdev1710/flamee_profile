@@ -128,27 +128,10 @@ exports.Prisma.ProfileScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.StatusScalarFieldEnum = {
-  user_id: 'user_id',
-  is_online: 'is_online',
-  last_active: 'last_active',
-  changed_at: 'changed_at'
-};
-
 exports.Prisma.FollowScalarFieldEnum = {
   id: 'id',
   leader_id: 'leader_id',
   follower_id: 'follower_id',
-  created_at: 'created_at'
-};
-
-exports.Prisma.NotificationScalarFieldEnum = {
-  id: 'id',
-  receiver_id: 'receiver_id',
-  sender_id: 'sender_id',
-  notification_type: 'notification_type',
-  message: 'message',
-  is_read: 'is_read',
   created_at: 'created_at'
 };
 
@@ -170,9 +153,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Profile: 'Profile',
-  Status: 'Status',
-  Follow: 'Follow',
-  Notification: 'Notification'
+  Follow: 'Follow'
 };
 
 /**

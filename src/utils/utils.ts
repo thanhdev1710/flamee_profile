@@ -1,5 +1,5 @@
 import { redis } from "../lib/redis";
-import { createUserSchema } from "../types/user.type";
+import { CheckUsername, createUserSchema } from "../types/user.type";
 import AppError from "./error/AppError";
 
 const adjectives = ["cool", "fast", "funny", "lucky", "crazy", "epic", "blue"];
@@ -11,20 +11,7 @@ function getRandomItem<T>(arr: T[]): T {
 
 export async function generateUsernameSuggestion(base: string) {
   // Trim trước khi validate
-  const trimmedBase = base.trim();
-
-  // Validate base bằng schema username (có thể đã giới hạn độ dài, ký tự hợp lệ)
-  const parseResult = createUserSchema.pick({ username: true }).safeParse({
-    username: trimmedBase,
-  });
-
-  if (!parseResult.success) {
-    const errors = parseResult.error.errors.map((e) => ({
-      field: e.path.join("."),
-      message: e.message,
-    }));
-    throw new AppError("Dữ liệu không hợp lệ", 400, errors);
-  }
+  const trimmedBase = CheckUsername(base);
 
   const formattedBase = trimmedBase.toLowerCase();
 

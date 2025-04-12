@@ -19,20 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
 /**
- * Model Status
- * 
- */
-export type Status = $Result.DefaultSelection<Prisma.$StatusPayload>
-/**
  * Model Follow
  * 
  */
 export type Follow = $Result.DefaultSelection<Prisma.$FollowPayload>
-/**
- * Model Notification
- * 
- */
-export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -170,16 +160,6 @@ export class PrismaClient<
   get profile(): Prisma.ProfileDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.status`: Exposes CRUD operations for the **Status** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Statuses
-    * const statuses = await prisma.status.findMany()
-    * ```
-    */
-  get status(): Prisma.StatusDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.follow`: Exposes CRUD operations for the **Follow** model.
     * Example usage:
     * ```ts
@@ -188,16 +168,6 @@ export class PrismaClient<
     * ```
     */
   get follow(): Prisma.FollowDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Notifications
-    * const notifications = await prisma.notification.findMany()
-    * ```
-    */
-  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -639,9 +609,7 @@ export namespace Prisma {
 
   export const ModelName: {
     Profile: 'Profile',
-    Status: 'Status',
-    Follow: 'Follow',
-    Notification: 'Notification'
+    Follow: 'Follow'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "profile" | "status" | "follow" | "notification"
+      modelProps: "profile" | "follow"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -738,80 +706,6 @@ export namespace Prisma {
           }
         }
       }
-      Status: {
-        payload: Prisma.$StatusPayload<ExtArgs>
-        fields: Prisma.StatusFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.StatusFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.StatusFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>
-          }
-          findFirst: {
-            args: Prisma.StatusFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.StatusFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>
-          }
-          findMany: {
-            args: Prisma.StatusFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>[]
-          }
-          create: {
-            args: Prisma.StatusCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>
-          }
-          createMany: {
-            args: Prisma.StatusCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.StatusCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>[]
-          }
-          delete: {
-            args: Prisma.StatusDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>
-          }
-          update: {
-            args: Prisma.StatusUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>
-          }
-          deleteMany: {
-            args: Prisma.StatusDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.StatusUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.StatusUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>[]
-          }
-          upsert: {
-            args: Prisma.StatusUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StatusPayload>
-          }
-          aggregate: {
-            args: Prisma.StatusAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateStatus>
-          }
-          groupBy: {
-            args: Prisma.StatusGroupByArgs<ExtArgs>
-            result: $Utils.Optional<StatusGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.StatusCountArgs<ExtArgs>
-            result: $Utils.Optional<StatusCountAggregateOutputType> | number
-          }
-        }
-      }
       Follow: {
         payload: Prisma.$FollowPayload<ExtArgs>
         fields: Prisma.FollowFieldRefs
@@ -883,80 +777,6 @@ export namespace Prisma {
           count: {
             args: Prisma.FollowCountArgs<ExtArgs>
             result: $Utils.Optional<FollowCountAggregateOutputType> | number
-          }
-        }
-      }
-      Notification: {
-        payload: Prisma.$NotificationPayload<ExtArgs>
-        fields: Prisma.NotificationFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
-          }
-          findFirst: {
-            args: Prisma.NotificationFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
-          }
-          findMany: {
-            args: Prisma.NotificationFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
-          }
-          create: {
-            args: Prisma.NotificationCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
-          }
-          createMany: {
-            args: Prisma.NotificationCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
-          }
-          delete: {
-            args: Prisma.NotificationDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
-          }
-          update: {
-            args: Prisma.NotificationUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
-          }
-          deleteMany: {
-            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
-          }
-          upsert: {
-            args: Prisma.NotificationUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
-          }
-          aggregate: {
-            args: Prisma.NotificationAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateNotification>
-          }
-          groupBy: {
-            args: Prisma.NotificationGroupByArgs<ExtArgs>
-            result: $Utils.Optional<NotificationGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.NotificationCountArgs<ExtArgs>
-            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
           }
         }
       }
@@ -1045,9 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     profile?: ProfileOmit
-    status?: StatusOmit
     follow?: FollowOmit
-    notification?: NotificationOmit
   }
 
   /* Types for Logging */
@@ -1144,15 +962,11 @@ export namespace Prisma {
   export type ProfileCountOutputType = {
     following: number
     followers: number
-    receivedNotifs: number
-    sentNotifs: number
   }
 
   export type ProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     following?: boolean | ProfileCountOutputTypeCountFollowingArgs
     followers?: boolean | ProfileCountOutputTypeCountFollowersArgs
-    receivedNotifs?: boolean | ProfileCountOutputTypeCountReceivedNotifsArgs
-    sentNotifs?: boolean | ProfileCountOutputTypeCountSentNotifsArgs
   }
 
   // Custom InputTypes
@@ -1178,20 +992,6 @@ export namespace Prisma {
    */
   export type ProfileCountOutputTypeCountFollowersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FollowWhereInput
-  }
-
-  /**
-   * ProfileCountOutputType without action
-   */
-  export type ProfileCountOutputTypeCountReceivedNotifsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: NotificationWhereInput
-  }
-
-  /**
-   * ProfileCountOutputType without action
-   */
-  export type ProfileCountOutputTypeCountSentNotifsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: NotificationWhereInput
   }
 
 
@@ -1389,9 +1189,6 @@ export namespace Prisma {
     updated_at?: boolean
     following?: boolean | Profile$followingArgs<ExtArgs>
     followers?: boolean | Profile$followersArgs<ExtArgs>
-    receivedNotifs?: boolean | Profile$receivedNotifsArgs<ExtArgs>
-    sentNotifs?: boolean | Profile$sentNotifsArgs<ExtArgs>
-    status?: boolean | Profile$statusArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
@@ -1432,9 +1229,6 @@ export namespace Prisma {
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     following?: boolean | Profile$followingArgs<ExtArgs>
     followers?: boolean | Profile$followersArgs<ExtArgs>
-    receivedNotifs?: boolean | Profile$receivedNotifsArgs<ExtArgs>
-    sentNotifs?: boolean | Profile$sentNotifsArgs<ExtArgs>
-    status?: boolean | Profile$statusArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1445,9 +1239,6 @@ export namespace Prisma {
     objects: {
       following: Prisma.$FollowPayload<ExtArgs>[]
       followers: Prisma.$FollowPayload<ExtArgs>[]
-      receivedNotifs: Prisma.$NotificationPayload<ExtArgs>[]
-      sentNotifs: Prisma.$NotificationPayload<ExtArgs>[]
-      status: Prisma.$StatusPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       user_id: string
@@ -1854,9 +1645,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     following<T extends Profile$followingArgs<ExtArgs> = {}>(args?: Subset<T, Profile$followingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     followers<T extends Profile$followersArgs<ExtArgs> = {}>(args?: Subset<T, Profile$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    receivedNotifs<T extends Profile$receivedNotifsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$receivedNotifsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    sentNotifs<T extends Profile$sentNotifsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$sentNotifsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    status<T extends Profile$statusArgs<ExtArgs> = {}>(args?: Subset<T, Profile$statusArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2330,73 +2118,6 @@ export namespace Prisma {
   }
 
   /**
-   * Profile.receivedNotifs
-   */
-  export type Profile$receivedNotifsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    where?: NotificationWhereInput
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    cursor?: NotificationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
-  }
-
-  /**
-   * Profile.sentNotifs
-   */
-  export type Profile$sentNotifsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    where?: NotificationWhereInput
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    cursor?: NotificationWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
-  }
-
-  /**
-   * Profile.status
-   */
-  export type Profile$statusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    where?: StatusWhereInput
-  }
-
-  /**
    * Profile without action
    */
   export type ProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2412,1051 +2133,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProfileInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Status
-   */
-
-  export type AggregateStatus = {
-    _count: StatusCountAggregateOutputType | null
-    _min: StatusMinAggregateOutputType | null
-    _max: StatusMaxAggregateOutputType | null
-  }
-
-  export type StatusMinAggregateOutputType = {
-    user_id: string | null
-    is_online: boolean | null
-    last_active: Date | null
-    changed_at: Date | null
-  }
-
-  export type StatusMaxAggregateOutputType = {
-    user_id: string | null
-    is_online: boolean | null
-    last_active: Date | null
-    changed_at: Date | null
-  }
-
-  export type StatusCountAggregateOutputType = {
-    user_id: number
-    is_online: number
-    last_active: number
-    changed_at: number
-    _all: number
-  }
-
-
-  export type StatusMinAggregateInputType = {
-    user_id?: true
-    is_online?: true
-    last_active?: true
-    changed_at?: true
-  }
-
-  export type StatusMaxAggregateInputType = {
-    user_id?: true
-    is_online?: true
-    last_active?: true
-    changed_at?: true
-  }
-
-  export type StatusCountAggregateInputType = {
-    user_id?: true
-    is_online?: true
-    last_active?: true
-    changed_at?: true
-    _all?: true
-  }
-
-  export type StatusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Status to aggregate.
-     */
-    where?: StatusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Statuses to fetch.
-     */
-    orderBy?: StatusOrderByWithRelationInput | StatusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: StatusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Statuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Statuses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Statuses
-    **/
-    _count?: true | StatusCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: StatusMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: StatusMaxAggregateInputType
-  }
-
-  export type GetStatusAggregateType<T extends StatusAggregateArgs> = {
-        [P in keyof T & keyof AggregateStatus]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateStatus[P]>
-      : GetScalarType<T[P], AggregateStatus[P]>
-  }
-
-
-
-
-  export type StatusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StatusWhereInput
-    orderBy?: StatusOrderByWithAggregationInput | StatusOrderByWithAggregationInput[]
-    by: StatusScalarFieldEnum[] | StatusScalarFieldEnum
-    having?: StatusScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: StatusCountAggregateInputType | true
-    _min?: StatusMinAggregateInputType
-    _max?: StatusMaxAggregateInputType
-  }
-
-  export type StatusGroupByOutputType = {
-    user_id: string
-    is_online: boolean
-    last_active: Date
-    changed_at: Date
-    _count: StatusCountAggregateOutputType | null
-    _min: StatusMinAggregateOutputType | null
-    _max: StatusMaxAggregateOutputType | null
-  }
-
-  type GetStatusGroupByPayload<T extends StatusGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<StatusGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof StatusGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], StatusGroupByOutputType[P]>
-            : GetScalarType<T[P], StatusGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type StatusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
-    is_online?: boolean
-    last_active?: boolean
-    changed_at?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["status"]>
-
-  export type StatusSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
-    is_online?: boolean
-    last_active?: boolean
-    changed_at?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["status"]>
-
-  export type StatusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
-    is_online?: boolean
-    last_active?: boolean
-    changed_at?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["status"]>
-
-  export type StatusSelectScalar = {
-    user_id?: boolean
-    is_online?: boolean
-    last_active?: boolean
-    changed_at?: boolean
-  }
-
-  export type StatusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "is_online" | "last_active" | "changed_at", ExtArgs["result"]["status"]>
-  export type StatusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-  export type StatusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-  export type StatusIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-
-  export type $StatusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Status"
-    objects: {
-      profile: Prisma.$ProfilePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      user_id: string
-      is_online: boolean
-      last_active: Date
-      changed_at: Date
-    }, ExtArgs["result"]["status"]>
-    composites: {}
-  }
-
-  type StatusGetPayload<S extends boolean | null | undefined | StatusDefaultArgs> = $Result.GetResult<Prisma.$StatusPayload, S>
-
-  type StatusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<StatusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: StatusCountAggregateInputType | true
-    }
-
-  export interface StatusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Status'], meta: { name: 'Status' } }
-    /**
-     * Find zero or one Status that matches the filter.
-     * @param {StatusFindUniqueArgs} args - Arguments to find a Status
-     * @example
-     * // Get one Status
-     * const status = await prisma.status.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends StatusFindUniqueArgs>(args: SelectSubset<T, StatusFindUniqueArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Status that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {StatusFindUniqueOrThrowArgs} args - Arguments to find a Status
-     * @example
-     * // Get one Status
-     * const status = await prisma.status.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends StatusFindUniqueOrThrowArgs>(args: SelectSubset<T, StatusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Status that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusFindFirstArgs} args - Arguments to find a Status
-     * @example
-     * // Get one Status
-     * const status = await prisma.status.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends StatusFindFirstArgs>(args?: SelectSubset<T, StatusFindFirstArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Status that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusFindFirstOrThrowArgs} args - Arguments to find a Status
-     * @example
-     * // Get one Status
-     * const status = await prisma.status.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends StatusFindFirstOrThrowArgs>(args?: SelectSubset<T, StatusFindFirstOrThrowArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Statuses that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Statuses
-     * const statuses = await prisma.status.findMany()
-     * 
-     * // Get first 10 Statuses
-     * const statuses = await prisma.status.findMany({ take: 10 })
-     * 
-     * // Only select the `user_id`
-     * const statusWithUser_idOnly = await prisma.status.findMany({ select: { user_id: true } })
-     * 
-     */
-    findMany<T extends StatusFindManyArgs>(args?: SelectSubset<T, StatusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Status.
-     * @param {StatusCreateArgs} args - Arguments to create a Status.
-     * @example
-     * // Create one Status
-     * const Status = await prisma.status.create({
-     *   data: {
-     *     // ... data to create a Status
-     *   }
-     * })
-     * 
-     */
-    create<T extends StatusCreateArgs>(args: SelectSubset<T, StatusCreateArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Statuses.
-     * @param {StatusCreateManyArgs} args - Arguments to create many Statuses.
-     * @example
-     * // Create many Statuses
-     * const status = await prisma.status.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends StatusCreateManyArgs>(args?: SelectSubset<T, StatusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Statuses and returns the data saved in the database.
-     * @param {StatusCreateManyAndReturnArgs} args - Arguments to create many Statuses.
-     * @example
-     * // Create many Statuses
-     * const status = await prisma.status.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Statuses and only return the `user_id`
-     * const statusWithUser_idOnly = await prisma.status.createManyAndReturn({
-     *   select: { user_id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends StatusCreateManyAndReturnArgs>(args?: SelectSubset<T, StatusCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Status.
-     * @param {StatusDeleteArgs} args - Arguments to delete one Status.
-     * @example
-     * // Delete one Status
-     * const Status = await prisma.status.delete({
-     *   where: {
-     *     // ... filter to delete one Status
-     *   }
-     * })
-     * 
-     */
-    delete<T extends StatusDeleteArgs>(args: SelectSubset<T, StatusDeleteArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Status.
-     * @param {StatusUpdateArgs} args - Arguments to update one Status.
-     * @example
-     * // Update one Status
-     * const status = await prisma.status.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends StatusUpdateArgs>(args: SelectSubset<T, StatusUpdateArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Statuses.
-     * @param {StatusDeleteManyArgs} args - Arguments to filter Statuses to delete.
-     * @example
-     * // Delete a few Statuses
-     * const { count } = await prisma.status.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends StatusDeleteManyArgs>(args?: SelectSubset<T, StatusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Statuses.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Statuses
-     * const status = await prisma.status.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends StatusUpdateManyArgs>(args: SelectSubset<T, StatusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Statuses and returns the data updated in the database.
-     * @param {StatusUpdateManyAndReturnArgs} args - Arguments to update many Statuses.
-     * @example
-     * // Update many Statuses
-     * const status = await prisma.status.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Statuses and only return the `user_id`
-     * const statusWithUser_idOnly = await prisma.status.updateManyAndReturn({
-     *   select: { user_id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends StatusUpdateManyAndReturnArgs>(args: SelectSubset<T, StatusUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Status.
-     * @param {StatusUpsertArgs} args - Arguments to update or create a Status.
-     * @example
-     * // Update or create a Status
-     * const status = await prisma.status.upsert({
-     *   create: {
-     *     // ... data to create a Status
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Status we want to update
-     *   }
-     * })
-     */
-    upsert<T extends StatusUpsertArgs>(args: SelectSubset<T, StatusUpsertArgs<ExtArgs>>): Prisma__StatusClient<$Result.GetResult<Prisma.$StatusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Statuses.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusCountArgs} args - Arguments to filter Statuses to count.
-     * @example
-     * // Count the number of Statuses
-     * const count = await prisma.status.count({
-     *   where: {
-     *     // ... the filter for the Statuses we want to count
-     *   }
-     * })
-    **/
-    count<T extends StatusCountArgs>(
-      args?: Subset<T, StatusCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], StatusCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Status.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends StatusAggregateArgs>(args: Subset<T, StatusAggregateArgs>): Prisma.PrismaPromise<GetStatusAggregateType<T>>
-
-    /**
-     * Group by Status.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StatusGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends StatusGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: StatusGroupByArgs['orderBy'] }
-        : { orderBy?: StatusGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, StatusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStatusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Status model
-   */
-  readonly fields: StatusFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Status.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__StatusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Status model
-   */
-  interface StatusFieldRefs {
-    readonly user_id: FieldRef<"Status", 'String'>
-    readonly is_online: FieldRef<"Status", 'Boolean'>
-    readonly last_active: FieldRef<"Status", 'DateTime'>
-    readonly changed_at: FieldRef<"Status", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Status findUnique
-   */
-  export type StatusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * Filter, which Status to fetch.
-     */
-    where: StatusWhereUniqueInput
-  }
-
-  /**
-   * Status findUniqueOrThrow
-   */
-  export type StatusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * Filter, which Status to fetch.
-     */
-    where: StatusWhereUniqueInput
-  }
-
-  /**
-   * Status findFirst
-   */
-  export type StatusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * Filter, which Status to fetch.
-     */
-    where?: StatusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Statuses to fetch.
-     */
-    orderBy?: StatusOrderByWithRelationInput | StatusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Statuses.
-     */
-    cursor?: StatusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Statuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Statuses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Statuses.
-     */
-    distinct?: StatusScalarFieldEnum | StatusScalarFieldEnum[]
-  }
-
-  /**
-   * Status findFirstOrThrow
-   */
-  export type StatusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * Filter, which Status to fetch.
-     */
-    where?: StatusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Statuses to fetch.
-     */
-    orderBy?: StatusOrderByWithRelationInput | StatusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Statuses.
-     */
-    cursor?: StatusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Statuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Statuses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Statuses.
-     */
-    distinct?: StatusScalarFieldEnum | StatusScalarFieldEnum[]
-  }
-
-  /**
-   * Status findMany
-   */
-  export type StatusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * Filter, which Statuses to fetch.
-     */
-    where?: StatusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Statuses to fetch.
-     */
-    orderBy?: StatusOrderByWithRelationInput | StatusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Statuses.
-     */
-    cursor?: StatusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Statuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Statuses.
-     */
-    skip?: number
-    distinct?: StatusScalarFieldEnum | StatusScalarFieldEnum[]
-  }
-
-  /**
-   * Status create
-   */
-  export type StatusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Status.
-     */
-    data: XOR<StatusCreateInput, StatusUncheckedCreateInput>
-  }
-
-  /**
-   * Status createMany
-   */
-  export type StatusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Statuses.
-     */
-    data: StatusCreateManyInput | StatusCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Status createManyAndReturn
-   */
-  export type StatusCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * The data used to create many Statuses.
-     */
-    data: StatusCreateManyInput | StatusCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Status update
-   */
-  export type StatusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Status.
-     */
-    data: XOR<StatusUpdateInput, StatusUncheckedUpdateInput>
-    /**
-     * Choose, which Status to update.
-     */
-    where: StatusWhereUniqueInput
-  }
-
-  /**
-   * Status updateMany
-   */
-  export type StatusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Statuses.
-     */
-    data: XOR<StatusUpdateManyMutationInput, StatusUncheckedUpdateManyInput>
-    /**
-     * Filter which Statuses to update
-     */
-    where?: StatusWhereInput
-    /**
-     * Limit how many Statuses to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Status updateManyAndReturn
-   */
-  export type StatusUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * The data used to update Statuses.
-     */
-    data: XOR<StatusUpdateManyMutationInput, StatusUncheckedUpdateManyInput>
-    /**
-     * Filter which Statuses to update
-     */
-    where?: StatusWhereInput
-    /**
-     * Limit how many Statuses to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Status upsert
-   */
-  export type StatusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Status to update in case it exists.
-     */
-    where: StatusWhereUniqueInput
-    /**
-     * In case the Status found by the `where` argument doesn't exist, create a new Status with this data.
-     */
-    create: XOR<StatusCreateInput, StatusUncheckedCreateInput>
-    /**
-     * In case the Status was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<StatusUpdateInput, StatusUncheckedUpdateInput>
-  }
-
-  /**
-   * Status delete
-   */
-  export type StatusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
-    /**
-     * Filter which Status to delete.
-     */
-    where: StatusWhereUniqueInput
-  }
-
-  /**
-   * Status deleteMany
-   */
-  export type StatusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Statuses to delete
-     */
-    where?: StatusWhereInput
-    /**
-     * Limit how many Statuses to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Status without action
-   */
-  export type StatusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Status
-     */
-    select?: StatusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Status
-     */
-    omit?: StatusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StatusInclude<ExtArgs> | null
   }
 
 
@@ -4548,1132 +3224,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Notification
-   */
-
-  export type AggregateNotification = {
-    _count: NotificationCountAggregateOutputType | null
-    _avg: NotificationAvgAggregateOutputType | null
-    _sum: NotificationSumAggregateOutputType | null
-    _min: NotificationMinAggregateOutputType | null
-    _max: NotificationMaxAggregateOutputType | null
-  }
-
-  export type NotificationAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type NotificationSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type NotificationMinAggregateOutputType = {
-    id: number | null
-    receiver_id: string | null
-    sender_id: string | null
-    notification_type: string | null
-    message: string | null
-    is_read: boolean | null
-    created_at: Date | null
-  }
-
-  export type NotificationMaxAggregateOutputType = {
-    id: number | null
-    receiver_id: string | null
-    sender_id: string | null
-    notification_type: string | null
-    message: string | null
-    is_read: boolean | null
-    created_at: Date | null
-  }
-
-  export type NotificationCountAggregateOutputType = {
-    id: number
-    receiver_id: number
-    sender_id: number
-    notification_type: number
-    message: number
-    is_read: number
-    created_at: number
-    _all: number
-  }
-
-
-  export type NotificationAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type NotificationSumAggregateInputType = {
-    id?: true
-  }
-
-  export type NotificationMinAggregateInputType = {
-    id?: true
-    receiver_id?: true
-    sender_id?: true
-    notification_type?: true
-    message?: true
-    is_read?: true
-    created_at?: true
-  }
-
-  export type NotificationMaxAggregateInputType = {
-    id?: true
-    receiver_id?: true
-    sender_id?: true
-    notification_type?: true
-    message?: true
-    is_read?: true
-    created_at?: true
-  }
-
-  export type NotificationCountAggregateInputType = {
-    id?: true
-    receiver_id?: true
-    sender_id?: true
-    notification_type?: true
-    message?: true
-    is_read?: true
-    created_at?: true
-    _all?: true
-  }
-
-  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Notification to aggregate.
-     */
-    where?: NotificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Notifications to fetch.
-     */
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: NotificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Notifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Notifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Notifications
-    **/
-    _count?: true | NotificationCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: NotificationAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: NotificationSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: NotificationMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: NotificationMaxAggregateInputType
-  }
-
-  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
-        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateNotification[P]>
-      : GetScalarType<T[P], AggregateNotification[P]>
-  }
-
-
-
-
-  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: NotificationWhereInput
-    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
-    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
-    having?: NotificationScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: NotificationCountAggregateInputType | true
-    _avg?: NotificationAvgAggregateInputType
-    _sum?: NotificationSumAggregateInputType
-    _min?: NotificationMinAggregateInputType
-    _max?: NotificationMaxAggregateInputType
-  }
-
-  export type NotificationGroupByOutputType = {
-    id: number
-    receiver_id: string
-    sender_id: string
-    notification_type: string
-    message: string
-    is_read: boolean
-    created_at: Date
-    _count: NotificationCountAggregateOutputType | null
-    _avg: NotificationAvgAggregateOutputType | null
-    _sum: NotificationSumAggregateOutputType | null
-    _min: NotificationMinAggregateOutputType | null
-    _max: NotificationMaxAggregateOutputType | null
-  }
-
-  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<NotificationGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
-            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    receiver_id?: boolean
-    sender_id?: boolean
-    notification_type?: boolean
-    message?: boolean
-    is_read?: boolean
-    created_at?: boolean
-    receiver?: boolean | ProfileDefaultArgs<ExtArgs>
-    sender?: boolean | ProfileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["notification"]>
-
-  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    receiver_id?: boolean
-    sender_id?: boolean
-    notification_type?: boolean
-    message?: boolean
-    is_read?: boolean
-    created_at?: boolean
-    receiver?: boolean | ProfileDefaultArgs<ExtArgs>
-    sender?: boolean | ProfileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["notification"]>
-
-  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    receiver_id?: boolean
-    sender_id?: boolean
-    notification_type?: boolean
-    message?: boolean
-    is_read?: boolean
-    created_at?: boolean
-    receiver?: boolean | ProfileDefaultArgs<ExtArgs>
-    sender?: boolean | ProfileDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["notification"]>
-
-  export type NotificationSelectScalar = {
-    id?: boolean
-    receiver_id?: boolean
-    sender_id?: boolean
-    notification_type?: boolean
-    message?: boolean
-    is_read?: boolean
-    created_at?: boolean
-  }
-
-  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "receiver_id" | "sender_id" | "notification_type" | "message" | "is_read" | "created_at", ExtArgs["result"]["notification"]>
-  export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    receiver?: boolean | ProfileDefaultArgs<ExtArgs>
-    sender?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-  export type NotificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    receiver?: boolean | ProfileDefaultArgs<ExtArgs>
-    sender?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-  export type NotificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    receiver?: boolean | ProfileDefaultArgs<ExtArgs>
-    sender?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-
-  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Notification"
-    objects: {
-      receiver: Prisma.$ProfilePayload<ExtArgs>
-      sender: Prisma.$ProfilePayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      receiver_id: string
-      sender_id: string
-      notification_type: string
-      message: string
-      is_read: boolean
-      created_at: Date
-    }, ExtArgs["result"]["notification"]>
-    composites: {}
-  }
-
-  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
-
-  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: NotificationCountAggregateInputType | true
-    }
-
-  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
-    /**
-     * Find zero or one Notification that matches the filter.
-     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
-     * @example
-     * // Get one Notification
-     * const notification = await prisma.notification.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
-     * @example
-     * // Get one Notification
-     * const notification = await prisma.notification.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Notification that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
-     * @example
-     * // Get one Notification
-     * const notification = await prisma.notification.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Notification that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
-     * @example
-     * // Get one Notification
-     * const notification = await prisma.notification.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Notifications that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Notifications
-     * const notifications = await prisma.notification.findMany()
-     * 
-     * // Get first 10 Notifications
-     * const notifications = await prisma.notification.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Notification.
-     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
-     * @example
-     * // Create one Notification
-     * const Notification = await prisma.notification.create({
-     *   data: {
-     *     // ... data to create a Notification
-     *   }
-     * })
-     * 
-     */
-    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Notifications.
-     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
-     * @example
-     * // Create many Notifications
-     * const notification = await prisma.notification.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Notifications and returns the data saved in the database.
-     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
-     * @example
-     * // Create many Notifications
-     * const notification = await prisma.notification.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Notifications and only return the `id`
-     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Notification.
-     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
-     * @example
-     * // Delete one Notification
-     * const Notification = await prisma.notification.delete({
-     *   where: {
-     *     // ... filter to delete one Notification
-     *   }
-     * })
-     * 
-     */
-    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Notification.
-     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
-     * @example
-     * // Update one Notification
-     * const notification = await prisma.notification.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Notifications.
-     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
-     * @example
-     * // Delete a few Notifications
-     * const { count } = await prisma.notification.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Notifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Notifications
-     * const notification = await prisma.notification.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Notifications and returns the data updated in the database.
-     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
-     * @example
-     * // Update many Notifications
-     * const notification = await prisma.notification.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Notifications and only return the `id`
-     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Notification.
-     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
-     * @example
-     * // Update or create a Notification
-     * const notification = await prisma.notification.upsert({
-     *   create: {
-     *     // ... data to create a Notification
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Notification we want to update
-     *   }
-     * })
-     */
-    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Notifications.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
-     * @example
-     * // Count the number of Notifications
-     * const count = await prisma.notification.count({
-     *   where: {
-     *     // ... the filter for the Notifications we want to count
-     *   }
-     * })
-    **/
-    count<T extends NotificationCountArgs>(
-      args?: Subset<T, NotificationCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Notification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
-
-    /**
-     * Group by Notification.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {NotificationGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends NotificationGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: NotificationGroupByArgs['orderBy'] }
-        : { orderBy?: NotificationGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Notification model
-   */
-  readonly fields: NotificationFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Notification.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    receiver<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    sender<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Notification model
-   */
-  interface NotificationFieldRefs {
-    readonly id: FieldRef<"Notification", 'Int'>
-    readonly receiver_id: FieldRef<"Notification", 'String'>
-    readonly sender_id: FieldRef<"Notification", 'String'>
-    readonly notification_type: FieldRef<"Notification", 'String'>
-    readonly message: FieldRef<"Notification", 'String'>
-    readonly is_read: FieldRef<"Notification", 'Boolean'>
-    readonly created_at: FieldRef<"Notification", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Notification findUnique
-   */
-  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * Filter, which Notification to fetch.
-     */
-    where: NotificationWhereUniqueInput
-  }
-
-  /**
-   * Notification findUniqueOrThrow
-   */
-  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * Filter, which Notification to fetch.
-     */
-    where: NotificationWhereUniqueInput
-  }
-
-  /**
-   * Notification findFirst
-   */
-  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * Filter, which Notification to fetch.
-     */
-    where?: NotificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Notifications to fetch.
-     */
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Notifications.
-     */
-    cursor?: NotificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Notifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Notifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Notifications.
-     */
-    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
-  }
-
-  /**
-   * Notification findFirstOrThrow
-   */
-  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * Filter, which Notification to fetch.
-     */
-    where?: NotificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Notifications to fetch.
-     */
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Notifications.
-     */
-    cursor?: NotificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Notifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Notifications.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Notifications.
-     */
-    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
-  }
-
-  /**
-   * Notification findMany
-   */
-  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * Filter, which Notifications to fetch.
-     */
-    where?: NotificationWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Notifications to fetch.
-     */
-    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Notifications.
-     */
-    cursor?: NotificationWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Notifications from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Notifications.
-     */
-    skip?: number
-    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
-  }
-
-  /**
-   * Notification create
-   */
-  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Notification.
-     */
-    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
-  }
-
-  /**
-   * Notification createMany
-   */
-  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Notifications.
-     */
-    data: NotificationCreateManyInput | NotificationCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Notification createManyAndReturn
-   */
-  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * The data used to create many Notifications.
-     */
-    data: NotificationCreateManyInput | NotificationCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Notification update
-   */
-  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Notification.
-     */
-    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
-    /**
-     * Choose, which Notification to update.
-     */
-    where: NotificationWhereUniqueInput
-  }
-
-  /**
-   * Notification updateMany
-   */
-  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Notifications.
-     */
-    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
-    /**
-     * Filter which Notifications to update
-     */
-    where?: NotificationWhereInput
-    /**
-     * Limit how many Notifications to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Notification updateManyAndReturn
-   */
-  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * The data used to update Notifications.
-     */
-    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
-    /**
-     * Filter which Notifications to update
-     */
-    where?: NotificationWhereInput
-    /**
-     * Limit how many Notifications to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Notification upsert
-   */
-  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Notification to update in case it exists.
-     */
-    where: NotificationWhereUniqueInput
-    /**
-     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
-     */
-    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
-    /**
-     * In case the Notification was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
-  }
-
-  /**
-   * Notification delete
-   */
-  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-    /**
-     * Filter which Notification to delete.
-     */
-    where: NotificationWhereUniqueInput
-  }
-
-  /**
-   * Notification deleteMany
-   */
-  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Notifications to delete
-     */
-    where?: NotificationWhereInput
-    /**
-     * Limit how many Notifications to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Notification without action
-   */
-  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Notification
-     */
-    select?: NotificationSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Notification
-     */
-    omit?: NotificationOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: NotificationInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -5701,16 +3251,6 @@ export namespace Prisma {
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
 
 
-  export const StatusScalarFieldEnum: {
-    user_id: 'user_id',
-    is_online: 'is_online',
-    last_active: 'last_active',
-    changed_at: 'changed_at'
-  };
-
-  export type StatusScalarFieldEnum = (typeof StatusScalarFieldEnum)[keyof typeof StatusScalarFieldEnum]
-
-
   export const FollowScalarFieldEnum: {
     id: 'id',
     leader_id: 'leader_id',
@@ -5719,19 +3259,6 @@ export namespace Prisma {
   };
 
   export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof FollowScalarFieldEnum]
-
-
-  export const NotificationScalarFieldEnum: {
-    id: 'id',
-    receiver_id: 'receiver_id',
-    sender_id: 'sender_id',
-    notification_type: 'notification_type',
-    message: 'message',
-    is_read: 'is_read',
-    created_at: 'created_at'
-  };
-
-  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5792,13 +3319,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5843,9 +3363,6 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Profile"> | Date | string
     following?: FollowListRelationFilter
     followers?: FollowListRelationFilter
-    receivedNotifs?: NotificationListRelationFilter
-    sentNotifs?: NotificationListRelationFilter
-    status?: XOR<StatusNullableScalarRelationFilter, StatusWhereInput> | null
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -5859,9 +3376,6 @@ export namespace Prisma {
     updated_at?: SortOrder
     following?: FollowOrderByRelationAggregateInput
     followers?: FollowOrderByRelationAggregateInput
-    receivedNotifs?: NotificationOrderByRelationAggregateInput
-    sentNotifs?: NotificationOrderByRelationAggregateInput
-    status?: StatusOrderByWithRelationInput
   }
 
   export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -5878,9 +3392,6 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Profile"> | Date | string
     following?: FollowListRelationFilter
     followers?: FollowListRelationFilter
-    receivedNotifs?: NotificationListRelationFilter
-    sentNotifs?: NotificationListRelationFilter
-    status?: XOR<StatusNullableScalarRelationFilter, StatusWhereInput> | null
   }, "user_id" | "username" | "email">
 
   export type ProfileOrderByWithAggregationInput = {
@@ -5909,56 +3420,6 @@ export namespace Prisma {
     avatar_url?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
-  }
-
-  export type StatusWhereInput = {
-    AND?: StatusWhereInput | StatusWhereInput[]
-    OR?: StatusWhereInput[]
-    NOT?: StatusWhereInput | StatusWhereInput[]
-    user_id?: StringFilter<"Status"> | string
-    is_online?: BoolFilter<"Status"> | boolean
-    last_active?: DateTimeFilter<"Status"> | Date | string
-    changed_at?: DateTimeFilter<"Status"> | Date | string
-    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-  }
-
-  export type StatusOrderByWithRelationInput = {
-    user_id?: SortOrder
-    is_online?: SortOrder
-    last_active?: SortOrder
-    changed_at?: SortOrder
-    profile?: ProfileOrderByWithRelationInput
-  }
-
-  export type StatusWhereUniqueInput = Prisma.AtLeast<{
-    user_id?: string
-    AND?: StatusWhereInput | StatusWhereInput[]
-    OR?: StatusWhereInput[]
-    NOT?: StatusWhereInput | StatusWhereInput[]
-    is_online?: BoolFilter<"Status"> | boolean
-    last_active?: DateTimeFilter<"Status"> | Date | string
-    changed_at?: DateTimeFilter<"Status"> | Date | string
-    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-  }, "user_id">
-
-  export type StatusOrderByWithAggregationInput = {
-    user_id?: SortOrder
-    is_online?: SortOrder
-    last_active?: SortOrder
-    changed_at?: SortOrder
-    _count?: StatusCountOrderByAggregateInput
-    _max?: StatusMaxOrderByAggregateInput
-    _min?: StatusMinOrderByAggregateInput
-  }
-
-  export type StatusScalarWhereWithAggregatesInput = {
-    AND?: StatusScalarWhereWithAggregatesInput | StatusScalarWhereWithAggregatesInput[]
-    OR?: StatusScalarWhereWithAggregatesInput[]
-    NOT?: StatusScalarWhereWithAggregatesInput | StatusScalarWhereWithAggregatesInput[]
-    user_id?: StringWithAggregatesFilter<"Status"> | string
-    is_online?: BoolWithAggregatesFilter<"Status"> | boolean
-    last_active?: DateTimeWithAggregatesFilter<"Status"> | Date | string
-    changed_at?: DateTimeWithAggregatesFilter<"Status"> | Date | string
   }
 
   export type FollowWhereInput = {
@@ -6017,76 +3478,6 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"Follow"> | Date | string
   }
 
-  export type NotificationWhereInput = {
-    AND?: NotificationWhereInput | NotificationWhereInput[]
-    OR?: NotificationWhereInput[]
-    NOT?: NotificationWhereInput | NotificationWhereInput[]
-    id?: IntFilter<"Notification"> | number
-    receiver_id?: StringFilter<"Notification"> | string
-    sender_id?: StringFilter<"Notification"> | string
-    notification_type?: StringFilter<"Notification"> | string
-    message?: StringFilter<"Notification"> | string
-    is_read?: BoolFilter<"Notification"> | boolean
-    created_at?: DateTimeFilter<"Notification"> | Date | string
-    receiver?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-    sender?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-  }
-
-  export type NotificationOrderByWithRelationInput = {
-    id?: SortOrder
-    receiver_id?: SortOrder
-    sender_id?: SortOrder
-    notification_type?: SortOrder
-    message?: SortOrder
-    is_read?: SortOrder
-    created_at?: SortOrder
-    receiver?: ProfileOrderByWithRelationInput
-    sender?: ProfileOrderByWithRelationInput
-  }
-
-  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: NotificationWhereInput | NotificationWhereInput[]
-    OR?: NotificationWhereInput[]
-    NOT?: NotificationWhereInput | NotificationWhereInput[]
-    receiver_id?: StringFilter<"Notification"> | string
-    sender_id?: StringFilter<"Notification"> | string
-    notification_type?: StringFilter<"Notification"> | string
-    message?: StringFilter<"Notification"> | string
-    is_read?: BoolFilter<"Notification"> | boolean
-    created_at?: DateTimeFilter<"Notification"> | Date | string
-    receiver?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-    sender?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
-  }, "id">
-
-  export type NotificationOrderByWithAggregationInput = {
-    id?: SortOrder
-    receiver_id?: SortOrder
-    sender_id?: SortOrder
-    notification_type?: SortOrder
-    message?: SortOrder
-    is_read?: SortOrder
-    created_at?: SortOrder
-    _count?: NotificationCountOrderByAggregateInput
-    _avg?: NotificationAvgOrderByAggregateInput
-    _max?: NotificationMaxOrderByAggregateInput
-    _min?: NotificationMinOrderByAggregateInput
-    _sum?: NotificationSumOrderByAggregateInput
-  }
-
-  export type NotificationScalarWhereWithAggregatesInput = {
-    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
-    OR?: NotificationScalarWhereWithAggregatesInput[]
-    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Notification"> | number
-    receiver_id?: StringWithAggregatesFilter<"Notification"> | string
-    sender_id?: StringWithAggregatesFilter<"Notification"> | string
-    notification_type?: StringWithAggregatesFilter<"Notification"> | string
-    message?: StringWithAggregatesFilter<"Notification"> | string
-    is_read?: BoolWithAggregatesFilter<"Notification"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
-  }
-
   export type ProfileCreateInput = {
     user_id: string
     username: string
@@ -6098,9 +3489,6 @@ export namespace Prisma {
     updated_at?: Date | string
     following?: FollowCreateNestedManyWithoutFollowerInput
     followers?: FollowCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationCreateNestedManyWithoutSenderInput
-    status?: StatusCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -6114,9 +3502,6 @@ export namespace Prisma {
     updated_at?: Date | string
     following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationUncheckedCreateNestedManyWithoutSenderInput
-    status?: StatusUncheckedCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUpdateInput = {
@@ -6130,9 +3515,6 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUpdateManyWithoutFollowerNestedInput
     followers?: FollowUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUpdateManyWithoutSenderNestedInput
-    status?: StatusUpdateOneWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -6146,9 +3528,6 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
-    status?: StatusUncheckedUpdateOneWithoutProfileNestedInput
   }
 
   export type ProfileCreateManyInput = {
@@ -6182,54 +3561,6 @@ export namespace Prisma {
     avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StatusCreateInput = {
-    is_online?: boolean
-    last_active?: Date | string
-    changed_at?: Date | string
-    profile: ProfileCreateNestedOneWithoutStatusInput
-  }
-
-  export type StatusUncheckedCreateInput = {
-    user_id: string
-    is_online?: boolean
-    last_active?: Date | string
-    changed_at?: Date | string
-  }
-
-  export type StatusUpdateInput = {
-    is_online?: BoolFieldUpdateOperationsInput | boolean
-    last_active?: DateTimeFieldUpdateOperationsInput | Date | string
-    changed_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    profile?: ProfileUpdateOneRequiredWithoutStatusNestedInput
-  }
-
-  export type StatusUncheckedUpdateInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    is_online?: BoolFieldUpdateOperationsInput | boolean
-    last_active?: DateTimeFieldUpdateOperationsInput | Date | string
-    changed_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StatusCreateManyInput = {
-    user_id: string
-    is_online?: boolean
-    last_active?: Date | string
-    changed_at?: Date | string
-  }
-
-  export type StatusUpdateManyMutationInput = {
-    is_online?: BoolFieldUpdateOperationsInput | boolean
-    last_active?: DateTimeFieldUpdateOperationsInput | Date | string
-    changed_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StatusUncheckedUpdateManyInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    is_online?: BoolFieldUpdateOperationsInput | boolean
-    last_active?: DateTimeFieldUpdateOperationsInput | Date | string
-    changed_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FollowCreateInput = {
@@ -6273,71 +3604,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     leader_id?: StringFieldUpdateOperationsInput | string
     follower_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationCreateInput = {
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-    receiver: ProfileCreateNestedOneWithoutReceivedNotifsInput
-    sender: ProfileCreateNestedOneWithoutSentNotifsInput
-  }
-
-  export type NotificationUncheckedCreateInput = {
-    id?: number
-    receiver_id: string
-    sender_id: string
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-  }
-
-  export type NotificationUpdateInput = {
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    receiver?: ProfileUpdateOneRequiredWithoutReceivedNotifsNestedInput
-    sender?: ProfileUpdateOneRequiredWithoutSentNotifsNestedInput
-  }
-
-  export type NotificationUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    receiver_id?: StringFieldUpdateOperationsInput | string
-    sender_id?: StringFieldUpdateOperationsInput | string
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationCreateManyInput = {
-    id?: number
-    receiver_id: string
-    sender_id: string
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-  }
-
-  export type NotificationUpdateManyMutationInput = {
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    receiver_id?: StringFieldUpdateOperationsInput | string
-    sender_id?: StringFieldUpdateOperationsInput | string
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6388,27 +3654,12 @@ export namespace Prisma {
     none?: FollowWhereInput
   }
 
-  export type NotificationListRelationFilter = {
-    every?: NotificationWhereInput
-    some?: NotificationWhereInput
-    none?: NotificationWhereInput
-  }
-
-  export type StatusNullableScalarRelationFilter = {
-    is?: StatusWhereInput | null
-    isNot?: StatusWhereInput | null
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type FollowOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type NotificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6495,45 +3746,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type ProfileScalarRelationFilter = {
-    is?: ProfileWhereInput
-    isNot?: ProfileWhereInput
-  }
-
-  export type StatusCountOrderByAggregateInput = {
-    user_id?: SortOrder
-    is_online?: SortOrder
-    last_active?: SortOrder
-    changed_at?: SortOrder
-  }
-
-  export type StatusMaxOrderByAggregateInput = {
-    user_id?: SortOrder
-    is_online?: SortOrder
-    last_active?: SortOrder
-    changed_at?: SortOrder
-  }
-
-  export type StatusMinOrderByAggregateInput = {
-    user_id?: SortOrder
-    is_online?: SortOrder
-    last_active?: SortOrder
-    changed_at?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6543,6 +3755,11 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ProfileScalarRelationFilter = {
+    is?: ProfileWhereInput
+    isNot?: ProfileWhereInput
   }
 
   export type FollowLeader_idFollower_idCompoundUniqueInput = {
@@ -6595,44 +3812,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NotificationCountOrderByAggregateInput = {
-    id?: SortOrder
-    receiver_id?: SortOrder
-    sender_id?: SortOrder
-    notification_type?: SortOrder
-    message?: SortOrder
-    is_read?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type NotificationAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type NotificationMaxOrderByAggregateInput = {
-    id?: SortOrder
-    receiver_id?: SortOrder
-    sender_id?: SortOrder
-    notification_type?: SortOrder
-    message?: SortOrder
-    is_read?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type NotificationMinOrderByAggregateInput = {
-    id?: SortOrder
-    receiver_id?: SortOrder
-    sender_id?: SortOrder
-    notification_type?: SortOrder
-    message?: SortOrder
-    is_read?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type NotificationSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type FollowCreateNestedManyWithoutFollowerInput = {
     create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
@@ -6647,26 +3826,6 @@ export namespace Prisma {
     connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
   }
 
-  export type NotificationCreateNestedManyWithoutReceiverInput = {
-    create?: XOR<NotificationCreateWithoutReceiverInput, NotificationUncheckedCreateWithoutReceiverInput> | NotificationCreateWithoutReceiverInput[] | NotificationUncheckedCreateWithoutReceiverInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutReceiverInput | NotificationCreateOrConnectWithoutReceiverInput[]
-    createMany?: NotificationCreateManyReceiverInputEnvelope
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-  }
-
-  export type NotificationCreateNestedManyWithoutSenderInput = {
-    create?: XOR<NotificationCreateWithoutSenderInput, NotificationUncheckedCreateWithoutSenderInput> | NotificationCreateWithoutSenderInput[] | NotificationUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutSenderInput | NotificationCreateOrConnectWithoutSenderInput[]
-    createMany?: NotificationCreateManySenderInputEnvelope
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-  }
-
-  export type StatusCreateNestedOneWithoutProfileInput = {
-    create?: XOR<StatusCreateWithoutProfileInput, StatusUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: StatusCreateOrConnectWithoutProfileInput
-    connect?: StatusWhereUniqueInput
-  }
-
   export type FollowUncheckedCreateNestedManyWithoutFollowerInput = {
     create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
@@ -6679,26 +3838,6 @@ export namespace Prisma {
     connectOrCreate?: FollowCreateOrConnectWithoutLeaderInput | FollowCreateOrConnectWithoutLeaderInput[]
     createMany?: FollowCreateManyLeaderInputEnvelope
     connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
-  }
-
-  export type NotificationUncheckedCreateNestedManyWithoutReceiverInput = {
-    create?: XOR<NotificationCreateWithoutReceiverInput, NotificationUncheckedCreateWithoutReceiverInput> | NotificationCreateWithoutReceiverInput[] | NotificationUncheckedCreateWithoutReceiverInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutReceiverInput | NotificationCreateOrConnectWithoutReceiverInput[]
-    createMany?: NotificationCreateManyReceiverInputEnvelope
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-  }
-
-  export type NotificationUncheckedCreateNestedManyWithoutSenderInput = {
-    create?: XOR<NotificationCreateWithoutSenderInput, NotificationUncheckedCreateWithoutSenderInput> | NotificationCreateWithoutSenderInput[] | NotificationUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutSenderInput | NotificationCreateOrConnectWithoutSenderInput[]
-    createMany?: NotificationCreateManySenderInputEnvelope
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-  }
-
-  export type StatusUncheckedCreateNestedOneWithoutProfileInput = {
-    create?: XOR<StatusCreateWithoutProfileInput, StatusUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: StatusCreateOrConnectWithoutProfileInput
-    connect?: StatusWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6741,44 +3880,6 @@ export namespace Prisma {
     deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
   }
 
-  export type NotificationUpdateManyWithoutReceiverNestedInput = {
-    create?: XOR<NotificationCreateWithoutReceiverInput, NotificationUncheckedCreateWithoutReceiverInput> | NotificationCreateWithoutReceiverInput[] | NotificationUncheckedCreateWithoutReceiverInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutReceiverInput | NotificationCreateOrConnectWithoutReceiverInput[]
-    upsert?: NotificationUpsertWithWhereUniqueWithoutReceiverInput | NotificationUpsertWithWhereUniqueWithoutReceiverInput[]
-    createMany?: NotificationCreateManyReceiverInputEnvelope
-    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    update?: NotificationUpdateWithWhereUniqueWithoutReceiverInput | NotificationUpdateWithWhereUniqueWithoutReceiverInput[]
-    updateMany?: NotificationUpdateManyWithWhereWithoutReceiverInput | NotificationUpdateManyWithWhereWithoutReceiverInput[]
-    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-  }
-
-  export type NotificationUpdateManyWithoutSenderNestedInput = {
-    create?: XOR<NotificationCreateWithoutSenderInput, NotificationUncheckedCreateWithoutSenderInput> | NotificationCreateWithoutSenderInput[] | NotificationUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutSenderInput | NotificationCreateOrConnectWithoutSenderInput[]
-    upsert?: NotificationUpsertWithWhereUniqueWithoutSenderInput | NotificationUpsertWithWhereUniqueWithoutSenderInput[]
-    createMany?: NotificationCreateManySenderInputEnvelope
-    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    update?: NotificationUpdateWithWhereUniqueWithoutSenderInput | NotificationUpdateWithWhereUniqueWithoutSenderInput[]
-    updateMany?: NotificationUpdateManyWithWhereWithoutSenderInput | NotificationUpdateManyWithWhereWithoutSenderInput[]
-    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-  }
-
-  export type StatusUpdateOneWithoutProfileNestedInput = {
-    create?: XOR<StatusCreateWithoutProfileInput, StatusUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: StatusCreateOrConnectWithoutProfileInput
-    upsert?: StatusUpsertWithoutProfileInput
-    disconnect?: StatusWhereInput | boolean
-    delete?: StatusWhereInput | boolean
-    connect?: StatusWhereUniqueInput
-    update?: XOR<XOR<StatusUpdateToOneWithWhereWithoutProfileInput, StatusUpdateWithoutProfileInput>, StatusUncheckedUpdateWithoutProfileInput>
-  }
-
   export type FollowUncheckedUpdateManyWithoutFollowerNestedInput = {
     create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
@@ -6805,62 +3906,6 @@ export namespace Prisma {
     update?: FollowUpdateWithWhereUniqueWithoutLeaderInput | FollowUpdateWithWhereUniqueWithoutLeaderInput[]
     updateMany?: FollowUpdateManyWithWhereWithoutLeaderInput | FollowUpdateManyWithWhereWithoutLeaderInput[]
     deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutReceiverNestedInput = {
-    create?: XOR<NotificationCreateWithoutReceiverInput, NotificationUncheckedCreateWithoutReceiverInput> | NotificationCreateWithoutReceiverInput[] | NotificationUncheckedCreateWithoutReceiverInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutReceiverInput | NotificationCreateOrConnectWithoutReceiverInput[]
-    upsert?: NotificationUpsertWithWhereUniqueWithoutReceiverInput | NotificationUpsertWithWhereUniqueWithoutReceiverInput[]
-    createMany?: NotificationCreateManyReceiverInputEnvelope
-    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    update?: NotificationUpdateWithWhereUniqueWithoutReceiverInput | NotificationUpdateWithWhereUniqueWithoutReceiverInput[]
-    updateMany?: NotificationUpdateManyWithWhereWithoutReceiverInput | NotificationUpdateManyWithWhereWithoutReceiverInput[]
-    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutSenderNestedInput = {
-    create?: XOR<NotificationCreateWithoutSenderInput, NotificationUncheckedCreateWithoutSenderInput> | NotificationCreateWithoutSenderInput[] | NotificationUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: NotificationCreateOrConnectWithoutSenderInput | NotificationCreateOrConnectWithoutSenderInput[]
-    upsert?: NotificationUpsertWithWhereUniqueWithoutSenderInput | NotificationUpsertWithWhereUniqueWithoutSenderInput[]
-    createMany?: NotificationCreateManySenderInputEnvelope
-    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-    update?: NotificationUpdateWithWhereUniqueWithoutSenderInput | NotificationUpdateWithWhereUniqueWithoutSenderInput[]
-    updateMany?: NotificationUpdateManyWithWhereWithoutSenderInput | NotificationUpdateManyWithWhereWithoutSenderInput[]
-    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-  }
-
-  export type StatusUncheckedUpdateOneWithoutProfileNestedInput = {
-    create?: XOR<StatusCreateWithoutProfileInput, StatusUncheckedCreateWithoutProfileInput>
-    connectOrCreate?: StatusCreateOrConnectWithoutProfileInput
-    upsert?: StatusUpsertWithoutProfileInput
-    disconnect?: StatusWhereInput | boolean
-    delete?: StatusWhereInput | boolean
-    connect?: StatusWhereUniqueInput
-    update?: XOR<XOR<StatusUpdateToOneWithWhereWithoutProfileInput, StatusUpdateWithoutProfileInput>, StatusUncheckedUpdateWithoutProfileInput>
-  }
-
-  export type ProfileCreateNestedOneWithoutStatusInput = {
-    create?: XOR<ProfileCreateWithoutStatusInput, ProfileUncheckedCreateWithoutStatusInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutStatusInput
-    connect?: ProfileWhereUniqueInput
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
-  export type ProfileUpdateOneRequiredWithoutStatusNestedInput = {
-    create?: XOR<ProfileCreateWithoutStatusInput, ProfileUncheckedCreateWithoutStatusInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutStatusInput
-    upsert?: ProfileUpsertWithoutStatusInput
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutStatusInput, ProfileUpdateWithoutStatusInput>, ProfileUncheckedUpdateWithoutStatusInput>
   }
 
   export type ProfileCreateNestedOneWithoutFollowingInput = {
@@ -6897,34 +3942,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type ProfileCreateNestedOneWithoutReceivedNotifsInput = {
-    create?: XOR<ProfileCreateWithoutReceivedNotifsInput, ProfileUncheckedCreateWithoutReceivedNotifsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutReceivedNotifsInput
-    connect?: ProfileWhereUniqueInput
-  }
-
-  export type ProfileCreateNestedOneWithoutSentNotifsInput = {
-    create?: XOR<ProfileCreateWithoutSentNotifsInput, ProfileUncheckedCreateWithoutSentNotifsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutSentNotifsInput
-    connect?: ProfileWhereUniqueInput
-  }
-
-  export type ProfileUpdateOneRequiredWithoutReceivedNotifsNestedInput = {
-    create?: XOR<ProfileCreateWithoutReceivedNotifsInput, ProfileUncheckedCreateWithoutReceivedNotifsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutReceivedNotifsInput
-    upsert?: ProfileUpsertWithoutReceivedNotifsInput
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutReceivedNotifsInput, ProfileUpdateWithoutReceivedNotifsInput>, ProfileUncheckedUpdateWithoutReceivedNotifsInput>
-  }
-
-  export type ProfileUpdateOneRequiredWithoutSentNotifsNestedInput = {
-    create?: XOR<ProfileCreateWithoutSentNotifsInput, ProfileUncheckedCreateWithoutSentNotifsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutSentNotifsInput
-    upsert?: ProfileUpsertWithoutSentNotifsInput
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutSentNotifsInput, ProfileUpdateWithoutSentNotifsInput>, ProfileUncheckedUpdateWithoutSentNotifsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -7036,19 +4053,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -7118,77 +4122,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type NotificationCreateWithoutReceiverInput = {
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-    sender: ProfileCreateNestedOneWithoutSentNotifsInput
-  }
-
-  export type NotificationUncheckedCreateWithoutReceiverInput = {
-    id?: number
-    sender_id: string
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-  }
-
-  export type NotificationCreateOrConnectWithoutReceiverInput = {
-    where: NotificationWhereUniqueInput
-    create: XOR<NotificationCreateWithoutReceiverInput, NotificationUncheckedCreateWithoutReceiverInput>
-  }
-
-  export type NotificationCreateManyReceiverInputEnvelope = {
-    data: NotificationCreateManyReceiverInput | NotificationCreateManyReceiverInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type NotificationCreateWithoutSenderInput = {
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-    receiver: ProfileCreateNestedOneWithoutReceivedNotifsInput
-  }
-
-  export type NotificationUncheckedCreateWithoutSenderInput = {
-    id?: number
-    receiver_id: string
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-  }
-
-  export type NotificationCreateOrConnectWithoutSenderInput = {
-    where: NotificationWhereUniqueInput
-    create: XOR<NotificationCreateWithoutSenderInput, NotificationUncheckedCreateWithoutSenderInput>
-  }
-
-  export type NotificationCreateManySenderInputEnvelope = {
-    data: NotificationCreateManySenderInput | NotificationCreateManySenderInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type StatusCreateWithoutProfileInput = {
-    is_online?: boolean
-    last_active?: Date | string
-    changed_at?: Date | string
-  }
-
-  export type StatusUncheckedCreateWithoutProfileInput = {
-    is_online?: boolean
-    last_active?: Date | string
-    changed_at?: Date | string
-  }
-
-  export type StatusCreateOrConnectWithoutProfileInput = {
-    where: StatusWhereUniqueInput
-    create: XOR<StatusCreateWithoutProfileInput, StatusUncheckedCreateWithoutProfileInput>
-  }
-
   export type FollowUpsertWithWhereUniqueWithoutFollowerInput = {
     where: FollowWhereUniqueInput
     update: XOR<FollowUpdateWithoutFollowerInput, FollowUncheckedUpdateWithoutFollowerInput>
@@ -7231,150 +4164,6 @@ export namespace Prisma {
     data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyWithoutLeaderInput>
   }
 
-  export type NotificationUpsertWithWhereUniqueWithoutReceiverInput = {
-    where: NotificationWhereUniqueInput
-    update: XOR<NotificationUpdateWithoutReceiverInput, NotificationUncheckedUpdateWithoutReceiverInput>
-    create: XOR<NotificationCreateWithoutReceiverInput, NotificationUncheckedCreateWithoutReceiverInput>
-  }
-
-  export type NotificationUpdateWithWhereUniqueWithoutReceiverInput = {
-    where: NotificationWhereUniqueInput
-    data: XOR<NotificationUpdateWithoutReceiverInput, NotificationUncheckedUpdateWithoutReceiverInput>
-  }
-
-  export type NotificationUpdateManyWithWhereWithoutReceiverInput = {
-    where: NotificationScalarWhereInput
-    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutReceiverInput>
-  }
-
-  export type NotificationScalarWhereInput = {
-    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-    OR?: NotificationScalarWhereInput[]
-    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
-    id?: IntFilter<"Notification"> | number
-    receiver_id?: StringFilter<"Notification"> | string
-    sender_id?: StringFilter<"Notification"> | string
-    notification_type?: StringFilter<"Notification"> | string
-    message?: StringFilter<"Notification"> | string
-    is_read?: BoolFilter<"Notification"> | boolean
-    created_at?: DateTimeFilter<"Notification"> | Date | string
-  }
-
-  export type NotificationUpsertWithWhereUniqueWithoutSenderInput = {
-    where: NotificationWhereUniqueInput
-    update: XOR<NotificationUpdateWithoutSenderInput, NotificationUncheckedUpdateWithoutSenderInput>
-    create: XOR<NotificationCreateWithoutSenderInput, NotificationUncheckedCreateWithoutSenderInput>
-  }
-
-  export type NotificationUpdateWithWhereUniqueWithoutSenderInput = {
-    where: NotificationWhereUniqueInput
-    data: XOR<NotificationUpdateWithoutSenderInput, NotificationUncheckedUpdateWithoutSenderInput>
-  }
-
-  export type NotificationUpdateManyWithWhereWithoutSenderInput = {
-    where: NotificationScalarWhereInput
-    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutSenderInput>
-  }
-
-  export type StatusUpsertWithoutProfileInput = {
-    update: XOR<StatusUpdateWithoutProfileInput, StatusUncheckedUpdateWithoutProfileInput>
-    create: XOR<StatusCreateWithoutProfileInput, StatusUncheckedCreateWithoutProfileInput>
-    where?: StatusWhereInput
-  }
-
-  export type StatusUpdateToOneWithWhereWithoutProfileInput = {
-    where?: StatusWhereInput
-    data: XOR<StatusUpdateWithoutProfileInput, StatusUncheckedUpdateWithoutProfileInput>
-  }
-
-  export type StatusUpdateWithoutProfileInput = {
-    is_online?: BoolFieldUpdateOperationsInput | boolean
-    last_active?: DateTimeFieldUpdateOperationsInput | Date | string
-    changed_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StatusUncheckedUpdateWithoutProfileInput = {
-    is_online?: BoolFieldUpdateOperationsInput | boolean
-    last_active?: DateTimeFieldUpdateOperationsInput | Date | string
-    changed_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ProfileCreateWithoutStatusInput = {
-    user_id: string
-    username: string
-    email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowCreateNestedManyWithoutFollowerInput
-    followers?: FollowCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationCreateNestedManyWithoutSenderInput
-  }
-
-  export type ProfileUncheckedCreateWithoutStatusInput = {
-    user_id: string
-    username: string
-    email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
-    followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationUncheckedCreateNestedManyWithoutSenderInput
-  }
-
-  export type ProfileCreateOrConnectWithoutStatusInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutStatusInput, ProfileUncheckedCreateWithoutStatusInput>
-  }
-
-  export type ProfileUpsertWithoutStatusInput = {
-    update: XOR<ProfileUpdateWithoutStatusInput, ProfileUncheckedUpdateWithoutStatusInput>
-    create: XOR<ProfileCreateWithoutStatusInput, ProfileUncheckedCreateWithoutStatusInput>
-    where?: ProfileWhereInput
-  }
-
-  export type ProfileUpdateToOneWithWhereWithoutStatusInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutStatusInput, ProfileUncheckedUpdateWithoutStatusInput>
-  }
-
-  export type ProfileUpdateWithoutStatusInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUpdateManyWithoutSenderNestedInput
-  }
-
-  export type ProfileUncheckedUpdateWithoutStatusInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
-  }
-
   export type ProfileCreateWithoutFollowingInput = {
     user_id: string
     username: string
@@ -7385,9 +4174,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     followers?: FollowCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationCreateNestedManyWithoutSenderInput
-    status?: StatusCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutFollowingInput = {
@@ -7400,9 +4186,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationUncheckedCreateNestedManyWithoutSenderInput
-    status?: StatusUncheckedCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutFollowingInput = {
@@ -7420,9 +4203,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     following?: FollowCreateNestedManyWithoutFollowerInput
-    receivedNotifs?: NotificationCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationCreateNestedManyWithoutSenderInput
-    status?: StatusCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutFollowersInput = {
@@ -7435,9 +4215,6 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
-    receivedNotifs?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
-    sentNotifs?: NotificationUncheckedCreateNestedManyWithoutSenderInput
-    status?: StatusUncheckedCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutFollowersInput = {
@@ -7466,9 +4243,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     followers?: FollowUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUpdateManyWithoutSenderNestedInput
-    status?: StatusUpdateOneWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutFollowingInput = {
@@ -7481,9 +4255,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
-    status?: StatusUncheckedUpdateOneWithoutProfileNestedInput
   }
 
   export type ProfileUpsertWithoutFollowersInput = {
@@ -7507,9 +4278,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUpdateManyWithoutFollowerNestedInput
-    receivedNotifs?: NotificationUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUpdateManyWithoutSenderNestedInput
-    status?: StatusUpdateOneWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutFollowersInput = {
@@ -7522,161 +4290,6 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
-    receivedNotifs?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
-    sentNotifs?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
-    status?: StatusUncheckedUpdateOneWithoutProfileNestedInput
-  }
-
-  export type ProfileCreateWithoutReceivedNotifsInput = {
-    user_id: string
-    username: string
-    email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowCreateNestedManyWithoutFollowerInput
-    followers?: FollowCreateNestedManyWithoutLeaderInput
-    sentNotifs?: NotificationCreateNestedManyWithoutSenderInput
-    status?: StatusCreateNestedOneWithoutProfileInput
-  }
-
-  export type ProfileUncheckedCreateWithoutReceivedNotifsInput = {
-    user_id: string
-    username: string
-    email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
-    followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
-    sentNotifs?: NotificationUncheckedCreateNestedManyWithoutSenderInput
-    status?: StatusUncheckedCreateNestedOneWithoutProfileInput
-  }
-
-  export type ProfileCreateOrConnectWithoutReceivedNotifsInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutReceivedNotifsInput, ProfileUncheckedCreateWithoutReceivedNotifsInput>
-  }
-
-  export type ProfileCreateWithoutSentNotifsInput = {
-    user_id: string
-    username: string
-    email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowCreateNestedManyWithoutFollowerInput
-    followers?: FollowCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationCreateNestedManyWithoutReceiverInput
-    status?: StatusCreateNestedOneWithoutProfileInput
-  }
-
-  export type ProfileUncheckedCreateWithoutSentNotifsInput = {
-    user_id: string
-    username: string
-    email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
-    followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
-    receivedNotifs?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
-    status?: StatusUncheckedCreateNestedOneWithoutProfileInput
-  }
-
-  export type ProfileCreateOrConnectWithoutSentNotifsInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutSentNotifsInput, ProfileUncheckedCreateWithoutSentNotifsInput>
-  }
-
-  export type ProfileUpsertWithoutReceivedNotifsInput = {
-    update: XOR<ProfileUpdateWithoutReceivedNotifsInput, ProfileUncheckedUpdateWithoutReceivedNotifsInput>
-    create: XOR<ProfileCreateWithoutReceivedNotifsInput, ProfileUncheckedCreateWithoutReceivedNotifsInput>
-    where?: ProfileWhereInput
-  }
-
-  export type ProfileUpdateToOneWithWhereWithoutReceivedNotifsInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutReceivedNotifsInput, ProfileUncheckedUpdateWithoutReceivedNotifsInput>
-  }
-
-  export type ProfileUpdateWithoutReceivedNotifsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUpdateManyWithoutLeaderNestedInput
-    sentNotifs?: NotificationUpdateManyWithoutSenderNestedInput
-    status?: StatusUpdateOneWithoutProfileNestedInput
-  }
-
-  export type ProfileUncheckedUpdateWithoutReceivedNotifsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
-    sentNotifs?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
-    status?: StatusUncheckedUpdateOneWithoutProfileNestedInput
-  }
-
-  export type ProfileUpsertWithoutSentNotifsInput = {
-    update: XOR<ProfileUpdateWithoutSentNotifsInput, ProfileUncheckedUpdateWithoutSentNotifsInput>
-    create: XOR<ProfileCreateWithoutSentNotifsInput, ProfileUncheckedCreateWithoutSentNotifsInput>
-    where?: ProfileWhereInput
-  }
-
-  export type ProfileUpdateToOneWithWhereWithoutSentNotifsInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutSentNotifsInput, ProfileUncheckedUpdateWithoutSentNotifsInput>
-  }
-
-  export type ProfileUpdateWithoutSentNotifsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUpdateManyWithoutReceiverNestedInput
-    status?: StatusUpdateOneWithoutProfileNestedInput
-  }
-
-  export type ProfileUncheckedUpdateWithoutSentNotifsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
-    receivedNotifs?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
-    status?: StatusUncheckedUpdateOneWithoutProfileNestedInput
   }
 
   export type FollowCreateManyFollowerInput = {
@@ -7688,24 +4301,6 @@ export namespace Prisma {
   export type FollowCreateManyLeaderInput = {
     id?: number
     follower_id: string
-    created_at?: Date | string
-  }
-
-  export type NotificationCreateManyReceiverInput = {
-    id?: number
-    sender_id: string
-    notification_type: string
-    message: string
-    is_read?: boolean
-    created_at?: Date | string
-  }
-
-  export type NotificationCreateManySenderInput = {
-    id?: number
-    receiver_id: string
-    notification_type: string
-    message: string
-    is_read?: boolean
     created_at?: Date | string
   }
 
@@ -7740,58 +4335,6 @@ export namespace Prisma {
   export type FollowUncheckedUpdateManyWithoutLeaderInput = {
     id?: IntFieldUpdateOperationsInput | number
     follower_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUpdateWithoutReceiverInput = {
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: ProfileUpdateOneRequiredWithoutSentNotifsNestedInput
-  }
-
-  export type NotificationUncheckedUpdateWithoutReceiverInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    sender_id?: StringFieldUpdateOperationsInput | string
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutReceiverInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    sender_id?: StringFieldUpdateOperationsInput | string
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUpdateWithoutSenderInput = {
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    receiver?: ProfileUpdateOneRequiredWithoutReceivedNotifsNestedInput
-  }
-
-  export type NotificationUncheckedUpdateWithoutSenderInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    receiver_id?: StringFieldUpdateOperationsInput | string
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type NotificationUncheckedUpdateManyWithoutSenderInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    receiver_id?: StringFieldUpdateOperationsInput | string
-    notification_type?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    is_read?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

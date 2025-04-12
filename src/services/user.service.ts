@@ -1,7 +1,12 @@
 import { DEFAULT_AVATAR } from "../global/settingApp";
 import { prisma } from "../lib/prisma";
 import { redis } from "../lib/redis";
-import { createUserSchema, CreateUserType } from "../types/user.type";
+import {
+  CheckUser,
+  CheckUserId,
+  createUserSchema,
+  CreateUserType,
+} from "../types/user.type";
 import AppError from "../utils/error/AppError";
 
 class UserService {
@@ -31,17 +36,9 @@ class UserService {
 
   async create(input: CreateUserType) {
     // 1. Validate input
-    const parseResult = createUserSchema.safeParse(input);
-    if (!parseResult.success) {
-      const errors = parseResult.error.errors.map((e) => ({
-        field: e.path.join("."),
-        message: e.message,
-      }));
-      throw new AppError("Dữ liệu không hợp lệ", 400, errors);
-    }
+    const parseResult = CheckUser(input);
 
-    const { user_id, username, fullname, bio, avatar_url, email } =
-      parseResult.data;
+    const { user_id, username, fullname, bio, avatar_url, email } = parseResult;
     const fullUsername = `@${username}`.trim().toLowerCase();
 
     // 2. Kiểm tra user_id đã có chưa
@@ -101,16 +98,9 @@ class UserService {
   }
 
   async update(input: CreateUserType) {
-    const parseResult = createUserSchema.safeParse(input);
-    if (!parseResult.success) {
-      const errors = parseResult.error.errors.map((e) => ({
-        field: e.path.join("."),
-        message: e.message,
-      }));
-      throw new AppError("Dữ liệu không hợp lệ", 400, errors);
-    }
+    const parseResult = CheckUser(input);
 
-    const { user_id, username, fullname, bio, avatar_url } = parseResult.data;
+    const { user_id, username, fullname, bio, avatar_url } = parseResult;
     const fullUsername = `@${username}`.trim().toLowerCase();
     const lockKey = `username_lock:${fullUsername}`;
 
@@ -285,6 +275,58 @@ class UserService {
     });
 
     return friends.map((f) => f.leader_id);
+  }
+
+  async addOrUnFriend(leader_id: string, follower_id: string) {
+    try {
+      if (leader_id === follower_id) {
+        throw new AppError("Không thể theo dõi chính mình", 400);
+      }
+
+      const existed = await prisma.follow.findFirst({
+        where: {
+          leader_id,
+          follower_id,
+        },
+      });
+
+      if (existed) {
+        await prisma.follow.delete({
+          where: {
+            leader_id_follower_id: {
+              follower_id,
+              leader_id,
+            },
+          },
+        });
+
+        return "Huỷ theo dõi thành công";
+      } else {
+        await prisma.follow.create({
+          data: { leader_id, follower_id },
+        });
+
+        return "Theo dõi thành công";
+      }
+    } catch (error) {
+      if (error instanceof AppError) {
+        throw error;
+      }
+
+      if (typeof error === "object" && error !== null && "code" in error) {
+        const prismaError = error as any;
+
+        if (prismaError.code === "P2003") {
+          throw new AppError("Người dùng không tồn tại", 404);
+        }
+
+        if (prismaError.code === "P2025") {
+          throw new AppError("Không tìm thấy dữ liệu để huỷ theo dõi", 404);
+        }
+      }
+
+      throw new AppError("Đã xảy ra lỗi không xác định", 500);
+    }
   }
 }
 

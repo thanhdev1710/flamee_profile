@@ -1,21 +1,13 @@
 import { sendResponse } from "../response/apiResponse";
 import userService from "../services/user.service";
-import { createUserSchema } from "../types/user.type";
+import { CheckUserId } from "../types/user.type";
 import AppError from "../utils/error/AppError";
 import CatchAsync from "../utils/error/CatchAsync";
+import { getUserLogin } from "../utils/helper";
 
 export const checkFriendStatus = CatchAsync(async (req, res, next) => {
-  const idSchema = createUserSchema.pick({ user_id: true });
-
-  const check1 = idSchema.safeParse({ user_id: req.body.userId1 });
-  const check2 = idSchema.safeParse({ user_id: req.body.userId2 });
-
-  if (!check1.success || !check2.success) {
-    throw new AppError("ID người dùng không hợp lệ", 400);
-  }
-
-  const userId1 = check1.data.user_id;
-  const userId2 = check2.data.user_id;
+  const userId1 = CheckUserId(req.body.userId1);
+  const userId2 = CheckUserId(req.body.userId2);
 
   if (userId1 === userId2) {
     throw new AppError("ID không được trùng nhau", 400);
@@ -30,4 +22,17 @@ export const checkFriendStatus = CatchAsync(async (req, res, next) => {
       isFriend: false,
     });
   }
+});
+
+export const addOrUnFollow = CatchAsync(async (req, res, next) => {
+  const { userId } = getUserLogin(req);
+  const { leaderId } = req.body;
+  console.log(leaderId);
+
+  const leader_id = CheckUserId(leaderId);
+  const follower_id = CheckUserId(userId);
+
+  const message = await userService.addOrUnFriend(leader_id, follower_id);
+
+  sendResponse(res, 201, message);
 });
