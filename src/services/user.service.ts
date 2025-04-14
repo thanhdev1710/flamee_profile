@@ -1,6 +1,7 @@
 import { DEFAULT_AVATAR } from "../global/settingApp";
 import { prisma } from "../lib/prisma";
 import { redis } from "../lib/redis";
+import { FriendSuggestion } from "../types/follow.type";
 import {
   CheckUser,
   CheckUserId,
@@ -327,6 +328,24 @@ class UserService {
 
       throw new AppError("Đã xảy ra lỗi không xác định", 500);
     }
+  }
+
+  async getFriendSuggestions(userId: string, limit = 10, offset = 0) {
+    const friends: FriendSuggestion[] = await prisma.$queryRaw`
+      SELECT source_user, suggested_user, mutual_friend_count::int, mutual_friends
+      FROM friend_suggestions_mv
+      WHERE source_user = ${userId}  
+    `;
+
+    const { mutual_friend_count, mutual_friends, source_user, suggested_user } =
+      friends[0];
+
+    return {
+      mutual_friend_count,
+      source_user,
+      suggested_user,
+      mutual_friends: mutual_friends.slice(offset, offset + limit),
+    };
   }
 }
 

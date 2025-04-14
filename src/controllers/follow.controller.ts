@@ -36,3 +36,23 @@ export const addOrUnFollow = CatchAsync(async (req, res, next) => {
 
   sendResponse(res, 201, message);
 });
+
+export const getFriendSuggestions = CatchAsync(async (req, res, next) => {
+  const { userId } = getUserLogin(req);
+  const { page = 1 } = req.query;
+  if (Number(page) < 0) {
+    throw new AppError("Page không hợp lệ", 400);
+  }
+  const user_id = CheckUserId(userId);
+
+  const friendSuggestions = await userService.getFriendSuggestions(
+    user_id,
+    10,
+    (Number(page) - 1) * 10
+  );
+
+  sendResponse(res, 200, "Danh sách gợi ý bạn bè", {
+    page,
+    ...friendSuggestions,
+  });
+});
