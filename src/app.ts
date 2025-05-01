@@ -1,11 +1,11 @@
 import express, { Application, NextFunction, Request, Response } from "express";
-import cors from "cors";
+
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import morgan from "morgan";
 import http from "http";
 
-import { corsOptions, URL_API_V1 } from "./global/settingApp";
+import { URL_API_V1 } from "./global/settingApp";
 import GlobalError from "./middlewares/GlobalError";
 import AppError from "./utils/error/AppError";
 
@@ -24,7 +24,6 @@ initSocket(server);
 // ==============================
 app.use(morgan("dev"));
 app.use(helmet()); // Bảo mật HTTP headers
-app.use(cors(corsOptions)); // Cấu hình CORS
 app.use(cookieParser()); // Parse cookie
 app.use(express.json({ limit: "10mb" })); // Parse JSON body với giới hạn dung lượng
 app.use((req, res, next) => {

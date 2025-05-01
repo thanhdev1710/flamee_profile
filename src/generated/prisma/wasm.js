@@ -121,9 +121,14 @@ exports.Prisma.ProfileScalarFieldEnum = {
   user_id: 'user_id',
   username: 'username',
   email: 'email',
-  fullname: 'fullname',
-  bio: 'bio',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  gender: 'gender',
+  dob: 'dob',
   avatar_url: 'avatar_url',
+  bio: 'bio',
+  phone: 'phone',
+  address: 'address',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -132,6 +137,19 @@ exports.Prisma.FollowScalarFieldEnum = {
   id: 'id',
   leader_id: 'leader_id',
   follower_id: 'follower_id',
+  created_at: 'created_at'
+};
+
+exports.Prisma.InterestScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  created_at: 'created_at'
+};
+
+exports.Prisma.ProfileInterestScalarFieldEnum = {
+  id: 'id',
+  profile_id: 'profile_id',
+  interest_id: 'interest_id',
   created_at: 'created_at'
 };
 
@@ -153,7 +171,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Profile: 'Profile',
-  Follow: 'Follow'
+  Follow: 'Follow',
+  Interest: 'Interest',
+  ProfileInterest: 'ProfileInterest'
 };
 
 /**

@@ -23,6 +23,16 @@ export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
  * 
  */
 export type Follow = $Result.DefaultSelection<Prisma.$FollowPayload>
+/**
+ * Model Interest
+ * 
+ */
+export type Interest = $Result.DefaultSelection<Prisma.$InterestPayload>
+/**
+ * Model ProfileInterest
+ * 
+ */
+export type ProfileInterest = $Result.DefaultSelection<Prisma.$ProfileInterestPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +178,26 @@ export class PrismaClient<
     * ```
     */
   get follow(): Prisma.FollowDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.interest`: Exposes CRUD operations for the **Interest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Interests
+    * const interests = await prisma.interest.findMany()
+    * ```
+    */
+  get interest(): Prisma.InterestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.profileInterest`: Exposes CRUD operations for the **ProfileInterest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProfileInterests
+    * const profileInterests = await prisma.profileInterest.findMany()
+    * ```
+    */
+  get profileInterest(): Prisma.ProfileInterestDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +639,9 @@ export namespace Prisma {
 
   export const ModelName: {
     Profile: 'Profile',
-    Follow: 'Follow'
+    Follow: 'Follow',
+    Interest: 'Interest',
+    ProfileInterest: 'ProfileInterest'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "profile" | "follow"
+      modelProps: "profile" | "follow" | "interest" | "profileInterest"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +812,154 @@ export namespace Prisma {
           }
         }
       }
+      Interest: {
+        payload: Prisma.$InterestPayload<ExtArgs>
+        fields: Prisma.InterestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.InterestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.InterestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>
+          }
+          findFirst: {
+            args: Prisma.InterestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.InterestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>
+          }
+          findMany: {
+            args: Prisma.InterestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>[]
+          }
+          create: {
+            args: Prisma.InterestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>
+          }
+          createMany: {
+            args: Prisma.InterestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.InterestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>[]
+          }
+          delete: {
+            args: Prisma.InterestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>
+          }
+          update: {
+            args: Prisma.InterestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>
+          }
+          deleteMany: {
+            args: Prisma.InterestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.InterestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.InterestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>[]
+          }
+          upsert: {
+            args: Prisma.InterestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$InterestPayload>
+          }
+          aggregate: {
+            args: Prisma.InterestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateInterest>
+          }
+          groupBy: {
+            args: Prisma.InterestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<InterestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.InterestCountArgs<ExtArgs>
+            result: $Utils.Optional<InterestCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProfileInterest: {
+        payload: Prisma.$ProfileInterestPayload<ExtArgs>
+        fields: Prisma.ProfileInterestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProfileInterestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProfileInterestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>
+          }
+          findFirst: {
+            args: Prisma.ProfileInterestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProfileInterestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>
+          }
+          findMany: {
+            args: Prisma.ProfileInterestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>[]
+          }
+          create: {
+            args: Prisma.ProfileInterestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>
+          }
+          createMany: {
+            args: Prisma.ProfileInterestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProfileInterestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>[]
+          }
+          delete: {
+            args: Prisma.ProfileInterestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>
+          }
+          update: {
+            args: Prisma.ProfileInterestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProfileInterestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProfileInterestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProfileInterestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProfileInterestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileInterestPayload>
+          }
+          aggregate: {
+            args: Prisma.ProfileInterestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProfileInterest>
+          }
+          groupBy: {
+            args: Prisma.ProfileInterestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProfileInterestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProfileInterestCountArgs<ExtArgs>
+            result: $Utils.Optional<ProfileInterestCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +1046,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     profile?: ProfileOmit
     follow?: FollowOmit
+    interest?: InterestOmit
+    profileInterest?: ProfileInterestOmit
   }
 
   /* Types for Logging */
@@ -962,11 +1144,13 @@ export namespace Prisma {
   export type ProfileCountOutputType = {
     following: number
     followers: number
+    interests: number
   }
 
   export type ProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     following?: boolean | ProfileCountOutputTypeCountFollowingArgs
     followers?: boolean | ProfileCountOutputTypeCountFollowersArgs
+    interests?: boolean | ProfileCountOutputTypeCountInterestsArgs
   }
 
   // Custom InputTypes
@@ -994,6 +1178,44 @@ export namespace Prisma {
     where?: FollowWhereInput
   }
 
+  /**
+   * ProfileCountOutputType without action
+   */
+  export type ProfileCountOutputTypeCountInterestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileInterestWhereInput
+  }
+
+
+  /**
+   * Count Type InterestCountOutputType
+   */
+
+  export type InterestCountOutputType = {
+    profiles: number
+  }
+
+  export type InterestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profiles?: boolean | InterestCountOutputTypeCountProfilesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * InterestCountOutputType without action
+   */
+  export type InterestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the InterestCountOutputType
+     */
+    select?: InterestCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * InterestCountOutputType without action
+   */
+  export type InterestCountOutputTypeCountProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileInterestWhereInput
+  }
+
 
   /**
    * Models
@@ -1013,9 +1235,14 @@ export namespace Prisma {
     user_id: string | null
     username: string | null
     email: string | null
-    fullname: string | null
-    bio: string | null
+    firstName: string | null
+    lastName: string | null
+    gender: string | null
+    dob: Date | null
     avatar_url: string | null
+    bio: string | null
+    phone: string | null
+    address: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -1024,9 +1251,14 @@ export namespace Prisma {
     user_id: string | null
     username: string | null
     email: string | null
-    fullname: string | null
-    bio: string | null
+    firstName: string | null
+    lastName: string | null
+    gender: string | null
+    dob: Date | null
     avatar_url: string | null
+    bio: string | null
+    phone: string | null
+    address: string | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -1035,9 +1267,14 @@ export namespace Prisma {
     user_id: number
     username: number
     email: number
-    fullname: number
-    bio: number
+    firstName: number
+    lastName: number
+    gender: number
+    dob: number
     avatar_url: number
+    bio: number
+    phone: number
+    address: number
     created_at: number
     updated_at: number
     _all: number
@@ -1048,9 +1285,14 @@ export namespace Prisma {
     user_id?: true
     username?: true
     email?: true
-    fullname?: true
-    bio?: true
+    firstName?: true
+    lastName?: true
+    gender?: true
+    dob?: true
     avatar_url?: true
+    bio?: true
+    phone?: true
+    address?: true
     created_at?: true
     updated_at?: true
   }
@@ -1059,9 +1301,14 @@ export namespace Prisma {
     user_id?: true
     username?: true
     email?: true
-    fullname?: true
-    bio?: true
+    firstName?: true
+    lastName?: true
+    gender?: true
+    dob?: true
     avatar_url?: true
+    bio?: true
+    phone?: true
+    address?: true
     created_at?: true
     updated_at?: true
   }
@@ -1070,9 +1317,14 @@ export namespace Prisma {
     user_id?: true
     username?: true
     email?: true
-    fullname?: true
-    bio?: true
+    firstName?: true
+    lastName?: true
+    gender?: true
+    dob?: true
     avatar_url?: true
+    bio?: true
+    phone?: true
+    address?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -1154,9 +1406,14 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    fullname: string | null
-    bio: string | null
-    avatar_url: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date
+    avatar_url: string
+    bio: string
+    phone: string | null
+    address: string | null
     created_at: Date
     updated_at: Date
     _count: ProfileCountAggregateOutputType | null
@@ -1182,13 +1439,19 @@ export namespace Prisma {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    fullname?: boolean
-    bio?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    gender?: boolean
+    dob?: boolean
     avatar_url?: boolean
+    bio?: boolean
+    phone?: boolean
+    address?: boolean
     created_at?: boolean
     updated_at?: boolean
     following?: boolean | Profile$followingArgs<ExtArgs>
     followers?: boolean | Profile$followersArgs<ExtArgs>
+    interests?: boolean | Profile$interestsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
@@ -1196,9 +1459,14 @@ export namespace Prisma {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    fullname?: boolean
-    bio?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    gender?: boolean
+    dob?: boolean
     avatar_url?: boolean
+    bio?: boolean
+    phone?: boolean
+    address?: boolean
     created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["profile"]>
@@ -1207,9 +1475,14 @@ export namespace Prisma {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    fullname?: boolean
-    bio?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    gender?: boolean
+    dob?: boolean
     avatar_url?: boolean
+    bio?: boolean
+    phone?: boolean
+    address?: boolean
     created_at?: boolean
     updated_at?: boolean
   }, ExtArgs["result"]["profile"]>
@@ -1218,17 +1491,23 @@ export namespace Prisma {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    fullname?: boolean
-    bio?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    gender?: boolean
+    dob?: boolean
     avatar_url?: boolean
+    bio?: boolean
+    phone?: boolean
+    address?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "username" | "email" | "fullname" | "bio" | "avatar_url" | "created_at" | "updated_at", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "username" | "email" | "firstName" | "lastName" | "gender" | "dob" | "avatar_url" | "bio" | "phone" | "address" | "created_at" | "updated_at", ExtArgs["result"]["profile"]>
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     following?: boolean | Profile$followingArgs<ExtArgs>
     followers?: boolean | Profile$followersArgs<ExtArgs>
+    interests?: boolean | Profile$interestsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1239,14 +1518,20 @@ export namespace Prisma {
     objects: {
       following: Prisma.$FollowPayload<ExtArgs>[]
       followers: Prisma.$FollowPayload<ExtArgs>[]
+      interests: Prisma.$ProfileInterestPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       user_id: string
       username: string
       email: string
-      fullname: string | null
-      bio: string | null
-      avatar_url: string | null
+      firstName: string
+      lastName: string
+      gender: string
+      dob: Date
+      avatar_url: string
+      bio: string
+      phone: string | null
+      address: string | null
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["profile"]>
@@ -1645,6 +1930,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     following<T extends Profile$followingArgs<ExtArgs> = {}>(args?: Subset<T, Profile$followingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     followers<T extends Profile$followersArgs<ExtArgs> = {}>(args?: Subset<T, Profile$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    interests<T extends Profile$interestsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$interestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1677,9 +1963,14 @@ export namespace Prisma {
     readonly user_id: FieldRef<"Profile", 'String'>
     readonly username: FieldRef<"Profile", 'String'>
     readonly email: FieldRef<"Profile", 'String'>
-    readonly fullname: FieldRef<"Profile", 'String'>
-    readonly bio: FieldRef<"Profile", 'String'>
+    readonly firstName: FieldRef<"Profile", 'String'>
+    readonly lastName: FieldRef<"Profile", 'String'>
+    readonly gender: FieldRef<"Profile", 'String'>
+    readonly dob: FieldRef<"Profile", 'DateTime'>
     readonly avatar_url: FieldRef<"Profile", 'String'>
+    readonly bio: FieldRef<"Profile", 'String'>
+    readonly phone: FieldRef<"Profile", 'String'>
+    readonly address: FieldRef<"Profile", 'String'>
     readonly created_at: FieldRef<"Profile", 'DateTime'>
     readonly updated_at: FieldRef<"Profile", 'DateTime'>
   }
@@ -2115,6 +2406,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
+   * Profile.interests
+   */
+  export type Profile$interestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    where?: ProfileInterestWhereInput
+    orderBy?: ProfileInterestOrderByWithRelationInput | ProfileInterestOrderByWithRelationInput[]
+    cursor?: ProfileInterestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfileInterestScalarFieldEnum | ProfileInterestScalarFieldEnum[]
   }
 
   /**
@@ -3224,6 +3539,2175 @@ export namespace Prisma {
 
 
   /**
+   * Model Interest
+   */
+
+  export type AggregateInterest = {
+    _count: InterestCountAggregateOutputType | null
+    _avg: InterestAvgAggregateOutputType | null
+    _sum: InterestSumAggregateOutputType | null
+    _min: InterestMinAggregateOutputType | null
+    _max: InterestMaxAggregateOutputType | null
+  }
+
+  export type InterestAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type InterestSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type InterestMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    created_at: Date | null
+  }
+
+  export type InterestMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    created_at: Date | null
+  }
+
+  export type InterestCountAggregateOutputType = {
+    id: number
+    name: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type InterestAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type InterestSumAggregateInputType = {
+    id?: true
+  }
+
+  export type InterestMinAggregateInputType = {
+    id?: true
+    name?: true
+    created_at?: true
+  }
+
+  export type InterestMaxAggregateInputType = {
+    id?: true
+    name?: true
+    created_at?: true
+  }
+
+  export type InterestCountAggregateInputType = {
+    id?: true
+    name?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type InterestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Interest to aggregate.
+     */
+    where?: InterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Interests to fetch.
+     */
+    orderBy?: InterestOrderByWithRelationInput | InterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: InterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Interests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Interests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Interests
+    **/
+    _count?: true | InterestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: InterestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: InterestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: InterestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: InterestMaxAggregateInputType
+  }
+
+  export type GetInterestAggregateType<T extends InterestAggregateArgs> = {
+        [P in keyof T & keyof AggregateInterest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateInterest[P]>
+      : GetScalarType<T[P], AggregateInterest[P]>
+  }
+
+
+
+
+  export type InterestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: InterestWhereInput
+    orderBy?: InterestOrderByWithAggregationInput | InterestOrderByWithAggregationInput[]
+    by: InterestScalarFieldEnum[] | InterestScalarFieldEnum
+    having?: InterestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: InterestCountAggregateInputType | true
+    _avg?: InterestAvgAggregateInputType
+    _sum?: InterestSumAggregateInputType
+    _min?: InterestMinAggregateInputType
+    _max?: InterestMaxAggregateInputType
+  }
+
+  export type InterestGroupByOutputType = {
+    id: number
+    name: string
+    created_at: Date
+    _count: InterestCountAggregateOutputType | null
+    _avg: InterestAvgAggregateOutputType | null
+    _sum: InterestSumAggregateOutputType | null
+    _min: InterestMinAggregateOutputType | null
+    _max: InterestMaxAggregateOutputType | null
+  }
+
+  type GetInterestGroupByPayload<T extends InterestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<InterestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof InterestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], InterestGroupByOutputType[P]>
+            : GetScalarType<T[P], InterestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type InterestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    created_at?: boolean
+    profiles?: boolean | Interest$profilesArgs<ExtArgs>
+    _count?: boolean | InterestCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["interest"]>
+
+  export type InterestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["interest"]>
+
+  export type InterestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    created_at?: boolean
+  }, ExtArgs["result"]["interest"]>
+
+  export type InterestSelectScalar = {
+    id?: boolean
+    name?: boolean
+    created_at?: boolean
+  }
+
+  export type InterestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "created_at", ExtArgs["result"]["interest"]>
+  export type InterestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profiles?: boolean | Interest$profilesArgs<ExtArgs>
+    _count?: boolean | InterestCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type InterestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type InterestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $InterestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Interest"
+    objects: {
+      profiles: Prisma.$ProfileInterestPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      created_at: Date
+    }, ExtArgs["result"]["interest"]>
+    composites: {}
+  }
+
+  type InterestGetPayload<S extends boolean | null | undefined | InterestDefaultArgs> = $Result.GetResult<Prisma.$InterestPayload, S>
+
+  type InterestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<InterestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: InterestCountAggregateInputType | true
+    }
+
+  export interface InterestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Interest'], meta: { name: 'Interest' } }
+    /**
+     * Find zero or one Interest that matches the filter.
+     * @param {InterestFindUniqueArgs} args - Arguments to find a Interest
+     * @example
+     * // Get one Interest
+     * const interest = await prisma.interest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends InterestFindUniqueArgs>(args: SelectSubset<T, InterestFindUniqueArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Interest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {InterestFindUniqueOrThrowArgs} args - Arguments to find a Interest
+     * @example
+     * // Get one Interest
+     * const interest = await prisma.interest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends InterestFindUniqueOrThrowArgs>(args: SelectSubset<T, InterestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Interest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestFindFirstArgs} args - Arguments to find a Interest
+     * @example
+     * // Get one Interest
+     * const interest = await prisma.interest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends InterestFindFirstArgs>(args?: SelectSubset<T, InterestFindFirstArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Interest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestFindFirstOrThrowArgs} args - Arguments to find a Interest
+     * @example
+     * // Get one Interest
+     * const interest = await prisma.interest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends InterestFindFirstOrThrowArgs>(args?: SelectSubset<T, InterestFindFirstOrThrowArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Interests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Interests
+     * const interests = await prisma.interest.findMany()
+     * 
+     * // Get first 10 Interests
+     * const interests = await prisma.interest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const interestWithIdOnly = await prisma.interest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends InterestFindManyArgs>(args?: SelectSubset<T, InterestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Interest.
+     * @param {InterestCreateArgs} args - Arguments to create a Interest.
+     * @example
+     * // Create one Interest
+     * const Interest = await prisma.interest.create({
+     *   data: {
+     *     // ... data to create a Interest
+     *   }
+     * })
+     * 
+     */
+    create<T extends InterestCreateArgs>(args: SelectSubset<T, InterestCreateArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Interests.
+     * @param {InterestCreateManyArgs} args - Arguments to create many Interests.
+     * @example
+     * // Create many Interests
+     * const interest = await prisma.interest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends InterestCreateManyArgs>(args?: SelectSubset<T, InterestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Interests and returns the data saved in the database.
+     * @param {InterestCreateManyAndReturnArgs} args - Arguments to create many Interests.
+     * @example
+     * // Create many Interests
+     * const interest = await prisma.interest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Interests and only return the `id`
+     * const interestWithIdOnly = await prisma.interest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends InterestCreateManyAndReturnArgs>(args?: SelectSubset<T, InterestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Interest.
+     * @param {InterestDeleteArgs} args - Arguments to delete one Interest.
+     * @example
+     * // Delete one Interest
+     * const Interest = await prisma.interest.delete({
+     *   where: {
+     *     // ... filter to delete one Interest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends InterestDeleteArgs>(args: SelectSubset<T, InterestDeleteArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Interest.
+     * @param {InterestUpdateArgs} args - Arguments to update one Interest.
+     * @example
+     * // Update one Interest
+     * const interest = await prisma.interest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends InterestUpdateArgs>(args: SelectSubset<T, InterestUpdateArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Interests.
+     * @param {InterestDeleteManyArgs} args - Arguments to filter Interests to delete.
+     * @example
+     * // Delete a few Interests
+     * const { count } = await prisma.interest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends InterestDeleteManyArgs>(args?: SelectSubset<T, InterestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Interests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Interests
+     * const interest = await prisma.interest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends InterestUpdateManyArgs>(args: SelectSubset<T, InterestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Interests and returns the data updated in the database.
+     * @param {InterestUpdateManyAndReturnArgs} args - Arguments to update many Interests.
+     * @example
+     * // Update many Interests
+     * const interest = await prisma.interest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Interests and only return the `id`
+     * const interestWithIdOnly = await prisma.interest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends InterestUpdateManyAndReturnArgs>(args: SelectSubset<T, InterestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Interest.
+     * @param {InterestUpsertArgs} args - Arguments to update or create a Interest.
+     * @example
+     * // Update or create a Interest
+     * const interest = await prisma.interest.upsert({
+     *   create: {
+     *     // ... data to create a Interest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Interest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends InterestUpsertArgs>(args: SelectSubset<T, InterestUpsertArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Interests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestCountArgs} args - Arguments to filter Interests to count.
+     * @example
+     * // Count the number of Interests
+     * const count = await prisma.interest.count({
+     *   where: {
+     *     // ... the filter for the Interests we want to count
+     *   }
+     * })
+    **/
+    count<T extends InterestCountArgs>(
+      args?: Subset<T, InterestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], InterestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Interest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends InterestAggregateArgs>(args: Subset<T, InterestAggregateArgs>): Prisma.PrismaPromise<GetInterestAggregateType<T>>
+
+    /**
+     * Group by Interest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {InterestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends InterestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: InterestGroupByArgs['orderBy'] }
+        : { orderBy?: InterestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, InterestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInterestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Interest model
+   */
+  readonly fields: InterestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Interest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__InterestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    profiles<T extends Interest$profilesArgs<ExtArgs> = {}>(args?: Subset<T, Interest$profilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Interest model
+   */
+  interface InterestFieldRefs {
+    readonly id: FieldRef<"Interest", 'Int'>
+    readonly name: FieldRef<"Interest", 'String'>
+    readonly created_at: FieldRef<"Interest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Interest findUnique
+   */
+  export type InterestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * Filter, which Interest to fetch.
+     */
+    where: InterestWhereUniqueInput
+  }
+
+  /**
+   * Interest findUniqueOrThrow
+   */
+  export type InterestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * Filter, which Interest to fetch.
+     */
+    where: InterestWhereUniqueInput
+  }
+
+  /**
+   * Interest findFirst
+   */
+  export type InterestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * Filter, which Interest to fetch.
+     */
+    where?: InterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Interests to fetch.
+     */
+    orderBy?: InterestOrderByWithRelationInput | InterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Interests.
+     */
+    cursor?: InterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Interests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Interests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Interests.
+     */
+    distinct?: InterestScalarFieldEnum | InterestScalarFieldEnum[]
+  }
+
+  /**
+   * Interest findFirstOrThrow
+   */
+  export type InterestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * Filter, which Interest to fetch.
+     */
+    where?: InterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Interests to fetch.
+     */
+    orderBy?: InterestOrderByWithRelationInput | InterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Interests.
+     */
+    cursor?: InterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Interests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Interests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Interests.
+     */
+    distinct?: InterestScalarFieldEnum | InterestScalarFieldEnum[]
+  }
+
+  /**
+   * Interest findMany
+   */
+  export type InterestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * Filter, which Interests to fetch.
+     */
+    where?: InterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Interests to fetch.
+     */
+    orderBy?: InterestOrderByWithRelationInput | InterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Interests.
+     */
+    cursor?: InterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Interests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Interests.
+     */
+    skip?: number
+    distinct?: InterestScalarFieldEnum | InterestScalarFieldEnum[]
+  }
+
+  /**
+   * Interest create
+   */
+  export type InterestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Interest.
+     */
+    data: XOR<InterestCreateInput, InterestUncheckedCreateInput>
+  }
+
+  /**
+   * Interest createMany
+   */
+  export type InterestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Interests.
+     */
+    data: InterestCreateManyInput | InterestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Interest createManyAndReturn
+   */
+  export type InterestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * The data used to create many Interests.
+     */
+    data: InterestCreateManyInput | InterestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Interest update
+   */
+  export type InterestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Interest.
+     */
+    data: XOR<InterestUpdateInput, InterestUncheckedUpdateInput>
+    /**
+     * Choose, which Interest to update.
+     */
+    where: InterestWhereUniqueInput
+  }
+
+  /**
+   * Interest updateMany
+   */
+  export type InterestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Interests.
+     */
+    data: XOR<InterestUpdateManyMutationInput, InterestUncheckedUpdateManyInput>
+    /**
+     * Filter which Interests to update
+     */
+    where?: InterestWhereInput
+    /**
+     * Limit how many Interests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Interest updateManyAndReturn
+   */
+  export type InterestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * The data used to update Interests.
+     */
+    data: XOR<InterestUpdateManyMutationInput, InterestUncheckedUpdateManyInput>
+    /**
+     * Filter which Interests to update
+     */
+    where?: InterestWhereInput
+    /**
+     * Limit how many Interests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Interest upsert
+   */
+  export type InterestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Interest to update in case it exists.
+     */
+    where: InterestWhereUniqueInput
+    /**
+     * In case the Interest found by the `where` argument doesn't exist, create a new Interest with this data.
+     */
+    create: XOR<InterestCreateInput, InterestUncheckedCreateInput>
+    /**
+     * In case the Interest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<InterestUpdateInput, InterestUncheckedUpdateInput>
+  }
+
+  /**
+   * Interest delete
+   */
+  export type InterestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+    /**
+     * Filter which Interest to delete.
+     */
+    where: InterestWhereUniqueInput
+  }
+
+  /**
+   * Interest deleteMany
+   */
+  export type InterestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Interests to delete
+     */
+    where?: InterestWhereInput
+    /**
+     * Limit how many Interests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Interest.profiles
+   */
+  export type Interest$profilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    where?: ProfileInterestWhereInput
+    orderBy?: ProfileInterestOrderByWithRelationInput | ProfileInterestOrderByWithRelationInput[]
+    cursor?: ProfileInterestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfileInterestScalarFieldEnum | ProfileInterestScalarFieldEnum[]
+  }
+
+  /**
+   * Interest without action
+   */
+  export type InterestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Interest
+     */
+    select?: InterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Interest
+     */
+    omit?: InterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: InterestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProfileInterest
+   */
+
+  export type AggregateProfileInterest = {
+    _count: ProfileInterestCountAggregateOutputType | null
+    _avg: ProfileInterestAvgAggregateOutputType | null
+    _sum: ProfileInterestSumAggregateOutputType | null
+    _min: ProfileInterestMinAggregateOutputType | null
+    _max: ProfileInterestMaxAggregateOutputType | null
+  }
+
+  export type ProfileInterestAvgAggregateOutputType = {
+    id: number | null
+    interest_id: number | null
+  }
+
+  export type ProfileInterestSumAggregateOutputType = {
+    id: number | null
+    interest_id: number | null
+  }
+
+  export type ProfileInterestMinAggregateOutputType = {
+    id: number | null
+    profile_id: string | null
+    interest_id: number | null
+    created_at: Date | null
+  }
+
+  export type ProfileInterestMaxAggregateOutputType = {
+    id: number | null
+    profile_id: string | null
+    interest_id: number | null
+    created_at: Date | null
+  }
+
+  export type ProfileInterestCountAggregateOutputType = {
+    id: number
+    profile_id: number
+    interest_id: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type ProfileInterestAvgAggregateInputType = {
+    id?: true
+    interest_id?: true
+  }
+
+  export type ProfileInterestSumAggregateInputType = {
+    id?: true
+    interest_id?: true
+  }
+
+  export type ProfileInterestMinAggregateInputType = {
+    id?: true
+    profile_id?: true
+    interest_id?: true
+    created_at?: true
+  }
+
+  export type ProfileInterestMaxAggregateInputType = {
+    id?: true
+    profile_id?: true
+    interest_id?: true
+    created_at?: true
+  }
+
+  export type ProfileInterestCountAggregateInputType = {
+    id?: true
+    profile_id?: true
+    interest_id?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type ProfileInterestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProfileInterest to aggregate.
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileInterests to fetch.
+     */
+    orderBy?: ProfileInterestOrderByWithRelationInput | ProfileInterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProfileInterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileInterests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileInterests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProfileInterests
+    **/
+    _count?: true | ProfileInterestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProfileInterestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProfileInterestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProfileInterestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProfileInterestMaxAggregateInputType
+  }
+
+  export type GetProfileInterestAggregateType<T extends ProfileInterestAggregateArgs> = {
+        [P in keyof T & keyof AggregateProfileInterest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProfileInterest[P]>
+      : GetScalarType<T[P], AggregateProfileInterest[P]>
+  }
+
+
+
+
+  export type ProfileInterestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileInterestWhereInput
+    orderBy?: ProfileInterestOrderByWithAggregationInput | ProfileInterestOrderByWithAggregationInput[]
+    by: ProfileInterestScalarFieldEnum[] | ProfileInterestScalarFieldEnum
+    having?: ProfileInterestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProfileInterestCountAggregateInputType | true
+    _avg?: ProfileInterestAvgAggregateInputType
+    _sum?: ProfileInterestSumAggregateInputType
+    _min?: ProfileInterestMinAggregateInputType
+    _max?: ProfileInterestMaxAggregateInputType
+  }
+
+  export type ProfileInterestGroupByOutputType = {
+    id: number
+    profile_id: string
+    interest_id: number
+    created_at: Date
+    _count: ProfileInterestCountAggregateOutputType | null
+    _avg: ProfileInterestAvgAggregateOutputType | null
+    _sum: ProfileInterestSumAggregateOutputType | null
+    _min: ProfileInterestMinAggregateOutputType | null
+    _max: ProfileInterestMaxAggregateOutputType | null
+  }
+
+  type GetProfileInterestGroupByPayload<T extends ProfileInterestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProfileInterestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProfileInterestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProfileInterestGroupByOutputType[P]>
+            : GetScalarType<T[P], ProfileInterestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProfileInterestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    profile_id?: boolean
+    interest_id?: boolean
+    created_at?: boolean
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    interest?: boolean | InterestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profileInterest"]>
+
+  export type ProfileInterestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    profile_id?: boolean
+    interest_id?: boolean
+    created_at?: boolean
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    interest?: boolean | InterestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profileInterest"]>
+
+  export type ProfileInterestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    profile_id?: boolean
+    interest_id?: boolean
+    created_at?: boolean
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    interest?: boolean | InterestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profileInterest"]>
+
+  export type ProfileInterestSelectScalar = {
+    id?: boolean
+    profile_id?: boolean
+    interest_id?: boolean
+    created_at?: boolean
+  }
+
+  export type ProfileInterestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "profile_id" | "interest_id" | "created_at", ExtArgs["result"]["profileInterest"]>
+  export type ProfileInterestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    interest?: boolean | InterestDefaultArgs<ExtArgs>
+  }
+  export type ProfileInterestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    interest?: boolean | InterestDefaultArgs<ExtArgs>
+  }
+  export type ProfileInterestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    interest?: boolean | InterestDefaultArgs<ExtArgs>
+  }
+
+  export type $ProfileInterestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProfileInterest"
+    objects: {
+      profile: Prisma.$ProfilePayload<ExtArgs>
+      interest: Prisma.$InterestPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      profile_id: string
+      interest_id: number
+      created_at: Date
+    }, ExtArgs["result"]["profileInterest"]>
+    composites: {}
+  }
+
+  type ProfileInterestGetPayload<S extends boolean | null | undefined | ProfileInterestDefaultArgs> = $Result.GetResult<Prisma.$ProfileInterestPayload, S>
+
+  type ProfileInterestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProfileInterestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProfileInterestCountAggregateInputType | true
+    }
+
+  export interface ProfileInterestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProfileInterest'], meta: { name: 'ProfileInterest' } }
+    /**
+     * Find zero or one ProfileInterest that matches the filter.
+     * @param {ProfileInterestFindUniqueArgs} args - Arguments to find a ProfileInterest
+     * @example
+     * // Get one ProfileInterest
+     * const profileInterest = await prisma.profileInterest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProfileInterestFindUniqueArgs>(args: SelectSubset<T, ProfileInterestFindUniqueArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProfileInterest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProfileInterestFindUniqueOrThrowArgs} args - Arguments to find a ProfileInterest
+     * @example
+     * // Get one ProfileInterest
+     * const profileInterest = await prisma.profileInterest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProfileInterestFindUniqueOrThrowArgs>(args: SelectSubset<T, ProfileInterestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProfileInterest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestFindFirstArgs} args - Arguments to find a ProfileInterest
+     * @example
+     * // Get one ProfileInterest
+     * const profileInterest = await prisma.profileInterest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProfileInterestFindFirstArgs>(args?: SelectSubset<T, ProfileInterestFindFirstArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProfileInterest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestFindFirstOrThrowArgs} args - Arguments to find a ProfileInterest
+     * @example
+     * // Get one ProfileInterest
+     * const profileInterest = await prisma.profileInterest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProfileInterestFindFirstOrThrowArgs>(args?: SelectSubset<T, ProfileInterestFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProfileInterests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProfileInterests
+     * const profileInterests = await prisma.profileInterest.findMany()
+     * 
+     * // Get first 10 ProfileInterests
+     * const profileInterests = await prisma.profileInterest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const profileInterestWithIdOnly = await prisma.profileInterest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProfileInterestFindManyArgs>(args?: SelectSubset<T, ProfileInterestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProfileInterest.
+     * @param {ProfileInterestCreateArgs} args - Arguments to create a ProfileInterest.
+     * @example
+     * // Create one ProfileInterest
+     * const ProfileInterest = await prisma.profileInterest.create({
+     *   data: {
+     *     // ... data to create a ProfileInterest
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProfileInterestCreateArgs>(args: SelectSubset<T, ProfileInterestCreateArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProfileInterests.
+     * @param {ProfileInterestCreateManyArgs} args - Arguments to create many ProfileInterests.
+     * @example
+     * // Create many ProfileInterests
+     * const profileInterest = await prisma.profileInterest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProfileInterestCreateManyArgs>(args?: SelectSubset<T, ProfileInterestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProfileInterests and returns the data saved in the database.
+     * @param {ProfileInterestCreateManyAndReturnArgs} args - Arguments to create many ProfileInterests.
+     * @example
+     * // Create many ProfileInterests
+     * const profileInterest = await prisma.profileInterest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProfileInterests and only return the `id`
+     * const profileInterestWithIdOnly = await prisma.profileInterest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProfileInterestCreateManyAndReturnArgs>(args?: SelectSubset<T, ProfileInterestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProfileInterest.
+     * @param {ProfileInterestDeleteArgs} args - Arguments to delete one ProfileInterest.
+     * @example
+     * // Delete one ProfileInterest
+     * const ProfileInterest = await prisma.profileInterest.delete({
+     *   where: {
+     *     // ... filter to delete one ProfileInterest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProfileInterestDeleteArgs>(args: SelectSubset<T, ProfileInterestDeleteArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProfileInterest.
+     * @param {ProfileInterestUpdateArgs} args - Arguments to update one ProfileInterest.
+     * @example
+     * // Update one ProfileInterest
+     * const profileInterest = await prisma.profileInterest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProfileInterestUpdateArgs>(args: SelectSubset<T, ProfileInterestUpdateArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProfileInterests.
+     * @param {ProfileInterestDeleteManyArgs} args - Arguments to filter ProfileInterests to delete.
+     * @example
+     * // Delete a few ProfileInterests
+     * const { count } = await prisma.profileInterest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProfileInterestDeleteManyArgs>(args?: SelectSubset<T, ProfileInterestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProfileInterests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProfileInterests
+     * const profileInterest = await prisma.profileInterest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProfileInterestUpdateManyArgs>(args: SelectSubset<T, ProfileInterestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProfileInterests and returns the data updated in the database.
+     * @param {ProfileInterestUpdateManyAndReturnArgs} args - Arguments to update many ProfileInterests.
+     * @example
+     * // Update many ProfileInterests
+     * const profileInterest = await prisma.profileInterest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProfileInterests and only return the `id`
+     * const profileInterestWithIdOnly = await prisma.profileInterest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProfileInterestUpdateManyAndReturnArgs>(args: SelectSubset<T, ProfileInterestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProfileInterest.
+     * @param {ProfileInterestUpsertArgs} args - Arguments to update or create a ProfileInterest.
+     * @example
+     * // Update or create a ProfileInterest
+     * const profileInterest = await prisma.profileInterest.upsert({
+     *   create: {
+     *     // ... data to create a ProfileInterest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProfileInterest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProfileInterestUpsertArgs>(args: SelectSubset<T, ProfileInterestUpsertArgs<ExtArgs>>): Prisma__ProfileInterestClient<$Result.GetResult<Prisma.$ProfileInterestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProfileInterests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestCountArgs} args - Arguments to filter ProfileInterests to count.
+     * @example
+     * // Count the number of ProfileInterests
+     * const count = await prisma.profileInterest.count({
+     *   where: {
+     *     // ... the filter for the ProfileInterests we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProfileInterestCountArgs>(
+      args?: Subset<T, ProfileInterestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProfileInterestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProfileInterest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProfileInterestAggregateArgs>(args: Subset<T, ProfileInterestAggregateArgs>): Prisma.PrismaPromise<GetProfileInterestAggregateType<T>>
+
+    /**
+     * Group by ProfileInterest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileInterestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProfileInterestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProfileInterestGroupByArgs['orderBy'] }
+        : { orderBy?: ProfileInterestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProfileInterestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProfileInterestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProfileInterest model
+   */
+  readonly fields: ProfileInterestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProfileInterest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProfileInterestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    interest<T extends InterestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InterestDefaultArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProfileInterest model
+   */
+  interface ProfileInterestFieldRefs {
+    readonly id: FieldRef<"ProfileInterest", 'Int'>
+    readonly profile_id: FieldRef<"ProfileInterest", 'String'>
+    readonly interest_id: FieldRef<"ProfileInterest", 'Int'>
+    readonly created_at: FieldRef<"ProfileInterest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProfileInterest findUnique
+   */
+  export type ProfileInterestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileInterest to fetch.
+     */
+    where: ProfileInterestWhereUniqueInput
+  }
+
+  /**
+   * ProfileInterest findUniqueOrThrow
+   */
+  export type ProfileInterestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileInterest to fetch.
+     */
+    where: ProfileInterestWhereUniqueInput
+  }
+
+  /**
+   * ProfileInterest findFirst
+   */
+  export type ProfileInterestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileInterest to fetch.
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileInterests to fetch.
+     */
+    orderBy?: ProfileInterestOrderByWithRelationInput | ProfileInterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProfileInterests.
+     */
+    cursor?: ProfileInterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileInterests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileInterests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfileInterests.
+     */
+    distinct?: ProfileInterestScalarFieldEnum | ProfileInterestScalarFieldEnum[]
+  }
+
+  /**
+   * ProfileInterest findFirstOrThrow
+   */
+  export type ProfileInterestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileInterest to fetch.
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileInterests to fetch.
+     */
+    orderBy?: ProfileInterestOrderByWithRelationInput | ProfileInterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProfileInterests.
+     */
+    cursor?: ProfileInterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileInterests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileInterests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfileInterests.
+     */
+    distinct?: ProfileInterestScalarFieldEnum | ProfileInterestScalarFieldEnum[]
+  }
+
+  /**
+   * ProfileInterest findMany
+   */
+  export type ProfileInterestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileInterests to fetch.
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileInterests to fetch.
+     */
+    orderBy?: ProfileInterestOrderByWithRelationInput | ProfileInterestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProfileInterests.
+     */
+    cursor?: ProfileInterestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileInterests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileInterests.
+     */
+    skip?: number
+    distinct?: ProfileInterestScalarFieldEnum | ProfileInterestScalarFieldEnum[]
+  }
+
+  /**
+   * ProfileInterest create
+   */
+  export type ProfileInterestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProfileInterest.
+     */
+    data: XOR<ProfileInterestCreateInput, ProfileInterestUncheckedCreateInput>
+  }
+
+  /**
+   * ProfileInterest createMany
+   */
+  export type ProfileInterestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProfileInterests.
+     */
+    data: ProfileInterestCreateManyInput | ProfileInterestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProfileInterest createManyAndReturn
+   */
+  export type ProfileInterestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProfileInterests.
+     */
+    data: ProfileInterestCreateManyInput | ProfileInterestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProfileInterest update
+   */
+  export type ProfileInterestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProfileInterest.
+     */
+    data: XOR<ProfileInterestUpdateInput, ProfileInterestUncheckedUpdateInput>
+    /**
+     * Choose, which ProfileInterest to update.
+     */
+    where: ProfileInterestWhereUniqueInput
+  }
+
+  /**
+   * ProfileInterest updateMany
+   */
+  export type ProfileInterestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProfileInterests.
+     */
+    data: XOR<ProfileInterestUpdateManyMutationInput, ProfileInterestUncheckedUpdateManyInput>
+    /**
+     * Filter which ProfileInterests to update
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * Limit how many ProfileInterests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProfileInterest updateManyAndReturn
+   */
+  export type ProfileInterestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * The data used to update ProfileInterests.
+     */
+    data: XOR<ProfileInterestUpdateManyMutationInput, ProfileInterestUncheckedUpdateManyInput>
+    /**
+     * Filter which ProfileInterests to update
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * Limit how many ProfileInterests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProfileInterest upsert
+   */
+  export type ProfileInterestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProfileInterest to update in case it exists.
+     */
+    where: ProfileInterestWhereUniqueInput
+    /**
+     * In case the ProfileInterest found by the `where` argument doesn't exist, create a new ProfileInterest with this data.
+     */
+    create: XOR<ProfileInterestCreateInput, ProfileInterestUncheckedCreateInput>
+    /**
+     * In case the ProfileInterest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProfileInterestUpdateInput, ProfileInterestUncheckedUpdateInput>
+  }
+
+  /**
+   * ProfileInterest delete
+   */
+  export type ProfileInterestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+    /**
+     * Filter which ProfileInterest to delete.
+     */
+    where: ProfileInterestWhereUniqueInput
+  }
+
+  /**
+   * ProfileInterest deleteMany
+   */
+  export type ProfileInterestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProfileInterests to delete
+     */
+    where?: ProfileInterestWhereInput
+    /**
+     * Limit how many ProfileInterests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProfileInterest without action
+   */
+  export type ProfileInterestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileInterest
+     */
+    select?: ProfileInterestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileInterest
+     */
+    omit?: ProfileInterestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInterestInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3241,9 +5725,14 @@ export namespace Prisma {
     user_id: 'user_id',
     username: 'username',
     email: 'email',
-    fullname: 'fullname',
-    bio: 'bio',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    gender: 'gender',
+    dob: 'dob',
     avatar_url: 'avatar_url',
+    bio: 'bio',
+    phone: 'phone',
+    address: 'address',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -3259,6 +5748,25 @@ export namespace Prisma {
   };
 
   export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof FollowScalarFieldEnum]
+
+
+  export const InterestScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    created_at: 'created_at'
+  };
+
+  export type InterestScalarFieldEnum = (typeof InterestScalarFieldEnum)[keyof typeof InterestScalarFieldEnum]
+
+
+  export const ProfileInterestScalarFieldEnum: {
+    id: 'id',
+    profile_id: 'profile_id',
+    interest_id: 'interest_id',
+    created_at: 'created_at'
+  };
+
+  export type ProfileInterestScalarFieldEnum = (typeof ProfileInterestScalarFieldEnum)[keyof typeof ProfileInterestScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3356,26 +5864,38 @@ export namespace Prisma {
     user_id?: StringFilter<"Profile"> | string
     username?: StringFilter<"Profile"> | string
     email?: StringFilter<"Profile"> | string
-    fullname?: StringNullableFilter<"Profile"> | string | null
-    bio?: StringNullableFilter<"Profile"> | string | null
-    avatar_url?: StringNullableFilter<"Profile"> | string | null
+    firstName?: StringFilter<"Profile"> | string
+    lastName?: StringFilter<"Profile"> | string
+    gender?: StringFilter<"Profile"> | string
+    dob?: DateTimeFilter<"Profile"> | Date | string
+    avatar_url?: StringFilter<"Profile"> | string
+    bio?: StringFilter<"Profile"> | string
+    phone?: StringNullableFilter<"Profile"> | string | null
+    address?: StringNullableFilter<"Profile"> | string | null
     created_at?: DateTimeFilter<"Profile"> | Date | string
     updated_at?: DateTimeFilter<"Profile"> | Date | string
     following?: FollowListRelationFilter
     followers?: FollowListRelationFilter
+    interests?: ProfileInterestListRelationFilter
   }
 
   export type ProfileOrderByWithRelationInput = {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    fullname?: SortOrderInput | SortOrder
-    bio?: SortOrderInput | SortOrder
-    avatar_url?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    gender?: SortOrder
+    dob?: SortOrder
+    avatar_url?: SortOrder
+    bio?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     following?: FollowOrderByRelationAggregateInput
     followers?: FollowOrderByRelationAggregateInput
+    interests?: ProfileInterestOrderByRelationAggregateInput
   }
 
   export type ProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -3385,22 +5905,33 @@ export namespace Prisma {
     AND?: ProfileWhereInput | ProfileWhereInput[]
     OR?: ProfileWhereInput[]
     NOT?: ProfileWhereInput | ProfileWhereInput[]
-    fullname?: StringNullableFilter<"Profile"> | string | null
-    bio?: StringNullableFilter<"Profile"> | string | null
-    avatar_url?: StringNullableFilter<"Profile"> | string | null
+    firstName?: StringFilter<"Profile"> | string
+    lastName?: StringFilter<"Profile"> | string
+    gender?: StringFilter<"Profile"> | string
+    dob?: DateTimeFilter<"Profile"> | Date | string
+    avatar_url?: StringFilter<"Profile"> | string
+    bio?: StringFilter<"Profile"> | string
+    phone?: StringNullableFilter<"Profile"> | string | null
+    address?: StringNullableFilter<"Profile"> | string | null
     created_at?: DateTimeFilter<"Profile"> | Date | string
     updated_at?: DateTimeFilter<"Profile"> | Date | string
     following?: FollowListRelationFilter
     followers?: FollowListRelationFilter
+    interests?: ProfileInterestListRelationFilter
   }, "user_id" | "username" | "email">
 
   export type ProfileOrderByWithAggregationInput = {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    fullname?: SortOrderInput | SortOrder
-    bio?: SortOrderInput | SortOrder
-    avatar_url?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    gender?: SortOrder
+    dob?: SortOrder
+    avatar_url?: SortOrder
+    bio?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: ProfileCountOrderByAggregateInput
@@ -3415,9 +5946,14 @@ export namespace Prisma {
     user_id?: StringWithAggregatesFilter<"Profile"> | string
     username?: StringWithAggregatesFilter<"Profile"> | string
     email?: StringWithAggregatesFilter<"Profile"> | string
-    fullname?: StringNullableWithAggregatesFilter<"Profile"> | string | null
-    bio?: StringNullableWithAggregatesFilter<"Profile"> | string | null
-    avatar_url?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    firstName?: StringWithAggregatesFilter<"Profile"> | string
+    lastName?: StringWithAggregatesFilter<"Profile"> | string
+    gender?: StringWithAggregatesFilter<"Profile"> | string
+    dob?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
+    avatar_url?: StringWithAggregatesFilter<"Profile"> | string
+    bio?: StringWithAggregatesFilter<"Profile"> | string
+    phone?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    address?: StringNullableWithAggregatesFilter<"Profile"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
   }
@@ -3478,65 +6014,197 @@ export namespace Prisma {
     created_at?: DateTimeWithAggregatesFilter<"Follow"> | Date | string
   }
 
+  export type InterestWhereInput = {
+    AND?: InterestWhereInput | InterestWhereInput[]
+    OR?: InterestWhereInput[]
+    NOT?: InterestWhereInput | InterestWhereInput[]
+    id?: IntFilter<"Interest"> | number
+    name?: StringFilter<"Interest"> | string
+    created_at?: DateTimeFilter<"Interest"> | Date | string
+    profiles?: ProfileInterestListRelationFilter
+  }
+
+  export type InterestOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    profiles?: ProfileInterestOrderByRelationAggregateInput
+  }
+
+  export type InterestWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: InterestWhereInput | InterestWhereInput[]
+    OR?: InterestWhereInput[]
+    NOT?: InterestWhereInput | InterestWhereInput[]
+    created_at?: DateTimeFilter<"Interest"> | Date | string
+    profiles?: ProfileInterestListRelationFilter
+  }, "id" | "name">
+
+  export type InterestOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+    _count?: InterestCountOrderByAggregateInput
+    _avg?: InterestAvgOrderByAggregateInput
+    _max?: InterestMaxOrderByAggregateInput
+    _min?: InterestMinOrderByAggregateInput
+    _sum?: InterestSumOrderByAggregateInput
+  }
+
+  export type InterestScalarWhereWithAggregatesInput = {
+    AND?: InterestScalarWhereWithAggregatesInput | InterestScalarWhereWithAggregatesInput[]
+    OR?: InterestScalarWhereWithAggregatesInput[]
+    NOT?: InterestScalarWhereWithAggregatesInput | InterestScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Interest"> | number
+    name?: StringWithAggregatesFilter<"Interest"> | string
+    created_at?: DateTimeWithAggregatesFilter<"Interest"> | Date | string
+  }
+
+  export type ProfileInterestWhereInput = {
+    AND?: ProfileInterestWhereInput | ProfileInterestWhereInput[]
+    OR?: ProfileInterestWhereInput[]
+    NOT?: ProfileInterestWhereInput | ProfileInterestWhereInput[]
+    id?: IntFilter<"ProfileInterest"> | number
+    profile_id?: StringFilter<"ProfileInterest"> | string
+    interest_id?: IntFilter<"ProfileInterest"> | number
+    created_at?: DateTimeFilter<"ProfileInterest"> | Date | string
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    interest?: XOR<InterestScalarRelationFilter, InterestWhereInput>
+  }
+
+  export type ProfileInterestOrderByWithRelationInput = {
+    id?: SortOrder
+    profile_id?: SortOrder
+    interest_id?: SortOrder
+    created_at?: SortOrder
+    profile?: ProfileOrderByWithRelationInput
+    interest?: InterestOrderByWithRelationInput
+  }
+
+  export type ProfileInterestWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    profile_id_interest_id?: ProfileInterestProfile_idInterest_idCompoundUniqueInput
+    AND?: ProfileInterestWhereInput | ProfileInterestWhereInput[]
+    OR?: ProfileInterestWhereInput[]
+    NOT?: ProfileInterestWhereInput | ProfileInterestWhereInput[]
+    profile_id?: StringFilter<"ProfileInterest"> | string
+    interest_id?: IntFilter<"ProfileInterest"> | number
+    created_at?: DateTimeFilter<"ProfileInterest"> | Date | string
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    interest?: XOR<InterestScalarRelationFilter, InterestWhereInput>
+  }, "id" | "profile_id_interest_id">
+
+  export type ProfileInterestOrderByWithAggregationInput = {
+    id?: SortOrder
+    profile_id?: SortOrder
+    interest_id?: SortOrder
+    created_at?: SortOrder
+    _count?: ProfileInterestCountOrderByAggregateInput
+    _avg?: ProfileInterestAvgOrderByAggregateInput
+    _max?: ProfileInterestMaxOrderByAggregateInput
+    _min?: ProfileInterestMinOrderByAggregateInput
+    _sum?: ProfileInterestSumOrderByAggregateInput
+  }
+
+  export type ProfileInterestScalarWhereWithAggregatesInput = {
+    AND?: ProfileInterestScalarWhereWithAggregatesInput | ProfileInterestScalarWhereWithAggregatesInput[]
+    OR?: ProfileInterestScalarWhereWithAggregatesInput[]
+    NOT?: ProfileInterestScalarWhereWithAggregatesInput | ProfileInterestScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProfileInterest"> | number
+    profile_id?: StringWithAggregatesFilter<"ProfileInterest"> | string
+    interest_id?: IntWithAggregatesFilter<"ProfileInterest"> | number
+    created_at?: DateTimeWithAggregatesFilter<"ProfileInterest"> | Date | string
+  }
+
   export type ProfileCreateInput = {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     following?: FollowCreateNestedManyWithoutFollowerInput
     followers?: FollowCreateNestedManyWithoutLeaderInput
+    interests?: ProfileInterestCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
+    interests?: ProfileInterestUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUpdateInput = {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUpdateManyWithoutFollowerNestedInput
     followers?: FollowUpdateManyWithoutLeaderNestedInput
+    interests?: ProfileInterestUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
+    interests?: ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileCreateManyInput = {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -3545,9 +6213,14 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3556,9 +6229,14 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3607,6 +6285,93 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type InterestCreateInput = {
+    name: string
+    created_at?: Date | string
+    profiles?: ProfileInterestCreateNestedManyWithoutInterestInput
+  }
+
+  export type InterestUncheckedCreateInput = {
+    id?: number
+    name: string
+    created_at?: Date | string
+    profiles?: ProfileInterestUncheckedCreateNestedManyWithoutInterestInput
+  }
+
+  export type InterestUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    profiles?: ProfileInterestUpdateManyWithoutInterestNestedInput
+  }
+
+  export type InterestUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    profiles?: ProfileInterestUncheckedUpdateManyWithoutInterestNestedInput
+  }
+
+  export type InterestCreateManyInput = {
+    id?: number
+    name: string
+    created_at?: Date | string
+  }
+
+  export type InterestUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterestUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestCreateInput = {
+    created_at?: Date | string
+    profile: ProfileCreateNestedOneWithoutInterestsInput
+    interest: InterestCreateNestedOneWithoutProfilesInput
+  }
+
+  export type ProfileInterestUncheckedCreateInput = {
+    id?: number
+    profile_id: string
+    interest_id: number
+    created_at?: Date | string
+  }
+
+  export type ProfileInterestUpdateInput = {
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: ProfileUpdateOneRequiredWithoutInterestsNestedInput
+    interest?: InterestUpdateOneRequiredWithoutProfilesNestedInput
+  }
+
+  export type ProfileInterestUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    profile_id?: StringFieldUpdateOperationsInput | string
+    interest_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestCreateManyInput = {
+    id?: number
+    profile_id: string
+    interest_id: number
+    created_at?: Date | string
+  }
+
+  export type ProfileInterestUpdateManyMutationInput = {
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    profile_id?: StringFieldUpdateOperationsInput | string
+    interest_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3620,6 +6385,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -3637,21 +6413,16 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
   export type FollowListRelationFilter = {
     every?: FollowWhereInput
     some?: FollowWhereInput
     none?: FollowWhereInput
+  }
+
+  export type ProfileInterestListRelationFilter = {
+    every?: ProfileInterestWhereInput
+    some?: ProfileInterestWhereInput
+    none?: ProfileInterestWhereInput
   }
 
   export type SortOrderInput = {
@@ -3663,13 +6434,22 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type ProfileInterestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ProfileCountOrderByAggregateInput = {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    fullname?: SortOrder
-    bio?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    gender?: SortOrder
+    dob?: SortOrder
     avatar_url?: SortOrder
+    bio?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -3678,9 +6458,14 @@ export namespace Prisma {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    fullname?: SortOrder
-    bio?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    gender?: SortOrder
+    dob?: SortOrder
     avatar_url?: SortOrder
+    bio?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -3689,9 +6474,14 @@ export namespace Prisma {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    fullname?: SortOrder
-    bio?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    gender?: SortOrder
+    dob?: SortOrder
     avatar_url?: SortOrder
+    bio?: SortOrder
+    phone?: SortOrder
+    address?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -3714,6 +6504,20 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -3730,20 +6534,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3812,6 +6602,73 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type InterestCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type InterestAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type InterestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type InterestMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type InterestSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type InterestScalarRelationFilter = {
+    is?: InterestWhereInput
+    isNot?: InterestWhereInput
+  }
+
+  export type ProfileInterestProfile_idInterest_idCompoundUniqueInput = {
+    profile_id: string
+    interest_id: number
+  }
+
+  export type ProfileInterestCountOrderByAggregateInput = {
+    id?: SortOrder
+    profile_id?: SortOrder
+    interest_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type ProfileInterestAvgOrderByAggregateInput = {
+    id?: SortOrder
+    interest_id?: SortOrder
+  }
+
+  export type ProfileInterestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    profile_id?: SortOrder
+    interest_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type ProfileInterestMinOrderByAggregateInput = {
+    id?: SortOrder
+    profile_id?: SortOrder
+    interest_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type ProfileInterestSumOrderByAggregateInput = {
+    id?: SortOrder
+    interest_id?: SortOrder
+  }
+
   export type FollowCreateNestedManyWithoutFollowerInput = {
     create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
@@ -3824,6 +6681,13 @@ export namespace Prisma {
     connectOrCreate?: FollowCreateOrConnectWithoutLeaderInput | FollowCreateOrConnectWithoutLeaderInput[]
     createMany?: FollowCreateManyLeaderInputEnvelope
     connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+  }
+
+  export type ProfileInterestCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ProfileInterestCreateWithoutProfileInput, ProfileInterestUncheckedCreateWithoutProfileInput> | ProfileInterestCreateWithoutProfileInput[] | ProfileInterestUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutProfileInput | ProfileInterestCreateOrConnectWithoutProfileInput[]
+    createMany?: ProfileInterestCreateManyProfileInputEnvelope
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
   }
 
   export type FollowUncheckedCreateNestedManyWithoutFollowerInput = {
@@ -3840,16 +6704,23 @@ export namespace Prisma {
     connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
   }
 
+  export type ProfileInterestUncheckedCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ProfileInterestCreateWithoutProfileInput, ProfileInterestUncheckedCreateWithoutProfileInput> | ProfileInterestCreateWithoutProfileInput[] | ProfileInterestUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutProfileInput | ProfileInterestCreateOrConnectWithoutProfileInput[]
+    createMany?: ProfileInterestCreateManyProfileInputEnvelope
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type FollowUpdateManyWithoutFollowerNestedInput = {
@@ -3880,6 +6751,20 @@ export namespace Prisma {
     deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
   }
 
+  export type ProfileInterestUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ProfileInterestCreateWithoutProfileInput, ProfileInterestUncheckedCreateWithoutProfileInput> | ProfileInterestCreateWithoutProfileInput[] | ProfileInterestUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutProfileInput | ProfileInterestCreateOrConnectWithoutProfileInput[]
+    upsert?: ProfileInterestUpsertWithWhereUniqueWithoutProfileInput | ProfileInterestUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ProfileInterestCreateManyProfileInputEnvelope
+    set?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    disconnect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    delete?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    update?: ProfileInterestUpdateWithWhereUniqueWithoutProfileInput | ProfileInterestUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ProfileInterestUpdateManyWithWhereWithoutProfileInput | ProfileInterestUpdateManyWithWhereWithoutProfileInput[]
+    deleteMany?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
+  }
+
   export type FollowUncheckedUpdateManyWithoutFollowerNestedInput = {
     create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
@@ -3906,6 +6791,20 @@ export namespace Prisma {
     update?: FollowUpdateWithWhereUniqueWithoutLeaderInput | FollowUpdateWithWhereUniqueWithoutLeaderInput[]
     updateMany?: FollowUpdateManyWithWhereWithoutLeaderInput | FollowUpdateManyWithWhereWithoutLeaderInput[]
     deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
+  }
+
+  export type ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ProfileInterestCreateWithoutProfileInput, ProfileInterestUncheckedCreateWithoutProfileInput> | ProfileInterestCreateWithoutProfileInput[] | ProfileInterestUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutProfileInput | ProfileInterestCreateOrConnectWithoutProfileInput[]
+    upsert?: ProfileInterestUpsertWithWhereUniqueWithoutProfileInput | ProfileInterestUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ProfileInterestCreateManyProfileInputEnvelope
+    set?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    disconnect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    delete?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    update?: ProfileInterestUpdateWithWhereUniqueWithoutProfileInput | ProfileInterestUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ProfileInterestUpdateManyWithWhereWithoutProfileInput | ProfileInterestUpdateManyWithWhereWithoutProfileInput[]
+    deleteMany?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
   }
 
   export type ProfileCreateNestedOneWithoutFollowingInput = {
@@ -3944,6 +6843,76 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type ProfileInterestCreateNestedManyWithoutInterestInput = {
+    create?: XOR<ProfileInterestCreateWithoutInterestInput, ProfileInterestUncheckedCreateWithoutInterestInput> | ProfileInterestCreateWithoutInterestInput[] | ProfileInterestUncheckedCreateWithoutInterestInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutInterestInput | ProfileInterestCreateOrConnectWithoutInterestInput[]
+    createMany?: ProfileInterestCreateManyInterestInputEnvelope
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+  }
+
+  export type ProfileInterestUncheckedCreateNestedManyWithoutInterestInput = {
+    create?: XOR<ProfileInterestCreateWithoutInterestInput, ProfileInterestUncheckedCreateWithoutInterestInput> | ProfileInterestCreateWithoutInterestInput[] | ProfileInterestUncheckedCreateWithoutInterestInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutInterestInput | ProfileInterestCreateOrConnectWithoutInterestInput[]
+    createMany?: ProfileInterestCreateManyInterestInputEnvelope
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+  }
+
+  export type ProfileInterestUpdateManyWithoutInterestNestedInput = {
+    create?: XOR<ProfileInterestCreateWithoutInterestInput, ProfileInterestUncheckedCreateWithoutInterestInput> | ProfileInterestCreateWithoutInterestInput[] | ProfileInterestUncheckedCreateWithoutInterestInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutInterestInput | ProfileInterestCreateOrConnectWithoutInterestInput[]
+    upsert?: ProfileInterestUpsertWithWhereUniqueWithoutInterestInput | ProfileInterestUpsertWithWhereUniqueWithoutInterestInput[]
+    createMany?: ProfileInterestCreateManyInterestInputEnvelope
+    set?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    disconnect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    delete?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    update?: ProfileInterestUpdateWithWhereUniqueWithoutInterestInput | ProfileInterestUpdateWithWhereUniqueWithoutInterestInput[]
+    updateMany?: ProfileInterestUpdateManyWithWhereWithoutInterestInput | ProfileInterestUpdateManyWithWhereWithoutInterestInput[]
+    deleteMany?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
+  }
+
+  export type ProfileInterestUncheckedUpdateManyWithoutInterestNestedInput = {
+    create?: XOR<ProfileInterestCreateWithoutInterestInput, ProfileInterestUncheckedCreateWithoutInterestInput> | ProfileInterestCreateWithoutInterestInput[] | ProfileInterestUncheckedCreateWithoutInterestInput[]
+    connectOrCreate?: ProfileInterestCreateOrConnectWithoutInterestInput | ProfileInterestCreateOrConnectWithoutInterestInput[]
+    upsert?: ProfileInterestUpsertWithWhereUniqueWithoutInterestInput | ProfileInterestUpsertWithWhereUniqueWithoutInterestInput[]
+    createMany?: ProfileInterestCreateManyInterestInputEnvelope
+    set?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    disconnect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    delete?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    connect?: ProfileInterestWhereUniqueInput | ProfileInterestWhereUniqueInput[]
+    update?: ProfileInterestUpdateWithWhereUniqueWithoutInterestInput | ProfileInterestUpdateWithWhereUniqueWithoutInterestInput[]
+    updateMany?: ProfileInterestUpdateManyWithWhereWithoutInterestInput | ProfileInterestUpdateManyWithWhereWithoutInterestInput[]
+    deleteMany?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
+  }
+
+  export type ProfileCreateNestedOneWithoutInterestsInput = {
+    create?: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInterestsInput
+    connect?: ProfileWhereUniqueInput
+  }
+
+  export type InterestCreateNestedOneWithoutProfilesInput = {
+    create?: XOR<InterestCreateWithoutProfilesInput, InterestUncheckedCreateWithoutProfilesInput>
+    connectOrCreate?: InterestCreateOrConnectWithoutProfilesInput
+    connect?: InterestWhereUniqueInput
+  }
+
+  export type ProfileUpdateOneRequiredWithoutInterestsNestedInput = {
+    create?: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInterestsInput
+    upsert?: ProfileUpsertWithoutInterestsInput
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutInterestsInput, ProfileUpdateWithoutInterestsInput>, ProfileUncheckedUpdateWithoutInterestsInput>
+  }
+
+  export type InterestUpdateOneRequiredWithoutProfilesNestedInput = {
+    create?: XOR<InterestCreateWithoutProfilesInput, InterestUncheckedCreateWithoutProfilesInput>
+    connectOrCreate?: InterestCreateOrConnectWithoutProfilesInput
+    upsert?: InterestUpsertWithoutProfilesInput
+    connect?: InterestWhereUniqueInput
+    update?: XOR<XOR<InterestUpdateToOneWithWhereWithoutProfilesInput, InterestUpdateWithoutProfilesInput>, InterestUncheckedUpdateWithoutProfilesInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3958,6 +6927,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -3970,17 +6950,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4011,6 +6980,20 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -4037,20 +7020,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -4122,6 +7091,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProfileInterestCreateWithoutProfileInput = {
+    created_at?: Date | string
+    interest: InterestCreateNestedOneWithoutProfilesInput
+  }
+
+  export type ProfileInterestUncheckedCreateWithoutProfileInput = {
+    id?: number
+    interest_id: number
+    created_at?: Date | string
+  }
+
+  export type ProfileInterestCreateOrConnectWithoutProfileInput = {
+    where: ProfileInterestWhereUniqueInput
+    create: XOR<ProfileInterestCreateWithoutProfileInput, ProfileInterestUncheckedCreateWithoutProfileInput>
+  }
+
+  export type ProfileInterestCreateManyProfileInputEnvelope = {
+    data: ProfileInterestCreateManyProfileInput | ProfileInterestCreateManyProfileInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FollowUpsertWithWhereUniqueWithoutFollowerInput = {
     where: FollowWhereUniqueInput
     update: XOR<FollowUpdateWithoutFollowerInput, FollowUncheckedUpdateWithoutFollowerInput>
@@ -4164,28 +7154,66 @@ export namespace Prisma {
     data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyWithoutLeaderInput>
   }
 
+  export type ProfileInterestUpsertWithWhereUniqueWithoutProfileInput = {
+    where: ProfileInterestWhereUniqueInput
+    update: XOR<ProfileInterestUpdateWithoutProfileInput, ProfileInterestUncheckedUpdateWithoutProfileInput>
+    create: XOR<ProfileInterestCreateWithoutProfileInput, ProfileInterestUncheckedCreateWithoutProfileInput>
+  }
+
+  export type ProfileInterestUpdateWithWhereUniqueWithoutProfileInput = {
+    where: ProfileInterestWhereUniqueInput
+    data: XOR<ProfileInterestUpdateWithoutProfileInput, ProfileInterestUncheckedUpdateWithoutProfileInput>
+  }
+
+  export type ProfileInterestUpdateManyWithWhereWithoutProfileInput = {
+    where: ProfileInterestScalarWhereInput
+    data: XOR<ProfileInterestUpdateManyMutationInput, ProfileInterestUncheckedUpdateManyWithoutProfileInput>
+  }
+
+  export type ProfileInterestScalarWhereInput = {
+    AND?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
+    OR?: ProfileInterestScalarWhereInput[]
+    NOT?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
+    id?: IntFilter<"ProfileInterest"> | number
+    profile_id?: StringFilter<"ProfileInterest"> | string
+    interest_id?: IntFilter<"ProfileInterest"> | number
+    created_at?: DateTimeFilter<"ProfileInterest"> | Date | string
+  }
+
   export type ProfileCreateWithoutFollowingInput = {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     followers?: FollowCreateNestedManyWithoutLeaderInput
+    interests?: ProfileInterestCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutFollowingInput = {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
+    interests?: ProfileInterestUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutFollowingInput = {
@@ -4197,24 +7225,36 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     following?: FollowCreateNestedManyWithoutFollowerInput
+    interests?: ProfileInterestCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutFollowersInput = {
     user_id: string
     username: string
     email: string
-    fullname?: string | null
-    bio?: string | null
-    avatar_url?: string | null
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    interests?: ProfileInterestUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutFollowersInput = {
@@ -4237,24 +7277,36 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     followers?: FollowUpdateManyWithoutLeaderNestedInput
+    interests?: ProfileInterestUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutFollowingInput = {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
+    interests?: ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUpsertWithoutFollowersInput = {
@@ -4272,24 +7324,199 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUpdateManyWithoutFollowerNestedInput
+    interests?: ProfileInterestUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutFollowersInput = {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    fullname?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar_url?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    interests?: ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput
+  }
+
+  export type ProfileInterestCreateWithoutInterestInput = {
+    created_at?: Date | string
+    profile: ProfileCreateNestedOneWithoutInterestsInput
+  }
+
+  export type ProfileInterestUncheckedCreateWithoutInterestInput = {
+    id?: number
+    profile_id: string
+    created_at?: Date | string
+  }
+
+  export type ProfileInterestCreateOrConnectWithoutInterestInput = {
+    where: ProfileInterestWhereUniqueInput
+    create: XOR<ProfileInterestCreateWithoutInterestInput, ProfileInterestUncheckedCreateWithoutInterestInput>
+  }
+
+  export type ProfileInterestCreateManyInterestInputEnvelope = {
+    data: ProfileInterestCreateManyInterestInput | ProfileInterestCreateManyInterestInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProfileInterestUpsertWithWhereUniqueWithoutInterestInput = {
+    where: ProfileInterestWhereUniqueInput
+    update: XOR<ProfileInterestUpdateWithoutInterestInput, ProfileInterestUncheckedUpdateWithoutInterestInput>
+    create: XOR<ProfileInterestCreateWithoutInterestInput, ProfileInterestUncheckedCreateWithoutInterestInput>
+  }
+
+  export type ProfileInterestUpdateWithWhereUniqueWithoutInterestInput = {
+    where: ProfileInterestWhereUniqueInput
+    data: XOR<ProfileInterestUpdateWithoutInterestInput, ProfileInterestUncheckedUpdateWithoutInterestInput>
+  }
+
+  export type ProfileInterestUpdateManyWithWhereWithoutInterestInput = {
+    where: ProfileInterestScalarWhereInput
+    data: XOR<ProfileInterestUpdateManyMutationInput, ProfileInterestUncheckedUpdateManyWithoutInterestInput>
+  }
+
+  export type ProfileCreateWithoutInterestsInput = {
+    user_id: string
+    username: string
+    email: string
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    following?: FollowCreateNestedManyWithoutFollowerInput
+    followers?: FollowCreateNestedManyWithoutLeaderInput
+  }
+
+  export type ProfileUncheckedCreateWithoutInterestsInput = {
+    user_id: string
+    username: string
+    email: string
+    firstName: string
+    lastName: string
+    gender: string
+    dob: Date | string
+    avatar_url: string
+    bio: string
+    phone?: string | null
+    address?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
+  }
+
+  export type ProfileCreateOrConnectWithoutInterestsInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
+  }
+
+  export type InterestCreateWithoutProfilesInput = {
+    name: string
+    created_at?: Date | string
+  }
+
+  export type InterestUncheckedCreateWithoutProfilesInput = {
+    id?: number
+    name: string
+    created_at?: Date | string
+  }
+
+  export type InterestCreateOrConnectWithoutProfilesInput = {
+    where: InterestWhereUniqueInput
+    create: XOR<InterestCreateWithoutProfilesInput, InterestUncheckedCreateWithoutProfilesInput>
+  }
+
+  export type ProfileUpsertWithoutInterestsInput = {
+    update: XOR<ProfileUpdateWithoutInterestsInput, ProfileUncheckedUpdateWithoutInterestsInput>
+    create: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutInterestsInput = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutInterestsInput, ProfileUncheckedUpdateWithoutInterestsInput>
+  }
+
+  export type ProfileUpdateWithoutInterestsInput = {
+    user_id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    following?: FollowUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUpdateManyWithoutLeaderNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutInterestsInput = {
+    user_id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
+  }
+
+  export type InterestUpsertWithoutProfilesInput = {
+    update: XOR<InterestUpdateWithoutProfilesInput, InterestUncheckedUpdateWithoutProfilesInput>
+    create: XOR<InterestCreateWithoutProfilesInput, InterestUncheckedCreateWithoutProfilesInput>
+    where?: InterestWhereInput
+  }
+
+  export type InterestUpdateToOneWithWhereWithoutProfilesInput = {
+    where?: InterestWhereInput
+    data: XOR<InterestUpdateWithoutProfilesInput, InterestUncheckedUpdateWithoutProfilesInput>
+  }
+
+  export type InterestUpdateWithoutProfilesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type InterestUncheckedUpdateWithoutProfilesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FollowCreateManyFollowerInput = {
@@ -4301,6 +7528,12 @@ export namespace Prisma {
   export type FollowCreateManyLeaderInput = {
     id?: number
     follower_id: string
+    created_at?: Date | string
+  }
+
+  export type ProfileInterestCreateManyProfileInput = {
+    id?: number
+    interest_id: number
     created_at?: Date | string
   }
 
@@ -4335,6 +7568,46 @@ export namespace Prisma {
   export type FollowUncheckedUpdateManyWithoutLeaderInput = {
     id?: IntFieldUpdateOperationsInput | number
     follower_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestUpdateWithoutProfileInput = {
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    interest?: InterestUpdateOneRequiredWithoutProfilesNestedInput
+  }
+
+  export type ProfileInterestUncheckedUpdateWithoutProfileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    interest_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestUncheckedUpdateManyWithoutProfileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    interest_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestCreateManyInterestInput = {
+    id?: number
+    profile_id: string
+    created_at?: Date | string
+  }
+
+  export type ProfileInterestUpdateWithoutInterestInput = {
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: ProfileUpdateOneRequiredWithoutInterestsNestedInput
+  }
+
+  export type ProfileInterestUncheckedUpdateWithoutInterestInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    profile_id?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileInterestUncheckedUpdateManyWithoutInterestInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    profile_id?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

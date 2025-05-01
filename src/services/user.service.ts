@@ -2,12 +2,7 @@ import { DEFAULT_AVATAR } from "../global/settingApp";
 import { prisma } from "../lib/prisma";
 import { redis } from "../lib/redis";
 import { FriendSuggestion } from "../types/follow.type";
-import {
-  CheckUser,
-  CheckUserId,
-  createUserSchema,
-  CreateUserType,
-} from "../types/user.type";
+import { CheckUser, CreateUserType } from "../types/user.type";
 import AppError from "../utils/error/AppError";
 
 class UserService {
@@ -36,64 +31,73 @@ class UserService {
   }
 
   async create(input: CreateUserType) {
-    // 1. Validate input
     const parseResult = CheckUser(input);
+    const {
+      user_id,
+      username,
+      email,
+      firstName,
+      lastName,
+      gender,
+      dob,
+      bio,
+      avatar: avatar_url,
+      phone,
+      address,
+      favorites,
+    } = parseResult;
 
-    const { user_id, username, fullname, bio, avatar_url, email } = parseResult;
     const fullUsername = `@${username}`.trim().toLowerCase();
-
-    // 2. Kiểm tra user_id đã có chưa
-    const existedUser = await this.findByUserId(user_id).catch(() => null);
-    if (existedUser) {
-      throw new AppError("Tài khoản này đã được tạo", 400);
-    }
-
-    // 3. Dùng SETNX để lock username tránh race condition
     const lockKey = `username_lock:${fullUsername}`;
+
+    const existedUser = await this.findByUserId(user_id).catch(() => null);
+    if (existedUser) throw new AppError("Tài khoản này đã được tạo", 400);
+
     const locked = await redis.setnx(lockKey, "locked");
+    if (!locked) throw new AppError("Username đang được sử dụng", 400);
 
-    if (!locked) {
-      throw new AppError(
-        "Username đang được sử dụng, vui lòng thử tên khác",
-        400
-      );
-    }
-
-    // Đặt thời gian sống cho lock (đề phòng treo)
-    await redis.expire(lockKey, 60); // 60s
+    await redis.expire(lockKey, 60);
 
     try {
-      // 4. Kiểm tra username đã tồn tại chưa (double check)
       const usernameUsed = await redis.sismember("usernames", fullUsername);
-      if (usernameUsed) {
-        throw new AppError("Username đã tồn tại", 400);
-      }
+      if (usernameUsed) throw new AppError("Username đã tồn tại", 400);
 
-      // 5. Tạo user
       const user = await prisma.profile.create({
         data: {
-          email,
           user_id,
+          email,
           username: fullUsername,
-          fullname,
+          firstName,
+          lastName,
+          gender,
+          dob,
+          phone,
+          address,
           avatar_url: avatar_url || DEFAULT_AVATAR,
-          bio: bio || `Xin chào tui là ${fullname}`,
+          bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
+          interests: {
+            create:
+              favorites?.map((name) => ({
+                interest: {
+                  connectOrCreate: {
+                    where: { name }, // Kiểm tra và kết nối hoặc tạo mới
+                    create: { name }, // Tạo mới nếu chưa tồn tại
+                  },
+                },
+              })) || [],
+          },
         },
+        include: { interests: true },
       });
 
-      // 6. Lưu vào Redis
       await redis.sadd("usernames", fullUsername);
-
       return user;
     } catch (error: any) {
-      // Nếu lỗi, kiểm tra lỗi trùng trong Prisma
       if (error.code === "P2002") {
         throw new AppError("Username đã tồn tại", 400);
       }
-
       throw new AppError("Lỗi khi tạo người dùng", 500);
     } finally {
-      // 7. Luôn xóa lock để tránh bị giữ mãi
       await redis.del(lockKey);
     }
   }
@@ -101,7 +105,21 @@ class UserService {
   async update(input: CreateUserType) {
     const parseResult = CheckUser(input);
 
-    const { user_id, username, fullname, bio, avatar_url } = parseResult;
+    const {
+      user_id,
+      username,
+      email,
+      firstName,
+      lastName,
+      gender,
+      dob,
+      bio,
+      avatar: avatar_url,
+      phone,
+      address,
+      favorites,
+    } = parseResult;
+
     const fullUsername = `@${username}`.trim().toLowerCase();
     const lockKey = `username_lock:${fullUsername}`;
 
@@ -111,14 +129,34 @@ class UserService {
 
     // 2. Nếu username không thay đổi thì không cần check
     if (oldUsername === fullUsername) {
-      // Chỉ update các trường khác
+      // Chỉ update các trường khác, bao gồm sở thích
       return await prisma.profile.update({
         where: { user_id },
         data: {
-          fullname,
+          email,
+          username: fullUsername,
+          firstName,
+          lastName,
+          gender,
+          dob,
+          phone,
+          address,
           avatar_url: avatar_url || DEFAULT_AVATAR,
-          bio: bio || `Xin chào tui là ${fullname}`,
+          bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
+          interests: {
+            deleteMany: {}, // Xóa tất cả sở thích cũ
+            create:
+              favorites?.map((name) => ({
+                interest: {
+                  connectOrCreate: {
+                    where: { name }, // Kiểm tra và kết nối hoặc tạo mới
+                    create: { name }, // Tạo mới nếu chưa tồn tại
+                  },
+                },
+              })) || [],
+          },
         },
+        include: { interests: true },
       });
     }
 
@@ -149,11 +187,30 @@ class UserService {
       const user = await prisma.profile.update({
         where: { user_id },
         data: {
+          email,
           username: fullUsername,
-          fullname,
+          firstName,
+          lastName,
+          gender,
+          dob,
+          phone,
+          address,
           avatar_url: avatar_url || DEFAULT_AVATAR,
-          bio: bio || `Xin chào tui là ${fullname}`,
+          bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
+          interests: {
+            deleteMany: {}, // Xóa tất cả sở thích cũ
+            create:
+              favorites?.map((name) => ({
+                interest: {
+                  connectOrCreate: {
+                    where: { name }, // Kiểm tra và kết nối hoặc tạo mới
+                    create: { name }, // Tạo mới nếu chưa tồn tại
+                  },
+                },
+              })) || [],
+          },
         },
+        include: { interests: true },
       });
 
       // 6. Cập nhật Redis SET nếu username đã đổi
