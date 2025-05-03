@@ -17,6 +17,8 @@ export const createProfile = CatchAsync(async (req, res, next) => {
 
   const user = await UserService.create(body);
 
+  await UserService.publishProfileCreated(user.user_id);
+
   sendResponse(res, 201, "Tạo thông tin cá nhân thành công", user);
 });
 
