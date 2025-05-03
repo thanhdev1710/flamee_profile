@@ -21,19 +21,10 @@ export const createUserSchema = z.object({
     .string()
     .min(2, "Họ phải có ít nhất 2 ký tự")
     .max(50, "Họ tối đa 50 ký tự"),
-  phone: z
-    .string()
-    .regex(
-      /^0\d{9}$/,
-      "Số điện thoại không hợp lệ (phải có 10 chữ số và bắt đầu bằng số 0)"
-    )
-    .optional(),
 
-  address: z
-    .string()
-    .min(5, "Địa chỉ quá ngắn")
-    .max(200, "Địa chỉ quá dài")
-    .optional(),
+  phone: z.string().optional(),
+
+  address: z.string().optional(),
 
   dob: z.preprocess(
     (val) => {
@@ -55,7 +46,7 @@ export const createUserSchema = z.object({
     .array(z.string())
     .max(5, "Bạn chỉ có thể chọn tối đa 5 sở thích"),
 
-  avatar: z.string().url("Avatar phải là một URL hợp lệ").optional(),
+  avatar: z.string(),
 
   bio: z.string().max(500, "Giới thiệu bản thân tối đa 500 ký tự").optional(),
 });

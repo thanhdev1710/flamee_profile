@@ -52,7 +52,7 @@ class UserService {
     const lockKey = `username_lock:${fullUsername}`;
 
     const existedUser = await this.findByUserId(user_id).catch(() => null);
-    if (existedUser) throw new AppError("Tài khoản này đã được tạo", 400);
+    if (existedUser) throw new AppError("Hồ sơ này đã được tạo", 400);
 
     const locked = await redis.setnx(lockKey, "locked");
     if (!locked) throw new AppError("Username đang được sử dụng", 400);
@@ -412,7 +412,6 @@ class UserService {
     const payload = JSON.stringify({ user_id: userId });
 
     nc.publish("profile.created", sc.encode(payload));
-    console.log("✅ Đã gửi event profile.created cho user:", userId);
   }
 }
 

@@ -1,5 +1,4 @@
 import express, { Application, NextFunction, Request, Response } from "express";
-
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -28,7 +27,6 @@ app.use(cookieParser()); // Parse cookie
 app.use(express.json({ limit: "10mb" })); // Parse JSON body với giới hạn dung lượng
 app.use((req, res, next) => {
   (req as any).requestTime = new Date().toISOString(); // Ghi lại thời gian request
-  // Thêm tuỳ ý
   next();
 });
 
@@ -37,6 +35,7 @@ app.use((req, res, next) => {
 // ==============================
 app.use(`${URL_API_V1}/profiles`, profileRouter);
 app.use(`${URL_API_V1}/follows`, followRouter);
+
 // ==============================
 // Xử lý route không tồn tại
 // ==============================

@@ -27,7 +27,6 @@ export const checkFriendStatus = CatchAsync(async (req, res, next) => {
 export const addOrUnFollow = CatchAsync(async (req, res, next) => {
   const { userId } = getUserLogin(req);
   const { leaderId } = req.body;
-  console.log(leaderId);
 
   const leader_id = CheckUserId(leaderId);
   const follower_id = CheckUserId(userId);
