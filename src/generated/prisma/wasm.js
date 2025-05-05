@@ -121,16 +121,19 @@ exports.Prisma.ProfileScalarFieldEnum = {
   user_id: 'user_id',
   username: 'username',
   email: 'email',
+  bio: 'bio',
+  avatar_url: 'avatar_url',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  address: 'address',
+  phone: 'phone',
   firstName: 'firstName',
   lastName: 'lastName',
-  gender: 'gender',
   dob: 'dob',
-  avatar_url: 'avatar_url',
-  bio: 'bio',
-  phone: 'phone',
-  address: 'address',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  course: 'course',
+  major: 'major',
+  mssv: 'mssv',
+  gender: 'gender'
 };
 
 exports.Prisma.FollowScalarFieldEnum = {
@@ -167,7 +170,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.Gender = exports.$Enums.Gender = {
+  Nam: 'Nam',
+  N_: 'N_',
+  Kh_c: 'Kh_c'
+};
 
 exports.Prisma.ModelName = {
   Profile: 'Profile',

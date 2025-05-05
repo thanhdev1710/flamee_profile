@@ -49,6 +49,20 @@ export const createUserSchema = z.object({
   avatar: z.string(),
 
   bio: z.string().max(500, "Giới thiệu bản thân tối đa 500 ký tự").optional(),
+
+  mssv: z.string().regex(/^\d{10}$/, "Mã số sinh viên phải là chuỗi 10 chữ số"),
+
+  course: z
+    .string()
+    .regex(
+      /^\d{4}-\d{4}$/,
+      "Khóa học phải theo định dạng YYYY-YYYY (ví dụ: 2022-2026)"
+    ),
+
+  major: z
+    .string()
+    .min(2, "Ngành học phải có ít nhất 2 ký tự")
+    .max(100, "Ngành học tối đa 100 ký tự"),
 });
 
 export type CreateUserType = z.infer<typeof createUserSchema>;

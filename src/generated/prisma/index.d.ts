@@ -35,6 +35,24 @@ export type Interest = $Result.DefaultSelection<Prisma.$InterestPayload>
 export type ProfileInterest = $Result.DefaultSelection<Prisma.$ProfileInterestPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Gender: {
+  Nam: 'Nam',
+  N_: 'N_',
+  Kh_c: 'Kh_c'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+}
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1235,48 +1253,57 @@ export namespace Prisma {
     user_id: string | null
     username: string | null
     email: string | null
-    firstName: string | null
-    lastName: string | null
-    gender: string | null
-    dob: Date | null
-    avatar_url: string | null
     bio: string | null
-    phone: string | null
-    address: string | null
+    avatar_url: string | null
     created_at: Date | null
     updated_at: Date | null
+    address: string | null
+    phone: string | null
+    firstName: string | null
+    lastName: string | null
+    dob: Date | null
+    course: string | null
+    major: string | null
+    mssv: string | null
+    gender: $Enums.Gender | null
   }
 
   export type ProfileMaxAggregateOutputType = {
     user_id: string | null
     username: string | null
     email: string | null
-    firstName: string | null
-    lastName: string | null
-    gender: string | null
-    dob: Date | null
-    avatar_url: string | null
     bio: string | null
-    phone: string | null
-    address: string | null
+    avatar_url: string | null
     created_at: Date | null
     updated_at: Date | null
+    address: string | null
+    phone: string | null
+    firstName: string | null
+    lastName: string | null
+    dob: Date | null
+    course: string | null
+    major: string | null
+    mssv: string | null
+    gender: $Enums.Gender | null
   }
 
   export type ProfileCountAggregateOutputType = {
     user_id: number
     username: number
     email: number
-    firstName: number
-    lastName: number
-    gender: number
-    dob: number
-    avatar_url: number
     bio: number
-    phone: number
-    address: number
+    avatar_url: number
     created_at: number
     updated_at: number
+    address: number
+    phone: number
+    firstName: number
+    lastName: number
+    dob: number
+    course: number
+    major: number
+    mssv: number
+    gender: number
     _all: number
   }
 
@@ -1285,48 +1312,57 @@ export namespace Prisma {
     user_id?: true
     username?: true
     email?: true
-    firstName?: true
-    lastName?: true
-    gender?: true
-    dob?: true
-    avatar_url?: true
     bio?: true
-    phone?: true
-    address?: true
+    avatar_url?: true
     created_at?: true
     updated_at?: true
+    address?: true
+    phone?: true
+    firstName?: true
+    lastName?: true
+    dob?: true
+    course?: true
+    major?: true
+    mssv?: true
+    gender?: true
   }
 
   export type ProfileMaxAggregateInputType = {
     user_id?: true
     username?: true
     email?: true
-    firstName?: true
-    lastName?: true
-    gender?: true
-    dob?: true
-    avatar_url?: true
     bio?: true
-    phone?: true
-    address?: true
+    avatar_url?: true
     created_at?: true
     updated_at?: true
+    address?: true
+    phone?: true
+    firstName?: true
+    lastName?: true
+    dob?: true
+    course?: true
+    major?: true
+    mssv?: true
+    gender?: true
   }
 
   export type ProfileCountAggregateInputType = {
     user_id?: true
     username?: true
     email?: true
-    firstName?: true
-    lastName?: true
-    gender?: true
-    dob?: true
-    avatar_url?: true
     bio?: true
-    phone?: true
-    address?: true
+    avatar_url?: true
     created_at?: true
     updated_at?: true
+    address?: true
+    phone?: true
+    firstName?: true
+    lastName?: true
+    dob?: true
+    course?: true
+    major?: true
+    mssv?: true
+    gender?: true
     _all?: true
   }
 
@@ -1406,16 +1442,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date
-    avatar_url: string
     bio: string
-    phone: string | null
-    address: string | null
+    avatar_url: string
     created_at: Date
     updated_at: Date
+    address: string | null
+    phone: string | null
+    firstName: string
+    lastName: string
+    dob: Date
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     _count: ProfileCountAggregateOutputType | null
     _min: ProfileMinAggregateOutputType | null
     _max: ProfileMaxAggregateOutputType | null
@@ -1439,16 +1478,19 @@ export namespace Prisma {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    gender?: boolean
-    dob?: boolean
-    avatar_url?: boolean
     bio?: boolean
-    phone?: boolean
-    address?: boolean
+    avatar_url?: boolean
     created_at?: boolean
     updated_at?: boolean
+    address?: boolean
+    phone?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    dob?: boolean
+    course?: boolean
+    major?: boolean
+    mssv?: boolean
+    gender?: boolean
     following?: boolean | Profile$followingArgs<ExtArgs>
     followers?: boolean | Profile$followersArgs<ExtArgs>
     interests?: boolean | Profile$interestsArgs<ExtArgs>
@@ -1459,51 +1501,60 @@ export namespace Prisma {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    gender?: boolean
-    dob?: boolean
-    avatar_url?: boolean
     bio?: boolean
-    phone?: boolean
-    address?: boolean
+    avatar_url?: boolean
     created_at?: boolean
     updated_at?: boolean
+    address?: boolean
+    phone?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    dob?: boolean
+    course?: boolean
+    major?: boolean
+    mssv?: boolean
+    gender?: boolean
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
     username?: boolean
     email?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    gender?: boolean
-    dob?: boolean
-    avatar_url?: boolean
     bio?: boolean
-    phone?: boolean
-    address?: boolean
+    avatar_url?: boolean
     created_at?: boolean
     updated_at?: boolean
+    address?: boolean
+    phone?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    dob?: boolean
+    course?: boolean
+    major?: boolean
+    mssv?: boolean
+    gender?: boolean
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectScalar = {
     user_id?: boolean
     username?: boolean
     email?: boolean
-    firstName?: boolean
-    lastName?: boolean
-    gender?: boolean
-    dob?: boolean
-    avatar_url?: boolean
     bio?: boolean
-    phone?: boolean
-    address?: boolean
+    avatar_url?: boolean
     created_at?: boolean
     updated_at?: boolean
+    address?: boolean
+    phone?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    dob?: boolean
+    course?: boolean
+    major?: boolean
+    mssv?: boolean
+    gender?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "username" | "email" | "firstName" | "lastName" | "gender" | "dob" | "avatar_url" | "bio" | "phone" | "address" | "created_at" | "updated_at", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "username" | "email" | "bio" | "avatar_url" | "created_at" | "updated_at" | "address" | "phone" | "firstName" | "lastName" | "dob" | "course" | "major" | "mssv" | "gender", ExtArgs["result"]["profile"]>
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     following?: boolean | Profile$followingArgs<ExtArgs>
     followers?: boolean | Profile$followersArgs<ExtArgs>
@@ -1524,16 +1575,19 @@ export namespace Prisma {
       user_id: string
       username: string
       email: string
-      firstName: string
-      lastName: string
-      gender: string
-      dob: Date
-      avatar_url: string
       bio: string
-      phone: string | null
-      address: string | null
+      avatar_url: string
       created_at: Date
       updated_at: Date
+      address: string | null
+      phone: string | null
+      firstName: string
+      lastName: string
+      dob: Date
+      course: string
+      major: string
+      mssv: string
+      gender: $Enums.Gender
     }, ExtArgs["result"]["profile"]>
     composites: {}
   }
@@ -1963,16 +2017,19 @@ export namespace Prisma {
     readonly user_id: FieldRef<"Profile", 'String'>
     readonly username: FieldRef<"Profile", 'String'>
     readonly email: FieldRef<"Profile", 'String'>
-    readonly firstName: FieldRef<"Profile", 'String'>
-    readonly lastName: FieldRef<"Profile", 'String'>
-    readonly gender: FieldRef<"Profile", 'String'>
-    readonly dob: FieldRef<"Profile", 'DateTime'>
-    readonly avatar_url: FieldRef<"Profile", 'String'>
     readonly bio: FieldRef<"Profile", 'String'>
-    readonly phone: FieldRef<"Profile", 'String'>
-    readonly address: FieldRef<"Profile", 'String'>
+    readonly avatar_url: FieldRef<"Profile", 'String'>
     readonly created_at: FieldRef<"Profile", 'DateTime'>
     readonly updated_at: FieldRef<"Profile", 'DateTime'>
+    readonly address: FieldRef<"Profile", 'String'>
+    readonly phone: FieldRef<"Profile", 'String'>
+    readonly firstName: FieldRef<"Profile", 'String'>
+    readonly lastName: FieldRef<"Profile", 'String'>
+    readonly dob: FieldRef<"Profile", 'DateTime'>
+    readonly course: FieldRef<"Profile", 'String'>
+    readonly major: FieldRef<"Profile", 'String'>
+    readonly mssv: FieldRef<"Profile", 'String'>
+    readonly gender: FieldRef<"Profile", 'Gender'>
   }
     
 
@@ -4810,8 +4867,8 @@ export namespace Prisma {
     profile_id?: boolean
     interest_id?: boolean
     created_at?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     interest?: boolean | InterestDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profileInterest"]>
 
   export type ProfileInterestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4819,8 +4876,8 @@ export namespace Prisma {
     profile_id?: boolean
     interest_id?: boolean
     created_at?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     interest?: boolean | InterestDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profileInterest"]>
 
   export type ProfileInterestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4828,8 +4885,8 @@ export namespace Prisma {
     profile_id?: boolean
     interest_id?: boolean
     created_at?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     interest?: boolean | InterestDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profileInterest"]>
 
   export type ProfileInterestSelectScalar = {
@@ -4841,23 +4898,23 @@ export namespace Prisma {
 
   export type ProfileInterestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "profile_id" | "interest_id" | "created_at", ExtArgs["result"]["profileInterest"]>
   export type ProfileInterestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     interest?: boolean | InterestDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }
   export type ProfileInterestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     interest?: boolean | InterestDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }
   export type ProfileInterestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     interest?: boolean | InterestDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }
 
   export type $ProfileInterestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ProfileInterest"
     objects: {
-      profile: Prisma.$ProfilePayload<ExtArgs>
       interest: Prisma.$InterestPayload<ExtArgs>
+      profile: Prisma.$ProfilePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5258,8 +5315,8 @@ export namespace Prisma {
    */
   export interface Prisma__ProfileInterestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     interest<T extends InterestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, InterestDefaultArgs<ExtArgs>>): Prisma__InterestClient<$Result.GetResult<Prisma.$InterestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5725,16 +5782,19 @@ export namespace Prisma {
     user_id: 'user_id',
     username: 'username',
     email: 'email',
+    bio: 'bio',
+    avatar_url: 'avatar_url',
+    created_at: 'created_at',
+    updated_at: 'updated_at',
+    address: 'address',
+    phone: 'phone',
     firstName: 'firstName',
     lastName: 'lastName',
-    gender: 'gender',
     dob: 'dob',
-    avatar_url: 'avatar_url',
-    bio: 'bio',
-    phone: 'phone',
-    address: 'address',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    course: 'course',
+    major: 'major',
+    mssv: 'mssv',
+    gender: 'gender'
   };
 
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
@@ -5827,6 +5887,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender[]'
+   */
+  export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5864,16 +5938,19 @@ export namespace Prisma {
     user_id?: StringFilter<"Profile"> | string
     username?: StringFilter<"Profile"> | string
     email?: StringFilter<"Profile"> | string
-    firstName?: StringFilter<"Profile"> | string
-    lastName?: StringFilter<"Profile"> | string
-    gender?: StringFilter<"Profile"> | string
-    dob?: DateTimeFilter<"Profile"> | Date | string
-    avatar_url?: StringFilter<"Profile"> | string
     bio?: StringFilter<"Profile"> | string
-    phone?: StringNullableFilter<"Profile"> | string | null
-    address?: StringNullableFilter<"Profile"> | string | null
+    avatar_url?: StringFilter<"Profile"> | string
     created_at?: DateTimeFilter<"Profile"> | Date | string
     updated_at?: DateTimeFilter<"Profile"> | Date | string
+    address?: StringNullableFilter<"Profile"> | string | null
+    phone?: StringNullableFilter<"Profile"> | string | null
+    firstName?: StringFilter<"Profile"> | string
+    lastName?: StringFilter<"Profile"> | string
+    dob?: DateTimeFilter<"Profile"> | Date | string
+    course?: StringFilter<"Profile"> | string
+    major?: StringFilter<"Profile"> | string
+    mssv?: StringFilter<"Profile"> | string
+    gender?: EnumGenderFilter<"Profile"> | $Enums.Gender
     following?: FollowListRelationFilter
     followers?: FollowListRelationFilter
     interests?: ProfileInterestListRelationFilter
@@ -5883,16 +5960,19 @@ export namespace Prisma {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    gender?: SortOrder
-    dob?: SortOrder
-    avatar_url?: SortOrder
     bio?: SortOrder
-    phone?: SortOrderInput | SortOrder
-    address?: SortOrderInput | SortOrder
+    avatar_url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    address?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    dob?: SortOrder
+    course?: SortOrder
+    major?: SortOrder
+    mssv?: SortOrder
+    gender?: SortOrder
     following?: FollowOrderByRelationAggregateInput
     followers?: FollowOrderByRelationAggregateInput
     interests?: ProfileInterestOrderByRelationAggregateInput
@@ -5902,38 +5982,44 @@ export namespace Prisma {
     user_id?: string
     username?: string
     email?: string
+    mssv?: string
     AND?: ProfileWhereInput | ProfileWhereInput[]
     OR?: ProfileWhereInput[]
     NOT?: ProfileWhereInput | ProfileWhereInput[]
-    firstName?: StringFilter<"Profile"> | string
-    lastName?: StringFilter<"Profile"> | string
-    gender?: StringFilter<"Profile"> | string
-    dob?: DateTimeFilter<"Profile"> | Date | string
-    avatar_url?: StringFilter<"Profile"> | string
     bio?: StringFilter<"Profile"> | string
-    phone?: StringNullableFilter<"Profile"> | string | null
-    address?: StringNullableFilter<"Profile"> | string | null
+    avatar_url?: StringFilter<"Profile"> | string
     created_at?: DateTimeFilter<"Profile"> | Date | string
     updated_at?: DateTimeFilter<"Profile"> | Date | string
+    address?: StringNullableFilter<"Profile"> | string | null
+    phone?: StringNullableFilter<"Profile"> | string | null
+    firstName?: StringFilter<"Profile"> | string
+    lastName?: StringFilter<"Profile"> | string
+    dob?: DateTimeFilter<"Profile"> | Date | string
+    course?: StringFilter<"Profile"> | string
+    major?: StringFilter<"Profile"> | string
+    gender?: EnumGenderFilter<"Profile"> | $Enums.Gender
     following?: FollowListRelationFilter
     followers?: FollowListRelationFilter
     interests?: ProfileInterestListRelationFilter
-  }, "user_id" | "username" | "email">
+  }, "user_id" | "username" | "email" | "mssv">
 
   export type ProfileOrderByWithAggregationInput = {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    gender?: SortOrder
-    dob?: SortOrder
-    avatar_url?: SortOrder
     bio?: SortOrder
-    phone?: SortOrderInput | SortOrder
-    address?: SortOrderInput | SortOrder
+    avatar_url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    address?: SortOrderInput | SortOrder
+    phone?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    dob?: SortOrder
+    course?: SortOrder
+    major?: SortOrder
+    mssv?: SortOrder
+    gender?: SortOrder
     _count?: ProfileCountOrderByAggregateInput
     _max?: ProfileMaxOrderByAggregateInput
     _min?: ProfileMinOrderByAggregateInput
@@ -5946,16 +6032,19 @@ export namespace Prisma {
     user_id?: StringWithAggregatesFilter<"Profile"> | string
     username?: StringWithAggregatesFilter<"Profile"> | string
     email?: StringWithAggregatesFilter<"Profile"> | string
-    firstName?: StringWithAggregatesFilter<"Profile"> | string
-    lastName?: StringWithAggregatesFilter<"Profile"> | string
-    gender?: StringWithAggregatesFilter<"Profile"> | string
-    dob?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
-    avatar_url?: StringWithAggregatesFilter<"Profile"> | string
     bio?: StringWithAggregatesFilter<"Profile"> | string
-    phone?: StringNullableWithAggregatesFilter<"Profile"> | string | null
-    address?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    avatar_url?: StringWithAggregatesFilter<"Profile"> | string
     created_at?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
+    address?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    phone?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    firstName?: StringWithAggregatesFilter<"Profile"> | string
+    lastName?: StringWithAggregatesFilter<"Profile"> | string
+    dob?: DateTimeWithAggregatesFilter<"Profile"> | Date | string
+    course?: StringWithAggregatesFilter<"Profile"> | string
+    major?: StringWithAggregatesFilter<"Profile"> | string
+    mssv?: StringWithAggregatesFilter<"Profile"> | string
+    gender?: EnumGenderWithAggregatesFilter<"Profile"> | $Enums.Gender
   }
 
   export type FollowWhereInput = {
@@ -6069,8 +6158,8 @@ export namespace Prisma {
     profile_id?: StringFilter<"ProfileInterest"> | string
     interest_id?: IntFilter<"ProfileInterest"> | number
     created_at?: DateTimeFilter<"ProfileInterest"> | Date | string
-    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     interest?: XOR<InterestScalarRelationFilter, InterestWhereInput>
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }
 
   export type ProfileInterestOrderByWithRelationInput = {
@@ -6078,8 +6167,8 @@ export namespace Prisma {
     profile_id?: SortOrder
     interest_id?: SortOrder
     created_at?: SortOrder
-    profile?: ProfileOrderByWithRelationInput
     interest?: InterestOrderByWithRelationInput
+    profile?: ProfileOrderByWithRelationInput
   }
 
   export type ProfileInterestWhereUniqueInput = Prisma.AtLeast<{
@@ -6091,8 +6180,8 @@ export namespace Prisma {
     profile_id?: StringFilter<"ProfileInterest"> | string
     interest_id?: IntFilter<"ProfileInterest"> | number
     created_at?: DateTimeFilter<"ProfileInterest"> | Date | string
-    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     interest?: XOR<InterestScalarRelationFilter, InterestWhereInput>
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
   }, "id" | "profile_id_interest_id">
 
   export type ProfileInterestOrderByWithAggregationInput = {
@@ -6121,16 +6210,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     following?: FollowCreateNestedManyWithoutFollowerInput
     followers?: FollowCreateNestedManyWithoutLeaderInput
     interests?: ProfileInterestCreateNestedManyWithoutProfileInput
@@ -6140,16 +6232,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
     interests?: ProfileInterestUncheckedCreateNestedManyWithoutProfileInput
@@ -6159,16 +6254,19 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     following?: FollowUpdateManyWithoutFollowerNestedInput
     followers?: FollowUpdateManyWithoutLeaderNestedInput
     interests?: ProfileInterestUpdateManyWithoutProfileNestedInput
@@ -6178,16 +6276,19 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
     interests?: ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput
@@ -6197,48 +6298,57 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
   }
 
   export type ProfileUpdateManyMutationInput = {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
   export type ProfileUncheckedUpdateManyInput = {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
   export type FollowCreateInput = {
@@ -6330,8 +6440,8 @@ export namespace Prisma {
 
   export type ProfileInterestCreateInput = {
     created_at?: Date | string
-    profile: ProfileCreateNestedOneWithoutInterestsInput
     interest: InterestCreateNestedOneWithoutProfilesInput
+    profile: ProfileCreateNestedOneWithoutInterestsInput
   }
 
   export type ProfileInterestUncheckedCreateInput = {
@@ -6343,8 +6453,8 @@ export namespace Prisma {
 
   export type ProfileInterestUpdateInput = {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    profile?: ProfileUpdateOneRequiredWithoutInterestsNestedInput
     interest?: InterestUpdateOneRequiredWithoutProfilesNestedInput
+    profile?: ProfileUpdateOneRequiredWithoutInterestsNestedInput
   }
 
   export type ProfileInterestUncheckedUpdateInput = {
@@ -6413,6 +6523,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
   export type FollowListRelationFilter = {
     every?: FollowWhereInput
     some?: FollowWhereInput
@@ -6442,48 +6559,57 @@ export namespace Prisma {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    gender?: SortOrder
-    dob?: SortOrder
-    avatar_url?: SortOrder
     bio?: SortOrder
-    phone?: SortOrder
-    address?: SortOrder
+    avatar_url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    address?: SortOrder
+    phone?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    dob?: SortOrder
+    course?: SortOrder
+    major?: SortOrder
+    mssv?: SortOrder
+    gender?: SortOrder
   }
 
   export type ProfileMaxOrderByAggregateInput = {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    gender?: SortOrder
-    dob?: SortOrder
-    avatar_url?: SortOrder
     bio?: SortOrder
-    phone?: SortOrder
-    address?: SortOrder
+    avatar_url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    address?: SortOrder
+    phone?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    dob?: SortOrder
+    course?: SortOrder
+    major?: SortOrder
+    mssv?: SortOrder
+    gender?: SortOrder
   }
 
   export type ProfileMinOrderByAggregateInput = {
     user_id?: SortOrder
     username?: SortOrder
     email?: SortOrder
-    firstName?: SortOrder
-    lastName?: SortOrder
-    gender?: SortOrder
-    dob?: SortOrder
-    avatar_url?: SortOrder
     bio?: SortOrder
-    phone?: SortOrder
-    address?: SortOrder
+    avatar_url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    address?: SortOrder
+    phone?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    dob?: SortOrder
+    course?: SortOrder
+    major?: SortOrder
+    mssv?: SortOrder
+    gender?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6534,6 +6660,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6723,6 +6859,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type EnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender
+  }
+
   export type FollowUpdateManyWithoutFollowerNestedInput = {
     create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
     connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
@@ -6885,24 +7025,16 @@ export namespace Prisma {
     deleteMany?: ProfileInterestScalarWhereInput | ProfileInterestScalarWhereInput[]
   }
 
-  export type ProfileCreateNestedOneWithoutInterestsInput = {
-    create?: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutInterestsInput
-    connect?: ProfileWhereUniqueInput
-  }
-
   export type InterestCreateNestedOneWithoutProfilesInput = {
     create?: XOR<InterestCreateWithoutProfilesInput, InterestUncheckedCreateWithoutProfilesInput>
     connectOrCreate?: InterestCreateOrConnectWithoutProfilesInput
     connect?: InterestWhereUniqueInput
   }
 
-  export type ProfileUpdateOneRequiredWithoutInterestsNestedInput = {
+  export type ProfileCreateNestedOneWithoutInterestsInput = {
     create?: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutInterestsInput
-    upsert?: ProfileUpsertWithoutInterestsInput
     connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutInterestsInput, ProfileUpdateWithoutInterestsInput>, ProfileUncheckedUpdateWithoutInterestsInput>
   }
 
   export type InterestUpdateOneRequiredWithoutProfilesNestedInput = {
@@ -6911,6 +7043,14 @@ export namespace Prisma {
     upsert?: InterestUpsertWithoutProfilesInput
     connect?: InterestWhereUniqueInput
     update?: XOR<XOR<InterestUpdateToOneWithWhereWithoutProfilesInput, InterestUpdateWithoutProfilesInput>, InterestUncheckedUpdateWithoutProfilesInput>
+  }
+
+  export type ProfileUpdateOneRequiredWithoutInterestsNestedInput = {
+    create?: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutInterestsInput
+    upsert?: ProfileUpsertWithoutInterestsInput
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutInterestsInput, ProfileUpdateWithoutInterestsInput>, ProfileUncheckedUpdateWithoutInterestsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6950,6 +7090,13 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -7020,6 +7167,16 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -7184,16 +7341,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     followers?: FollowCreateNestedManyWithoutLeaderInput
     interests?: ProfileInterestCreateNestedManyWithoutProfileInput
   }
@@ -7202,16 +7362,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
     interests?: ProfileInterestUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -7225,16 +7388,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     following?: FollowCreateNestedManyWithoutFollowerInput
     interests?: ProfileInterestCreateNestedManyWithoutProfileInput
   }
@@ -7243,16 +7409,19 @@ export namespace Prisma {
     user_id: string
     username: string
     email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
     bio: string
-    phone?: string | null
-    address?: string | null
+    avatar_url: string
     created_at?: Date | string
     updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
     following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
     interests?: ProfileInterestUncheckedCreateNestedManyWithoutProfileInput
   }
@@ -7277,16 +7446,19 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     followers?: FollowUpdateManyWithoutLeaderNestedInput
     interests?: ProfileInterestUpdateManyWithoutProfileNestedInput
   }
@@ -7295,16 +7467,19 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
     interests?: ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -7324,16 +7499,19 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     following?: FollowUpdateManyWithoutFollowerNestedInput
     interests?: ProfileInterestUpdateManyWithoutProfileNestedInput
   }
@@ -7342,16 +7520,19 @@ export namespace Prisma {
     user_id?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar_url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
     interests?: ProfileInterestUncheckedUpdateManyWithoutProfileNestedInput
   }
@@ -7393,47 +7574,6 @@ export namespace Prisma {
     data: XOR<ProfileInterestUpdateManyMutationInput, ProfileInterestUncheckedUpdateManyWithoutInterestInput>
   }
 
-  export type ProfileCreateWithoutInterestsInput = {
-    user_id: string
-    username: string
-    email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
-    bio: string
-    phone?: string | null
-    address?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowCreateNestedManyWithoutFollowerInput
-    followers?: FollowCreateNestedManyWithoutLeaderInput
-  }
-
-  export type ProfileUncheckedCreateWithoutInterestsInput = {
-    user_id: string
-    username: string
-    email: string
-    firstName: string
-    lastName: string
-    gender: string
-    dob: Date | string
-    avatar_url: string
-    bio: string
-    phone?: string | null
-    address?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
-    followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
-  }
-
-  export type ProfileCreateOrConnectWithoutInterestsInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
-  }
-
   export type InterestCreateWithoutProfilesInput = {
     name: string
     created_at?: Date | string
@@ -7450,51 +7590,51 @@ export namespace Prisma {
     create: XOR<InterestCreateWithoutProfilesInput, InterestUncheckedCreateWithoutProfilesInput>
   }
 
-  export type ProfileUpsertWithoutInterestsInput = {
-    update: XOR<ProfileUpdateWithoutInterestsInput, ProfileUncheckedUpdateWithoutInterestsInput>
+  export type ProfileCreateWithoutInterestsInput = {
+    user_id: string
+    username: string
+    email: string
+    bio: string
+    avatar_url: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
+    following?: FollowCreateNestedManyWithoutFollowerInput
+    followers?: FollowCreateNestedManyWithoutLeaderInput
+  }
+
+  export type ProfileUncheckedCreateWithoutInterestsInput = {
+    user_id: string
+    username: string
+    email: string
+    bio: string
+    avatar_url: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    address?: string | null
+    phone?: string | null
+    firstName: string
+    lastName: string
+    dob: Date | string
+    course: string
+    major: string
+    mssv: string
+    gender: $Enums.Gender
+    following?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followers?: FollowUncheckedCreateNestedManyWithoutLeaderInput
+  }
+
+  export type ProfileCreateOrConnectWithoutInterestsInput = {
+    where: ProfileWhereUniqueInput
     create: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
-    where?: ProfileWhereInput
-  }
-
-  export type ProfileUpdateToOneWithWhereWithoutInterestsInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutInterestsInput, ProfileUncheckedUpdateWithoutInterestsInput>
-  }
-
-  export type ProfileUpdateWithoutInterestsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
-    bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUpdateManyWithoutLeaderNestedInput
-  }
-
-  export type ProfileUncheckedUpdateWithoutInterestsInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    firstName?: StringFieldUpdateOperationsInput | string
-    lastName?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    dob?: DateTimeFieldUpdateOperationsInput | Date | string
-    avatar_url?: StringFieldUpdateOperationsInput | string
-    bio?: StringFieldUpdateOperationsInput | string
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
-    followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
   }
 
   export type InterestUpsertWithoutProfilesInput = {
@@ -7517,6 +7657,59 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileUpsertWithoutInterestsInput = {
+    update: XOR<ProfileUpdateWithoutInterestsInput, ProfileUncheckedUpdateWithoutInterestsInput>
+    create: XOR<ProfileCreateWithoutInterestsInput, ProfileUncheckedCreateWithoutInterestsInput>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutInterestsInput = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutInterestsInput, ProfileUncheckedUpdateWithoutInterestsInput>
+  }
+
+  export type ProfileUpdateWithoutInterestsInput = {
+    user_id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    following?: FollowUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUpdateManyWithoutLeaderNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutInterestsInput = {
+    user_id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    bio?: StringFieldUpdateOperationsInput | string
+    avatar_url?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    dob?: DateTimeFieldUpdateOperationsInput | Date | string
+    course?: StringFieldUpdateOperationsInput | string
+    major?: StringFieldUpdateOperationsInput | string
+    mssv?: StringFieldUpdateOperationsInput | string
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    following?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutLeaderNestedInput
   }
 
   export type FollowCreateManyFollowerInput = {
