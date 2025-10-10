@@ -1,2 +1,4 @@
 import Redis from "ioredis";
-export const redis = new Redis(); // Mặc định localhost:6379
+
+const redisUrl = process.env.REDIS_URL || "redis://localhost:6379"; // fallback nếu env không set
+export const redis = new Redis(redisUrl);
