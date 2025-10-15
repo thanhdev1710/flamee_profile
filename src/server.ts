@@ -2,7 +2,7 @@ import { env } from "./config/env";
 import server from "./app";
 import { gracefulShutdown } from "./lib/shutdown";
 
-server.listen(env.port, () => {
+server.listen(env.port, "0.0.0.0", () => {
   console.log(`Server is running at http://localhost:${env.port}`);
 });
 
