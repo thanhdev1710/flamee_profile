@@ -1,5 +1,4 @@
 import { DEFAULT_AVATAR } from "../global/settingApp";
-import { getNatsClient, sc } from "../lib/nats";
 import { prisma } from "../lib/prisma";
 import { redis } from "../lib/redis";
 import { FriendSuggestion } from "../types/follow.type";
@@ -334,12 +333,6 @@ class UserService {
         ? mutual_friends.slice(offset, offset + limit)
         : [],
     };
-  }
-
-  async publishProfileCreated(userId: string) {
-    const nc = await getNatsClient();
-    const payload = JSON.stringify({ user_id: userId });
-    nc.publish("profile.created", sc.encode(payload));
   }
 }
 

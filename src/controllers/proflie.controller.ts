@@ -1,5 +1,6 @@
 import { redis } from "../lib/redis";
 import { sendResponse } from "../response/apiResponse";
+import EventService from "../services/event.service";
 import UserService from "../services/user.service";
 import { CreateUserType } from "../types/user.type";
 import AppError from "../utils/error/AppError";
@@ -17,7 +18,15 @@ export const createProfile = CatchAsync(async (req, res, next) => {
 
   const user = await UserService.create(body);
 
-  await UserService.publishProfileCreated(user.user_id);
+  await Promise.all([
+    EventService.publishProfileCreated(user.user_id),
+    EventService.publishProfileUpdated({
+      firstname: user.firstName,
+      lastname: user.lastName,
+      user_id: user.user_id,
+      username: user.username,
+    }),
+  ]);
 
   sendResponse(res, 201, "Tạo thông tin cá nhân thành công", user);
 });
@@ -39,6 +48,13 @@ export const updateProfile = CatchAsync(async (req, res, next) => {
   };
 
   const user = await UserService.update(body);
+
+  await EventService.publishProfileUpdated({
+    firstname: user.firstName,
+    lastname: user.lastName,
+    user_id: user.user_id,
+    username: user.username,
+  });
 
   sendResponse(res, 201, "Cập nhật thông tin cá nhân thành công", user);
 });
