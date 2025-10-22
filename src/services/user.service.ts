@@ -35,7 +35,7 @@ class UserService {
       gender,
       dob,
       bio,
-      avatar,
+      avatar_url,
       phone,
       address,
       favorites,
@@ -73,7 +73,7 @@ class UserService {
           course,
           major,
           mssv,
-          avatar_url: avatar || DEFAULT_AVATAR,
+          avatar_url: avatar_url || DEFAULT_AVATAR,
           bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
           interests: {
             create:
@@ -112,7 +112,7 @@ class UserService {
       gender,
       dob,
       bio,
-      avatar,
+      avatar_url,
       phone,
       address,
       favorites,
@@ -141,7 +141,7 @@ class UserService {
           course,
           major,
           mssv,
-          avatar_url: avatar || DEFAULT_AVATAR,
+          avatar_url: avatar_url || DEFAULT_AVATAR,
           bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
           interests: {
             deleteMany: {},
@@ -193,7 +193,7 @@ class UserService {
           course,
           major,
           mssv,
-          avatar_url: avatar || DEFAULT_AVATAR,
+          avatar_url: avatar_url || DEFAULT_AVATAR,
           bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
           interests: {
             deleteMany: {},
