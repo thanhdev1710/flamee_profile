@@ -1,5 +1,6 @@
 import { sendResponse } from "../response/apiResponse";
 import userService from "../services/user.service";
+import EventService from "../services/event.service";
 import { CheckUserId } from "../types/user.type";
 import AppError from "../utils/error/AppError";
 import CatchAsync from "../utils/error/CatchAsync";
@@ -28,10 +29,17 @@ export const addOrUnFollow = CatchAsync(async (req, res, next) => {
   const { userId } = getUserLogin(req);
   const { leaderId } = req.body;
 
-  const leader_id = CheckUserId(leaderId);
-  const follower_id = CheckUserId(userId);
+  const leader_id = CheckUserId(leaderId); // người bị follow
+  const follower_id = CheckUserId(userId); // người đang đăng nhập
 
   const message = await userService.addOrUnFriend(leader_id, follower_id);
+
+  // 🔥 Sau khi DB ok → publish update cho cả 2 user vào SearchService/Elasticsearch
+  // (controller gọi EventService, không đụng UserService)
+  await Promise.all([
+    EventService.publishUserSearchUpdatedFromDb(follower_id),
+    EventService.publishUserSearchUpdatedFromDb(leader_id),
+  ]);
 
   sendResponse(res, 201, message);
 });
@@ -39,9 +47,11 @@ export const addOrUnFollow = CatchAsync(async (req, res, next) => {
 export const getFriendSuggestions = CatchAsync(async (req, res, next) => {
   const { userId } = getUserLogin(req);
   const { page = 1 } = req.query;
+
   if (Number(page) < 0) {
     throw new AppError("Page không hợp lệ", 400);
   }
+
   const user_id = CheckUserId(userId);
 
   const friendSuggestions = await userService.getFriendSuggestions(

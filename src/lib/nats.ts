@@ -1,8 +1,9 @@
 // lib/natsClient.ts
-import { connect, NatsConnection, StringCodec } from "nats";
+import { connect, JSONCodec, NatsConnection, StringCodec } from "nats";
 import { env } from "../config/env";
 
 let nc: NatsConnection | null = null;
+const jc = JSONCodec();
 
 export async function getNatsClient(): Promise<NatsConnection> {
   if (!nc) {
@@ -12,4 +13,7 @@ export async function getNatsClient(): Promise<NatsConnection> {
   return nc;
 }
 
-export const sc = StringCodec();
+export async function publish(subject: string, data: any) {
+  const c = await getNatsClient();
+  c.publish(subject, jc.encode(data));
+}

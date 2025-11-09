@@ -8,6 +8,27 @@ import CatchAsync from "../utils/error/CatchAsync";
 import { getUserLogin } from "../utils/helper";
 import { generateUsernameSuggestion } from "../utils/utils";
 
+// Helper build payload cho Elasticsearch từ profile trả về
+const buildUserSearchPayload = (user: any) => {
+  const interests =
+    user.interests?.map((i: any) => i.interest?.name || i.interest || i.name) ||
+    [];
+
+  return {
+    id: user.user_id,
+    username: user.username,
+    fullname: `${user.firstName} ${user.lastName}`.trim(),
+    avatar_url: user.avatar_url,
+    bio: user.bio,
+    course: user.course || "",
+    major: user.major || "",
+    interests,
+    // Followers / Following sẽ được cập nhật thêm từ follow-controller sau
+    followers: 0,
+    following: 0,
+  };
+};
+
 export const createProfile = CatchAsync(async (req, res, next) => {
   const { email, userId } = getUserLogin(req);
   const body: CreateUserType = {
@@ -18,6 +39,7 @@ export const createProfile = CatchAsync(async (req, res, next) => {
 
   const user = await UserService.create(body);
 
+  // Sự kiện cũ của bạn (nếu đang dùng cho hệ thống khác)
   await Promise.all([
     EventService.publishProfileCreated(user.user_id),
     EventService.publishProfileUpdated({
@@ -27,6 +49,10 @@ export const createProfile = CatchAsync(async (req, res, next) => {
       username: user.username,
     }),
   ]);
+
+  // ✅ Thêm: publish lên SearchService / Elasticsearch
+  const searchPayload = buildUserSearchPayload(user);
+  await EventService.publishUserSearchUpsert(searchPayload); // user.created
 
   sendResponse(res, 201, "Tạo thông tin cá nhân thành công", user);
 });
@@ -49,12 +75,17 @@ export const updateProfile = CatchAsync(async (req, res, next) => {
 
   const user = await UserService.update(body);
 
+  // Event cũ của bạn
   await EventService.publishProfileUpdated({
     firstname: user.firstName,
     lastname: user.lastName,
     user_id: user.user_id,
     username: user.username,
   });
+
+  // ✅ Thêm: cập nhật index user trong Elasticsearch
+  const searchPayload = buildUserSearchPayload(user);
+  await EventService.publishUserSearchUpsert(searchPayload); // user.updated
 
   sendResponse(res, 201, "Cập nhật thông tin cá nhân thành công", user);
 });
@@ -68,13 +99,11 @@ export const suggestUsername = CatchAsync(async (req, res, next) => {
 
   const suggestions = new Set<string>();
 
-  // Ưu tiên gợi ý tên từ email nếu chưa bị dùng
   const emailUsed = await redis.sismember("usernames", `@${emailBase}`);
   if (!emailUsed) {
     suggestions.add(emailBase);
   }
 
-  // Gợi ý thêm 2 tên không trùng
   while (suggestions.size < 3) {
     const suggestion = await generateUsernameSuggestion(baseInput);
     suggestions.add(suggestion);
@@ -93,28 +122,21 @@ export const searchUsername = CatchAsync(async (req, res, next) => {
   const { userId } = getUserLogin(req);
   const normalizedKeyword = keyword.toLowerCase();
 
-  // Kiểm tra keyword có bắt đầu bằng '@' chưa
   if (!normalizedKeyword.startsWith("@")) {
     throw new AppError("Phải có chữ @ mới tìm kiếm", 400);
   }
 
-  // Tìm kiếm người dùng
   const data = await UserService.searchUsername(userId, normalizedKeyword);
 
   const key = `search_history:${userId}`;
-  // Xoá nếu đã tồn tại để tránh trùng
   await redis.lrem(key, 0, normalizedKeyword);
-  // Thêm mới vào đầu danh sách
   await redis.lpush(key, normalizedKeyword);
-  // Giới hạn chỉ giữ 3 từ khoá gần nhất
   await redis.ltrim(key, 0, 2);
 
-  // Kiểm tra có tìm thấy người dùng không
   if (!data || data.length === 0) {
     throw new AppError("Không tìm thấy người dùng phù hợp", 404);
   }
 
-  // Trả kết quả tìm kiếm
   sendResponse(res, 200, "Danh sách các người dùng được tìm thấy", data);
 });
 
@@ -128,9 +150,9 @@ export const getSearchHistory = CatchAsync(async (req, res, next) => {
 });
 
 export const getFriendStatuses = CatchAsync(async (req, res, next) => {
-  const { userId } = getUserLogin(req); // Lấy userId của người đang đăng nhập
+  const { userId } = getUserLogin(req);
 
-  const friendIds = await UserService.getFriendIds(userId); // Trả về mảng userId bạn bè
+  const friendIds = await UserService.getFriendIds(userId);
 
   if (!friendIds || friendIds.length === 0) {
     return sendResponse(res, 200, "Bạn chưa có bạn bè nào", null);
