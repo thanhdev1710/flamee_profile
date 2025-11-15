@@ -27,9 +27,9 @@ export const checkFriendStatus = CatchAsync(async (req, res, next) => {
 
 export const addOrUnFollow = CatchAsync(async (req, res, next) => {
   const { userId } = getUserLogin(req);
-  const { leaderId } = req.body;
+  const { followerId } = req.body;
 
-  const leader_id = CheckUserId(leaderId); // người bị follow
+  const leader_id = CheckUserId(followerId); // người bị follow
   const follower_id = CheckUserId(userId); // người đang đăng nhập
 
   const message = await userService.addOrUnFriend(leader_id, follower_id);

@@ -1,7 +1,7 @@
 import { DEFAULT_AVATAR } from "../global/settingApp";
 import { prisma } from "../lib/prisma";
 import { redis } from "../lib/redis";
-import { FriendSuggestion } from "../types/follow.type";
+import { GetFriendSuggestionsResult } from "../types/follow.type";
 import { CheckUser, CreateUserType } from "../types/user.type";
 import AppError from "../utils/error/AppError";
 
@@ -25,7 +25,10 @@ class UserService {
   }
 
   async create(input: CreateUserType) {
+    console.log({ input });
+
     const parseResult = CheckUser(input);
+    console.log({ parseResult });
     const {
       user_id,
       username,
@@ -70,8 +73,8 @@ class UserService {
           dob,
           phone,
           address,
-          course,
-          major,
+          course: course || "",
+          major: major || "",
           mssv,
           avatar_url: avatar_url || DEFAULT_AVATAR,
           bio: bio || `Xin chào tui là ${firstName} ${lastName}`,
@@ -316,22 +319,110 @@ class UserService {
     }
   }
 
-  async getFriendSuggestions(userId: string, limit = 10, offset = 0) {
-    const friends: FriendSuggestion[] = await prisma.$queryRaw`
-      SELECT source_user, suggested_user, mutual_friend_count::int, mutual_friends
-      FROM friend_suggestions_mv
-      WHERE source_user = ${userId}
-    `;
+  async getFriendSuggestions(
+    userId: string,
+    limit = 10,
+    offset = 0
+  ): Promise<GetFriendSuggestionsResult> {
+    // 1️⃣ Những user mình ĐANG follow (following)
+    const followingRaw = await prisma.follow.findMany({
+      where: { follower_id: userId },
+      select: {
+        leader_id: true,
+        leader: {
+          select: {
+            user_id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+            avatar_url: true,
+            bio: true,
+            course: true,
+            major: true,
+            mssv: true,
+          },
+        },
+      },
+    });
 
-    const { mutual_friend_count, mutual_friends, source_user, suggested_user } =
-      friends[0] || {};
+    const followingMap = new Map(
+      followingRaw.map((f) => [f.leader_id, f.leader])
+    );
+    const followingIds = Array.from(followingMap.keys());
+
+    // 2️⃣ Những user ĐANG follow mình (followers)
+    const followersRaw = await prisma.follow.findMany({
+      where: { leader_id: userId },
+      select: {
+        follower_id: true,
+        follower: {
+          select: {
+            user_id: true,
+            username: true,
+            firstName: true,
+            lastName: true,
+            avatar_url: true,
+            bio: true,
+            course: true,
+            major: true,
+            mssv: true,
+          },
+        },
+      },
+    });
+
+    const followersMap = new Map(
+      followersRaw.map((f) => [f.follower_id, f.follower])
+    );
+    const followerIds = Array.from(followersMap.keys());
+
+    // 3️⃣ ID bạn chung (follow 2 chiều)
+    const mutualIds = followingIds.filter((id) => followersMap.has(id));
+
+    const mutualFriends = mutualIds.map((id) => followingMap.get(id)!);
+
+    // 4️⃣ Followers chỉ 1 chiều: họ follow bạn, bạn chưa follow
+    const followersOnlyIds = followerIds.filter((id) => !followingMap.has(id));
+    const followersOnly = followersOnlyIds.map((id) => followersMap.get(id)!);
+
+    // 5️⃣ Following chỉ 1 chiều: bạn follow họ, họ chưa follow bạn
+    const followingOnlyIds = followingIds.filter((id) => !followersMap.has(id));
+    const followingOnly = followingOnlyIds.map((id) => followingMap.get(id)!);
+
+    // 6️⃣ Gợi ý: những user không thuộc 3 nhóm trên (chưa follow nhau)
+    const excludeIds = [
+      userId,
+      ...mutualIds,
+      ...followersOnlyIds,
+      ...followingOnlyIds,
+    ];
+
+    const suggestions = await prisma.profile.findMany({
+      where: {
+        user_id: {
+          notIn: excludeIds,
+        },
+      },
+      select: {
+        user_id: true,
+        username: true,
+        firstName: true,
+        lastName: true,
+        avatar_url: true,
+        bio: true,
+        course: true,
+        major: true,
+        mssv: true,
+      },
+      skip: offset,
+      take: limit,
+    });
+
     return {
-      mutual_friend_count: mutual_friend_count || 0,
-      source_user: source_user || userId,
-      suggested_user: suggested_user || null,
-      mutual_friends: mutual_friends
-        ? mutual_friends.slice(offset, offset + limit)
-        : [],
+      mutualFriends, // bạn chung: follow 2 chiều
+      followers: followersOnly, // họ follow bạn, bạn chưa follow
+      following: followingOnly, // bạn follow họ, họ chưa follow
+      suggestions, // 2 bên đều chưa follow nhau
     };
   }
 }
