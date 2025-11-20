@@ -25,12 +25,14 @@ class EventService {
     firstname: string;
     lastname: string;
     username: string;
+    avatar: string;
   }) {
     await publish("profile.updated", {
       user_id: user.user_id,
       firstname: user.firstname,
       lastname: user.lastname,
       username: user.username,
+      avatar: user.avatar,
     });
   }
 

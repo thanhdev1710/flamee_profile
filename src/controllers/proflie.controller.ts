@@ -47,6 +47,7 @@ export const createProfile = CatchAsync(async (req, res, next) => {
       lastname: user.lastName,
       user_id: user.user_id,
       username: user.username,
+      avatar: user.avatar_url,
     }),
   ]);
 
@@ -81,6 +82,7 @@ export const updateProfile = CatchAsync(async (req, res, next) => {
     lastname: user.lastName,
     user_id: user.user_id,
     username: user.username,
+    avatar: user.avatar_url,
   });
 
   // ✅ Thêm: cập nhật index user trong Elasticsearch
