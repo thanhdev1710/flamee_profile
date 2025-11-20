@@ -25,10 +25,7 @@ class UserService {
   }
 
   async create(input: CreateUserType) {
-    console.log({ input });
-
     const parseResult = CheckUser(input);
-    console.log({ parseResult });
     const {
       user_id,
       username,
