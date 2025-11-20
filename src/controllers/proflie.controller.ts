@@ -122,13 +122,19 @@ export const suggestUsername = CatchAsync(async (req, res, next) => {
 export const searchUsername = CatchAsync(async (req, res, next) => {
   const { keyword } = req.params;
   const { userId } = getUserLogin(req);
+  const { page, limit } = req.query;
   const normalizedKeyword = keyword.toLowerCase();
 
   if (!normalizedKeyword.startsWith("@")) {
     throw new AppError("Phải có chữ @ mới tìm kiếm", 400);
   }
 
-  const data = await UserService.searchUsername(userId, normalizedKeyword);
+  const data = await UserService.searchUsername(
+    userId,
+    normalizedKeyword,
+    Number(page) || 1,
+    Number(limit) || 5
+  );
 
   const key = `search_history:${userId}`;
   await redis.lrem(key, 0, normalizedKeyword);
@@ -136,7 +142,9 @@ export const searchUsername = CatchAsync(async (req, res, next) => {
   await redis.ltrim(key, 0, 2);
 
   if (!data || data.length === 0) {
-    throw new AppError("Không tìm thấy người dùng phù hợp", 404);
+    sendResponse(res, 200, "Danh sách các người dùng được tìm thấy", {
+      data: [],
+    });
   }
 
   sendResponse(res, 200, "Danh sách các người dùng được tìm thấy", data);

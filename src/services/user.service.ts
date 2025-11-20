@@ -223,7 +223,13 @@ class UserService {
     }
   }
 
-  async searchUsername(currentUserId: string, keyword: string, limit = 10) {
+  async searchUsername(
+    currentUserId: string,
+    keyword: string,
+    page: number,
+    limit: number
+  ) {
+    const skip = (page - 1) * limit;
     const followedUsers = await prisma.profile.findMany({
       select: { user_id: true, username: true, avatar_url: true },
       where: {
@@ -231,6 +237,7 @@ class UserService {
         followers: { some: { follower_id: currentUserId } },
         user_id: { not: currentUserId },
       },
+      skip,
       take: limit,
     });
 
@@ -252,6 +259,7 @@ class UserService {
             not: currentUserId,
           },
         },
+        skip,
         take: remaining,
       });
     }
