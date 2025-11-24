@@ -45,6 +45,7 @@ export const addOrUnFollow = CatchAsync(async (req, res, next) => {
 });
 
 export const getFriendSuggestions = CatchAsync(async (req, res, next) => {
+  const { username } = req.params;
   const { userId } = getUserLogin(req);
   const { page = 1 } = req.query;
 
@@ -52,7 +53,13 @@ export const getFriendSuggestions = CatchAsync(async (req, res, next) => {
     throw new AppError("Page không hợp lệ", 400);
   }
 
-  const user_id = CheckUserId(userId);
+  let otherId = null;
+  if (username) {
+    const user = await userService.findByUsername(username);
+    otherId = user.user_id;
+  }
+
+  const user_id = CheckUserId(otherId || userId);
 
   const friendSuggestions = await userService.getFriendSuggestions(
     user_id,

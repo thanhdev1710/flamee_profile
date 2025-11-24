@@ -3,6 +3,7 @@ import {
   createProfile,
   getFriendStatuses,
   getProfile,
+  getProfileByUsername,
   getSearchHistory,
   searchUsername,
   suggestUsername,
@@ -15,6 +16,7 @@ const router = express.Router();
 router.use(verifyToken);
 
 router.route("/").get(getProfile).post(createProfile).put(updateProfile);
+router.route("/:username").get(getProfileByUsername);
 
 router.route("/online").get(getFriendStatuses);
 router.route("/suggest-username/:base").get(suggestUsername);

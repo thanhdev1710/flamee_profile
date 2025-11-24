@@ -9,19 +9,31 @@ class UserService {
   async findByUsername(username: string) {
     const user = await prisma.profile.findUnique({
       where: { username },
+      include: {
+        interests: { select: { interest: { select: { name: true } } } },
+      },
     });
 
     if (!user) throw new AppError("Không tìm thấy người dùng", 404);
-    return user;
+    return {
+      ...user,
+      interests: user.interests.map((i) => i.interest.name),
+    };
   }
 
   async findByUserId(user_id: string) {
     const user = await prisma.profile.findUnique({
       where: { user_id },
+      include: {
+        interests: { select: { interest: { select: { name: true } } } },
+      },
     });
 
     if (!user) throw new AppError("Không tìm thấy người dùng", 404);
-    return user;
+    return {
+      ...user,
+      interests: user.interests.map((i) => i.interest.name),
+    };
   }
 
   async create(input: CreateUserType) {

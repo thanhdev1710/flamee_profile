@@ -66,6 +66,14 @@ export const getProfile = CatchAsync(async (req, res, next) => {
   sendResponse(res, 200, "Lấy thông tin cá nhân thành công", user);
 });
 
+export const getProfileByUsername = CatchAsync(async (req, res, next) => {
+  const { username } = req.params;
+
+  const user = await UserService.findByUsername(username);
+
+  sendResponse(res, 200, "Lấy thông tin cá nhân thành công", user);
+});
+
 export const updateProfile = CatchAsync(async (req, res, next) => {
   const { email, userId } = getUserLogin(req);
   const body: CreateUserType = {
