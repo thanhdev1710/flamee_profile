@@ -193,3 +193,63 @@ export const getFriendStatuses = CatchAsync(async (req, res, next) => {
 
   sendResponse(res, 200, "Trạng thái online của bạn bè", statuses);
 });
+
+export const getAllUser = CatchAsync(async (req, res) => {
+  const { search, page, limit, gender, major, course, minAge, maxAge } =
+    req.query;
+
+  const result = await UserService.findAllUsers({
+    search: search as string,
+    page: Number(page) || 1,
+    limit: Number(limit) || 20,
+    gender: gender as "Nam" | "Nữ" | "Khác",
+    major: major as string,
+    course: course as string,
+    minAge: minAge ? Number(minAge) : undefined,
+    maxAge: maxAge ? Number(maxAge) : undefined,
+  });
+
+  sendResponse(res, 200, "Lấy danh sách của người dùng", result);
+});
+
+// ===========================
+// COUNT USERS
+// ===========================
+export const countUsers = CatchAsync(async (_, res) => {
+  const count = await UserService.getCountUsers();
+
+  sendResponse(res, 200, "Lấy số lượng người dùng", { count });
+});
+
+// ===========================
+// WEEKLY USER ACTIVITY
+// ===========================
+export const weeklyUserActivity = CatchAsync(async (_, res) => {
+  const weekly = await UserService.getWeeklyUserActivity();
+
+  sendResponse(res, 200, "Lấy thống kê người dùng theo tuần", weekly);
+});
+
+// ===========================
+// RECENT USER ACTIVITIES
+// ===========================
+export const recentUserActivities = CatchAsync(async (_, res) => {
+  const recent = await UserService.getRecentUserActivities();
+
+  sendResponse(res, 200, "Lấy hoạt động người dùng gần đây", recent);
+});
+
+// ===========================
+// USER DASHBOARD
+// ===========================
+export const dashboard = CatchAsync(async (_, res) => {
+  const count = await UserService.getCountUsers();
+  const weekly = await UserService.getWeeklyUserActivity();
+  const recent = await UserService.getRecentUserActivities();
+
+  sendResponse(res, 200, "Lấy dữ liệu dashboard người dùng thành công", {
+    count,
+    weekly,
+    recent,
+  });
+});

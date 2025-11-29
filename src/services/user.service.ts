@@ -6,6 +6,109 @@ import { CheckUser, CreateUserType } from "../types/user.type";
 import AppError from "../utils/error/AppError";
 
 class UserService {
+  async findAllUsers(options: {
+    search?: string;
+    page?: number;
+    limit?: number;
+
+    gender?: "Nam" | "Nữ" | "Khác";
+    major?: string;
+    course?: string;
+
+    minAge?: number;
+    maxAge?: number;
+  }) {
+    const {
+      search,
+      page = 1,
+      limit = 20,
+      gender,
+      major,
+      course,
+      minAge,
+      maxAge,
+    } = options;
+
+    const skip = (page - 1) * limit;
+
+    // ==========================
+    //  BUILD QUERY FILTER
+    // ==========================
+    const filters: any = {};
+
+    if (search) {
+      filters.OR = [
+        { email: { contains: search, mode: "insensitive" } },
+        { username: { contains: search, mode: "insensitive" } },
+        { firstName: { contains: search, mode: "insensitive" } },
+        { lastName: { contains: search, mode: "insensitive" } },
+        { mssv: { contains: search } },
+      ];
+    }
+
+    if (gender) filters.gender = gender;
+
+    if (major) {
+      filters.major = { contains: major, mode: "insensitive" };
+    }
+
+    if (course) {
+      filters.course = { contains: course, mode: "insensitive" };
+    }
+
+    // ==========================
+    //  AGE FILTER
+    // ==========================
+    if (minAge || maxAge) {
+      const now = new Date();
+
+      const minDob = maxAge
+        ? new Date(now.getFullYear() - maxAge, 11, 31)
+        : null;
+      const maxDob = minAge ? new Date(now.getFullYear() - minAge, 0, 1) : null;
+
+      filters.dob = {};
+
+      if (minDob) filters.dob.lte = minDob;
+      if (maxDob) filters.dob.gte = maxDob;
+    }
+
+    // ==========================
+    //  GET TOTAL
+    // ==========================
+    const total = await prisma.profile.count({
+      where: filters,
+    });
+
+    // ==========================
+    //  MAIN QUERY
+    // ==========================
+    const users = await prisma.profile.findMany({
+      where: filters,
+      include: {
+        interests: {
+          select: { interest: { select: { name: true } } },
+        },
+      },
+      skip,
+      take: limit,
+      orderBy: { created_at: "desc" },
+    });
+
+    return {
+      data: users.map((u) => ({
+        ...u,
+        favorites: u.interests.map((i) => i.interest.name),
+      })),
+      pagination: {
+        total,
+        totalPages: Math.ceil(total / limit),
+        currentPage: page,
+        limit,
+      },
+    };
+  }
+
   async findByUsername(username: string) {
     const user = await prisma.profile.findUnique({
       where: { username },
@@ -441,6 +544,77 @@ class UserService {
       following: followingOnly, // bạn follow họ, họ chưa follow
       suggestions, // 2 bên đều chưa follow nhau
     };
+  }
+
+  // ===========================
+  // COUNT USERS
+  // ===========================
+  async getCountUsers() {
+    const count = await prisma.profile.count();
+    return count;
+  }
+
+  // ===========================
+  // WEEKLY USER ACTIVITY
+  // ===========================
+  async getWeeklyUserActivity() {
+    const result = [];
+
+    const days = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
+    const today = new Date();
+    const currentWeekDay = today.getDay(); // 0 = CN, 1 = T2
+
+    for (let i = 1; i <= 7; i++) {
+      const diff = i - currentWeekDay;
+      const targetDate = new Date(today);
+      targetDate.setDate(today.getDate() + diff);
+
+      const start = new Date(targetDate);
+      start.setHours(0, 0, 0, 0);
+
+      const end = new Date(targetDate);
+      end.setHours(23, 59, 59, 999);
+
+      const usersCount = await prisma.profile.count({
+        where: {
+          created_at: {
+            gte: start,
+            lte: end,
+          },
+        },
+      });
+
+      result.push({
+        day: days[i - 1],
+        users: usersCount,
+      });
+    }
+
+    return result;
+  }
+
+  // ===========================
+  // RECENT USER ACTIVITIES
+  // ===========================
+  async getRecentUserActivities() {
+    const recentUsers = await prisma.profile.findMany({
+      orderBy: { created_at: "desc" },
+      take: 10,
+      select: {
+        user_id: true,
+        username: true,
+        firstName: true,
+        lastName: true,
+        created_at: true,
+      },
+    });
+
+    return recentUsers.map((u) => ({
+      type: "user_registered",
+      message: `${u.firstName} ${u.lastName} (@${u.username}) vừa tạo tài khoản`,
+      userId: u.user_id,
+      time: u.created_at,
+    }));
   }
 }
 
